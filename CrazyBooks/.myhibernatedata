@@ -1,0 +1,17 @@
+#MyEclipse Hibernate Properties
+#Fri Jun 23 14:33:23 GMT+08:00 2017
+genVersionTag=false
+sessionFactoryName=com.crazybooks.dao.HibernateSessionFactory
+genAnnotations=false
+configFile=/CrazyBooks/src/hibernate.cfg.xml
+reStrategyClass=
+sessionFactoryId=
+profile=
+detectM2M=false
+genBasicCompId=false
+keyGenerator=
+createConfigFile=true
+basePersistenceClass=
+detectO2O=false
+useJavaTypes=true
+reSettingsFile=
