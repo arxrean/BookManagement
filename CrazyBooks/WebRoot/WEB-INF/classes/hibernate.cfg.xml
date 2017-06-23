@@ -15,9 +15,7 @@
 	<property name="connection.driver_class">
 		com.mysql.jdbc.Driver
 	</property>
-	<property name="dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 
 </session-factory>
 
