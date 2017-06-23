@@ -21,6 +21,7 @@
 			org.hibernate.dialect.MySQLDialect
 		</property>
 		<mapping resource="com/crazybooks/etity/Users.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Freeze.hbm.xml" />
 
 	</session-factory>
 

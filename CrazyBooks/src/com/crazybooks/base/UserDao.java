@@ -10,4 +10,5 @@ public interface UserDao {
 	public Users get(int id);
 	public boolean validateLogin(String loginName,String loginPwd);
 	public boolean validateRegister(String registerName);
+	public void freeze(int id);
 }
