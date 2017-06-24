@@ -31,26 +31,40 @@ body {
 </style>
 
 <script type="text/javascript">
-	function showHint(str) {
-		var xmlhttp;
-		if (str.length == 0) {
-			document.getElementById("txt_Hint").innerHTML = "";
-			return;
-		}
-		if (window.XMLHttpRequest) {
-			// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
-			xmlhttp = new XMLHttpRequest();
-		} else {
-			// IE6, IE5 浏览器执行代码
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById("txt_Hint").innerHTML = xmlhttp.responseText;
-			}
-		}
-		xmlhttp.open("GET", "/try/ajax/gethint.php?q=" + str, true);
-		xmlhttp.send();
+	function showHint() {
+		var $hint = $("#txt_userName");
+		alert("ok");
+		$hint
+				.bind(
+						"onblur",
+						function() {
+							$
+									.ajax({
+										type : "post",
+										url : "UserValidateRegisterAction",
+										data : {
+											userName : $(
+													"input[name=txt_userName]")
+													.val(),
+										},
+										dataType : "json",
+										success : function(data) {
+											var d = eval("(" + data + ")");
+											if (data.type == "error") {
+												document
+														.getElementById("hint_userName").innerHTML = "用户名已存在";
+											} else {
+												document
+														.getElementById("hint_userName").color = "green";
+												document
+														.getElementById("hint_userName").innerHTML = "用户名可用";
+											}
+										},
+										error : function() {
+											alert("sys error!");
+										}
+									});
+						});
 	}
 
 	function register() {
@@ -70,7 +84,7 @@ body {
 					address : $("input[name=txt_address]").val(),
 				},
 				dataType : "json",
-				success : function() {
+				success : function(data) {
 				},
 				error : function() {
 				}
@@ -80,6 +94,16 @@ body {
 	$(document).ready(function() {
 		register();
 	});
+
+	function isEmail(strEmail) {
+		if (strEmail == '')
+			return true;
+		if (strEmail
+				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1)
+			return true;
+		else
+			alert("oh");
+	}
 </script>
 
 
@@ -92,8 +116,9 @@ body {
 		<tr>
 			<td width=100px>用 户 名</td>
 			<td><input name="txt_userName" id="txt_userName" MaxLength="40"
-				value="" type="text" style="width: 200px; " /><span
-				id="hint_userName" style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px;"
+				onblur="showHint()" /><span id="hint_userName"
+				style="color:red;font-size:15px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>密 码</td>
@@ -103,8 +128,8 @@ body {
 		</tr>
 		<tr>
 			<td width=100px>确 认 密 码</td>
-			<td><input name="txt_repassword" id="txt_repassword" MaxLength="20"
-				value="" type="password" style="width: 200px; " /><span
+			<td><input name="txt_repassword" id="txt_repassword"
+				MaxLength="20" value="" type="password" style="width: 200px; " /><span
 				id="hint_repassword" style="color:red;font-size:15px"></span></td>
 		</tr>
 		<tr>
@@ -129,8 +154,9 @@ body {
 		<tr>
 			<td width=100px>邮 箱</td>
 			<td><input name="txt_email" id="txt_email" MaxLength="40"
-				value="" type="text" style="width: 200px; " /><span
-				id="hint_email" style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px; "
+				onblur="isEmail(this.value)" /><span id="hint_email"
+				style="color:red;font-size:15px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>手 机 号 码</td>

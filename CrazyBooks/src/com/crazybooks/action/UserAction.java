@@ -48,13 +48,14 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		return SUCCESS;
 	}
 	
-	//验证用户名是否已经被注册
+	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
+		System.out.println("OK");
 		UserBizImpl ubi=new UserBizImpl();
 		if(ubi.validateRegister(users.getName())){
 			Map<String, Object> map =new HashMap<String, Object>();
 			map.put("type", "error");
-			map.put("des", "该用户名已经被注册!");
+			map.put("des", "璇ョ敤鎴峰悕宸茬粡琚敞鍐�");
 			JSONObject json=JSONObject.fromObject(map);
 			result=json.toString();
 		}
@@ -68,7 +69,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		return "valiRegi";
 	}
 	
-	//注册用户
+	//娉ㄥ唽鐢ㄦ埛
 	public void Register(){
 		UserBizImpl ubi=new UserBizImpl();
 		ubi.register(users);
