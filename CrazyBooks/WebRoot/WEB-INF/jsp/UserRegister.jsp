@@ -25,7 +25,7 @@ td {
 
 body {
 	margin: 0;
-	background: url(image/bg.jpg) no-repeat;
+	background: url(images/bg.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 </style>

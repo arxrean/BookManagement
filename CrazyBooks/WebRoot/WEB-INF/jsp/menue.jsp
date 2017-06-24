@@ -9,7 +9,6 @@
 <link href="css/theme.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<!-- 内部页面所使用的统一页面主题和布局 -->
 <div class="divMenue">
 <div class="divIcon"><img src="images/crazyBook.png"/></div>
 <div class="divMenueL">
@@ -23,16 +22,16 @@
 <div class="divTop">welcome!<s:property value="#session.user.userName"/></div>
 </s:if>
 <s:else>
-<div class="divTop"><a class="a2" href="#">免费注册</a></div>
-<div class="divTop"><a class="a1" href="#">您好，请登录</a></div>
+<div class="divTop"><a class="a2" href="ToRegisterAction">免费注册</a></div>
+<div class="divTop"><a class="a1" href="ToLoginAction">您好，请登录</a></div>
 </s:else>
 <div class="divTop"></div>
 </div>
 <div class="divT">
 <div class="searchDiv">
-<form style="width:100%;height: 100%;">
-<input type="text" style="width:80%;height:80%;border:2px solid red;"/>
-<input type="submit" style="background-color: red;color:white;width: 16%;height:100%;border:2px solid red" value="搜索"/>
+<form>
+<input type="text" style="width:80%;height:90%;border:2px solid red;"/>
+<input type="submit" style="background-color: red;color:white;width: 16%;height:90%;border:2px solid red" value="搜索"/>
 </form>
 </div>
 <div class="divCart"><img src="#"/><a href="#" class="a3">我的书架</a></div>

@@ -1,0 +1,8 @@
+张源：homePage.jsp:主页 
+	  catalogBooks:点击不同分级后产生的图书信息页面
+	  searchedBooks:搜索栏输入图书后的页面
+寇子驿：UserInfo.jsp ：个人中心界面
+		login/register.jsp:登录注册页面
+ 		DetailedBooksInfo:图书详细界面
+骈纬国：bookCart.jsp:购物车页面
+		success.jsp:成功页面
