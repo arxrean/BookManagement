@@ -31,42 +31,6 @@ body {
 </style>
 
 <script type="text/javascript">
-	function showHint() {
-		var $hint = $("#txt_userName");
-		alert("ok");
-		$hint
-				.bind(
-						"onblur",
-						function() {
-							$
-									.ajax({
-										type : "post",
-										url : "UserValidateRegisterAction",
-										data : {
-											userName : $(
-													"input[name=txt_userName]")
-													.val(),
-										},
-										dataType : "json",
-										success : function(data) {
-											var d = eval("(" + data + ")");
-											if (data.type == "error") {
-												document
-														.getElementById("hint_userName").innerHTML = "用户名已存在";
-											} else {
-												document
-														.getElementById("hint_userName").style.color = "green";
-												document
-														.getElementById("hint_userName").innerHTML = "用户名可用";
-											}
-										},
-										error : function() {
-											alert("sys error!");
-										}
-									});
-						});
-	}
-
 	function showHint(str) {
 		$
 				.ajax({
@@ -81,8 +45,7 @@ body {
 						if (d.type == "error") {
 							document.getElementById("hint_userName").innerHTML = "用户名已存在";
 						} else {
-							document.getElementById("hint_userName").style.color = "green";
-							document.getElementById("hint_userName").innerHTML = "用户名可用";
+							document.getElementById("hint_userName").innerHTML = "";
 						}
 					}
 				});
@@ -121,20 +84,32 @@ body {
 		if (reg.test(IDNum) === false) {
 			document.getElementById("hint_IDNum").innerHTML = "非法身份证号";
 		} else {
-			document.getElementById("hint_IDNum").style.color = "green";
-			document.getElementById("hint_IDNum").innerHTML = "合法身份证号";
+			document.getElementById("hint_IDNum").innerHTML = "";
 		}
+		if (IDNum == '')
+			document.getElementById("hint_IDNum").innerHTML = "";
 	}
 
 	function isEmail(strEmail) {
-		if (strEmail == '')
-			return true;
 		if (strEmail
 				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
-			document.getElementById("hint_email").style.color = "green";
-			document.getElementById("hint_email").innerHTML = "合法邮箱地址";
+			document.getElementById("hint_email").innerHTML = "";
 		} else
 			document.getElementById("hint_email").innerHTML = "非法邮箱地址";
+		if (strEmail == '')
+			document.getElementById("hint_email").innerHTML = "";
+	}
+
+	function isEqual() {
+		var password = document.getElementById("txt_password").value;
+		var repassword = document.getElementById("txt_repassword").value;
+		if (password != repassword) {
+			document.getElementById("hint_repassword").innerHTML = "输入不一致！";
+		} else {
+			document.getElementById("hint_repassword").innerHTML = "";
+		}
+		if (repassword == '')
+			document.getElementById("hint_repassword").innerHTML = "";
 	}
 </script>
 
@@ -160,8 +135,9 @@ body {
 		<tr>
 			<td width=100px>确 认 密 码</td>
 			<td><input name="txt_repassword" id="txt_repassword"
-				MaxLength="20" value="" type="password" style="width: 200px; " /><span
-				id="hint_repassword" style="color:red;font-size:15px"></span></td>
+				MaxLength="20" value="" type="password" style="width: 200px;"
+				onblur="isEqual()" /><span id="hint_repassword"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>真 实 姓 名</td>
