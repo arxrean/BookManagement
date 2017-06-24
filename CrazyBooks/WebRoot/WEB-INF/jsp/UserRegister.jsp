@@ -33,6 +33,7 @@ background-size:100% 100%;
 </head>
 
 <body>
+<!-- 用户注册界面 -->
 	<h2 align=center>用户注册</h2>
 	<table cellpadding="0" cellspacing="0" border="0" align=center
 		width=300px style="border-collapse:separate; border-spacing:0px 20px;">

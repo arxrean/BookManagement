@@ -67,4 +67,10 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		}
 		return "valiRegi";
 	}
+	
+	//注册用户
+	public void Register(){
+		UserBizImpl ubi=new UserBizImpl();
+		ubi.register(users);
+	}
 }

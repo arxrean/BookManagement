@@ -29,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </style>
   <body> 
+  <!-- 用户/管理员登录界面 -->
     <table height="144" align="center" style="background-color: #ffffff;">
 	  <tr align="center">
 		<th width="198" height="31" bgcolor="#015890" colspan=2>

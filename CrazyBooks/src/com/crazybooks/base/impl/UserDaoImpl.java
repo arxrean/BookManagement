@@ -59,6 +59,8 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		}
 		return flag;
 	}
+	
+	
 
 	@Override
 	public void freeze(int id) {
@@ -77,6 +79,12 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 			flag=true;
 		}
 		return flag;
+	}
+
+	@Override
+	public void register(Users users) {
+		// TODO Auto-generated method stub
+		add(users);
 	}
 
 	

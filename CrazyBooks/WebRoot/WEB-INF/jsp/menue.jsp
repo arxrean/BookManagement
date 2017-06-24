@@ -9,6 +9,7 @@
 <link href="css/theme.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<!-- 内部页面所使用的统一页面主题和布局 -->
 <div class="divMenue">
 <div class="divIcon"><img src="images/crazyBook.png"/></div>
 <div class="divMenueL">
