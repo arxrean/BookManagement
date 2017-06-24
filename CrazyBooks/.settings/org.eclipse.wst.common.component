@@ -3,7 +3,7 @@
     <wb-module deploy-name="CrazyBooks">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="CrazyBooks"/>
         <property name="java-output-path" value="/CrazyBooks/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/CrazyBooks"/>
     </wb-module>
 </project-modules>
