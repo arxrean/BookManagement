@@ -68,6 +68,7 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 	@Override
 	public boolean isFreeze() {
 		// TODO Auto-generated method stub
+		System.out.println("ok");
 		return false;
 	}
 
