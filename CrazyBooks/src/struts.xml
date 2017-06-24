@@ -2,8 +2,15 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="default" extends="struts-default,json-default">
+		<!-- 主页到登录和注册界面的跳转 -->
 		<action name="To*Action">
 			<result name="success">/WEB-INF/jsp/User{1}.jsp</result>
+		</action>
+		<!-- 对用户行为的操作，例如登录，注册等 -->
+		<action name="User*Action" class="com.crazybooks.action.UserAction" method="{1}">
+			<result name="valiRegi" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 	</package>
 </struts>    

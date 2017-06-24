@@ -42,7 +42,7 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		condition.setPassword(loginPwd);
 		List list=super.search(Users.class, condition);
 		if(list.size()>0){
-			
+			flag=true;
 		}
 		return flag;
 	}
