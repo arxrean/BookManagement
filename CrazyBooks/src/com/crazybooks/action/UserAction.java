@@ -20,8 +20,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	private Users users;
 	
 	private String result;
-	
-	
+
 	public Users getUsers() {
 		return users;
 	}
@@ -41,6 +40,9 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	@Override
 	public Users getModel() {
 		// TODO Auto-generated method stub
+		if(users==null){
+			users=new Users();
+		}
 		return users;
 	}
 
@@ -50,20 +52,25 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
-		System.out.println("OK");
 		UserBizImpl ubi=new UserBizImpl();
-		if(ubi.validateRegister(users.getName())){
+		if(ubi.validateRegister(users.getUserName())){
 			Map<String, Object> map =new HashMap<String, Object>();
 			map.put("type", "error");
-			map.put("des", "璇ョ敤鎴峰悕宸茬粡琚敞鍐�");
+			map.put("des", "already has this userName!");
 			JSONObject json=JSONObject.fromObject(map);
 			result=json.toString();
 		}
 		else {
 			Map<String, Object> map =new HashMap<String, Object>();
 			map.put("type", "success");
-			map.put("des", "null");
-			JSONObject json=JSONObject.fromObject(map);
+			map.put("des", "userName is ok!");
+			JSONObject json=null;
+			try {
+				json=JSONObject.fromObject(map);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 			result=json.toString();
 		}
 		return "valiRegi";

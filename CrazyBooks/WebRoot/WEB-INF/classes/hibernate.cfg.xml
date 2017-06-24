@@ -23,13 +23,24 @@
 		</property>
 		<property name="c3p0.min_size">2</property>
 		<property name="c3p0.max_size">10</property>
-		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="dialect">
+			org.hibernate.dialect.MySQLInnoDBDialect
+		</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping resource="com/crazybooks/etity/Users.hbm.xml" />
 		<mapping resource="com/crazybooks/etity/Freeze.hbm.xml" />
-		<mapping resource="com/crazybooks/etity/CategoryOne.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Addbooks.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Books.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Borrow.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Categoryone.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Categorytwo.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Collections.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Commentary.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Destroybooks.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Managers.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Recharge.hbm.xml" />
 
 	</session-factory>
 

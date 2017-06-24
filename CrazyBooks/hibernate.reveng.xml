@@ -7,7 +7,57 @@
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-<table name="freeze" catalog="crazybooksdb">
+	<table name="freeze" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="addbooks" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="books" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="borrow" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="categoryone" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="categorytwo" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="collections" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="commentary" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="destroybooks" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="managers" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="recharge" catalog="crazybooksdb">
 	<primary-key>
 		<generator class="native"></generator>
 	</primary-key>

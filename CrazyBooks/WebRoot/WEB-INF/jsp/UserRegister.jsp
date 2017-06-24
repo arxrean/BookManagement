@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -37,12 +38,18 @@ body {
 			type:"post",
 			url:"UserValidateRegisterAction",
 			data:{
-				name:s
+				userName:s
 			},
 			dataType:"json",
 			success:function(data){
 				var d=eval("("+data+")");
-				alert(d);
+				if(d.type=="error"){
+					$("#hint_userName").text(d.des);
+				}
+				else{
+					$("#hint_userName").css("color","green");
+					$("#hint_userName").text(d.des);
+				}
 			}
 		});
 	}
@@ -90,6 +97,7 @@ body {
 </head>
 
 <body>
+<s:debug></s:debug>
 	<h2 align=center style="font-family:微软雅黑;margin-top:150px">用户注册</h2>
 	<table cellpadding="0" cellspacing="0" border="0" align=center
 		width=400px style="border-collapse:separate; border-spacing:0px 20px;">
