@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.crazybooks.base.BaseHibernateDao;
 import com.crazybooks.base.UserDao;
+import com.crazybooks.etity.Freeze;
 import com.crazybooks.etity.Users;
 
 public class UserDaoImpl extends BaseHibernateDao implements UserDao{
@@ -41,7 +42,7 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		condition.setPassword(loginPwd);
 		List list=super.search(Users.class, condition);
 		if(list.size()>0){
-			flag=true;
+			
 		}
 		return flag;
 	}
@@ -66,11 +67,16 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 	}
 
 	@Override
-	public boolean isFreeze(int id) {
+	public boolean isFreeze(int userId) {
 		// TODO Auto-generated method stub
 		boolean flag=false;
-		Users condition=new Users();
-		return false;
+		Freeze condition=new Freeze();
+		condition.setUid(userId);
+		List list=super.search(Freeze.class, condition);
+		if(list.size()>0){
+			flag=true;
+		}
+		return flag;
 	}
 
 	
