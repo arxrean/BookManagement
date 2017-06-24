@@ -30,21 +30,62 @@ body {
 }
 </style>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	function showHint(s) {
-		$.ajax({
-			type:"post",
-			url:"UserValidateRegisterAction",
-			data:{
-				name:s
-			},
-			dataType:"json",
-			success:function(data){
-				var d=eval("("+data+")");
-				alert(d);
-			}
-		});
+	function showHint() {
+		var $hint = $("#txt_userName");
+		alert("ok");
+		$hint
+				.bind(
+						"onblur",
+						function() {
+							$
+									.ajax({
+										type : "post",
+										url : "UserValidateRegisterAction",
+										data : {
+											userName : $(
+													"input[name=txt_userName]")
+													.val(),
+										},
+										dataType : "json",
+										success : function(data) {
+											var d = eval("(" + data + ")");
+											if (data.type == "error") {
+												document
+														.getElementById("hint_userName").innerHTML = "用户名已存在";
+											} else {
+												document
+														.getElementById("hint_userName").style.color = "green";
+												document
+														.getElementById("hint_userName").innerHTML = "用户名可用";
+											}
+										},
+										error : function() {
+											alert("sys error!");
+										}
+									});
+						});
+	}
+
+	function showHint(str) {
+		$
+				.ajax({
+					type : "post",
+					url : "UserValidateRegisterAction",
+					data : {
+						userName : str
+					},
+					dataType : "json",
+					success : function(data) {
+						var d = eval("(" + data + ")");
+						if (d.type == "error") {
+							document.getElementById("hint_userName").innerHTML = "用户名已存在";
+						} else {
+							document.getElementById("hint_userName").style.color = "green";
+							document.getElementById("hint_userName").innerHTML = "用户名可用";
+						}
+					}
+				});
 	}
 
 	function register() {
@@ -75,14 +116,25 @@ body {
 		register();
 	});
 
+	function isIDNum(IDNum) {
+		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		if (reg.test(IDNum) === false) {
+			document.getElementById("hint_IDNum").innerHTML = "非法身份证号";
+		} else {
+			document.getElementById("hint_IDNum").style.color = "green";
+			document.getElementById("hint_IDNum").innerHTML = "合法身份证号";
+		}
+	}
+
 	function isEmail(strEmail) {
 		if (strEmail == '')
 			return true;
 		if (strEmail
-				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1)
-			return true;
-		else
-			alert("oh");
+				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
+			document.getElementById("hint_email").style.color = "green";
+			document.getElementById("hint_email").innerHTML = "合法邮箱地址";
+		} else
+			document.getElementById("hint_email").innerHTML = "非法邮箱地址";
 	}
 </script>
 
@@ -96,9 +148,8 @@ body {
 		<tr>
 			<td width=100px>用 户 名</td>
 			<td><input name="txt_userName" id="txt_userName" MaxLength="40"
-				value="" type="text" style="width: 200px;"
-				onblur="showHint(this.value)" /><span id="hint_userName"
-				style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px;" onblur="showHint()" /><span
+				id="hint_userName" style="color:red;font-size:15px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>密 码</td>
@@ -121,8 +172,9 @@ body {
 		<tr>
 			<td width=100px>身 份 证 号</td>
 			<td><input name="txt_IDNum" id="txt_IDNum" MaxLength="20"
-				tabindex="5" value="" type="text" style="width: 200px; " /><span
-				id="hint_IDNum" style="color:red;font-size:15px"></span></td>
+				tabindex="5" value="" type="text" style="width: 200px;"
+				onblur="isIDNum(this.value)" /><span id="hint_IDNum"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>性 别</td>
@@ -136,7 +188,7 @@ body {
 			<td><input name="txt_email" id="txt_email" MaxLength="40"
 				value="" type="text" style="width: 200px; "
 				onblur="isEmail(this.value)" /><span id="hint_email"
-				style="color:red;font-size:15px"></span></td>
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>手 机 号 码</td>
