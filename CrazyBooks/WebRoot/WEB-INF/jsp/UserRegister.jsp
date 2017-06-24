@@ -30,41 +30,21 @@ body {
 }
 </style>
 
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	function showHint() {
-		var $hint = $("#txt_userName");
-		alert("ok");
-		$hint
-				.bind(
-						"onblur",
-						function() {
-							$
-									.ajax({
-										type : "post",
-										url : "UserValidateRegisterAction",
-										data : {
-											userName : $(
-													"input[name=txt_userName]")
-													.val(),
-										},
-										dataType : "json",
-										success : function(data) {
-											var d = eval("(" + data + ")");
-											if (data.type == "error") {
-												document
-														.getElementById("hint_userName").innerHTML = "用户名已存在";
-											} else {
-												document
-														.getElementById("hint_userName").color = "green";
-												document
-														.getElementById("hint_userName").innerHTML = "用户名可用";
-											}
-										},
-										error : function() {
-											alert("sys error!");
-										}
-									});
-						});
+	function showHint(s) {
+		$.ajax({
+			type:"post",
+			url:"UserValidateRegisterAction",
+			data:{
+				name:s
+			},
+			dataType:"json",
+			success:function(data){
+				var d=eval("("+data+")");
+				alert(d);
+			}
+		});
 	}
 
 	function register() {
@@ -117,7 +97,7 @@ body {
 			<td width=100px>用 户 名</td>
 			<td><input name="txt_userName" id="txt_userName" MaxLength="40"
 				value="" type="text" style="width: 200px;"
-				onblur="showHint()" /><span id="hint_userName"
+				onblur="showHint(this.value)" /><span id="hint_userName"
 				style="color:red;font-size:15px"></span></td>
 		</tr>
 		<tr>
