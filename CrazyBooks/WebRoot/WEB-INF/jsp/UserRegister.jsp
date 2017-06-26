@@ -97,9 +97,6 @@ body {
 			alert("请检查信息是否正确！");
 		}
 	}
-	$(document).ready(function() {
-		register();
-	});
 
 	function isIDNum(IDNum) {
 		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;

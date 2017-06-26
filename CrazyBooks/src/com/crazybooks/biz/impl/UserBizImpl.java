@@ -10,7 +10,7 @@ public class UserBizImpl implements UserBiz{
 	public boolean validateLogin(String userName, String password) {
 		// TODO Auto-generated method stub
 		UserDaoImpl userDaoImpl = new UserDaoImpl();
-		return userDaoImpl.validateLogin(userName, password);
+		return false;
 	}
 
 	@Override

@@ -34,15 +34,15 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 	}
 
 	@Override
-	public boolean validateLogin(String loginName, String loginPwd) {//验证登录
+	public String validateLogin(String loginName, String loginPwd) {//验证登录
 		// TODO Auto-generated method stub
-		boolean flag=false;
+		String flag="none";
 		Users condition=new Users();
 		condition.setUserName(loginName);
 		condition.setPassword(loginPwd);
 		List list=super.search(Users.class, condition);
 		if(list.size()>0){
-			flag=true;
+			flag="abc";
 		}
 		return flag;
 	}
@@ -58,14 +58,6 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 			flag=true;
 		}
 		return flag;
-	}
-	
-	
-
-	@Override
-	public void freeze(int id) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
