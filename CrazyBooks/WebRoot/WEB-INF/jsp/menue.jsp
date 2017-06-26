@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="divMenue">
-<div class="divIcon"><img src="images/crazyBook.png"/></div>
+<div class="divIcon"><img src="images/CrazyBook.jpg"/></div>
 <div class="divMenueL">
 <div class="divT">
 <div class="divTop"><a class="a1" href="#">网站导航</a></div>
