@@ -30,6 +30,7 @@ body {
 }
 </style>
 
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
 	function showHint(str) {
 		$
@@ -45,7 +46,7 @@ body {
 						if (d.type == "error") {
 							document.getElementById("hint_userName").innerHTML = "用户名已存在";
 						} else {
-							document.getElementById("hint_userName").innerHTML = "";
+							document.getElementById("hint_userName").innerHTML = "用户名可用";
 						}
 					}
 				});

@@ -52,6 +52,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
+		System.out.println(users.getUserName());
 		UserBizImpl ubi=new UserBizImpl();
 		if(ubi.validateRegister(users.getUserName())){
 			Map<String, Object> map =new HashMap<String, Object>();
