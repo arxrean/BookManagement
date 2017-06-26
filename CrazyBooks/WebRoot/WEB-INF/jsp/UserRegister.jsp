@@ -32,29 +32,48 @@ body {
 
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	function showHint(str) {
+	var userNameState = false;
+	var passwordState = false;
+	var repasswordState = false;
+	var nameState = false;
+	var IDNumState = false;
+	var emailState = false;
+	var phoneNumState = false;
+	var addressState = false;
+
+	function showHint(userName) {
 		$
 				.ajax({
 					type : "post",
 					url : "UserValidateRegisterAction",
 					data : {
-						userName : str
+						userName : userName
 					},
 					dataType : "json",
 					success : function(data) {
 						var d = eval("(" + data + ")");
 						if (d.type == "error") {
+							document.getElementById("hint_userName").style.color = "red";
 							document.getElementById("hint_userName").innerHTML = "用户名已存在";
+							userNameState = false;
 						} else {
-							document.getElementById("hint_userName").innerHTML = "用户名可用";
+							if (userName == '') {
+								document.getElementById("hint_userName").innerHTML = "";
+								userNameState = false;
+							} else {
+								document.getElementById("hint_userName").style.color = "green";
+								document.getElementById("hint_userName").innerHTML = "✔";
+								userNameState = true;
+							}
 						}
 					}
 				});
 	}
 
 	function register() {
-		var $register = $("input.btn_register");
-		$register.bind("click", function() {
+		if (userNameState && passwordState && repasswordState && nameState
+				&& emailState && phoneNumState && addressState) {
+			alert("正确！");
 			$.ajax({
 				type : "post",
 				url : "UserRegisterAction",
@@ -74,7 +93,9 @@ body {
 				error : function() {
 				}
 			});
-		});
+		} else {
+			alert("请检查信息是否正确！");
+		}
 	}
 	$(document).ready(function() {
 		register();
@@ -83,34 +104,93 @@ body {
 	function isIDNum(IDNum) {
 		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 		if (reg.test(IDNum) === false) {
+			document.getElementById("hint_IDNum").style.color = "red";
 			document.getElementById("hint_IDNum").innerHTML = "非法身份证号";
+			IDNumState = false;
 		} else {
-			document.getElementById("hint_IDNum").innerHTML = "";
+			document.getElementById("hint_IDNum").style.color = "green";
+			document.getElementById("hint_IDNum").innerHTML = "✔";
+			IDNumState = true;
 		}
-		if (IDNum == '')
+		if (IDNum == '') {
 			document.getElementById("hint_IDNum").innerHTML = "";
+			IDNumState = false;
+		}
 	}
 
 	function isEmail(strEmail) {
 		if (strEmail
 				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
-			document.getElementById("hint_email").innerHTML = "";
-		} else
+			document.getElementById("hint_email").style.color = "green";
+			document.getElementById("hint_email").innerHTML = "✔";
+			emailState = true;
+		} else {
+			document.getElementById("hint_email").style.color = "red";
 			document.getElementById("hint_email").innerHTML = "非法邮箱地址";
-		if (strEmail == '')
+			emailState = false;
+		}
+		if (strEmail == '') {
 			document.getElementById("hint_email").innerHTML = "";
+			emailState = false;
+		}
 	}
 
 	function isEqual() {
 		var password = document.getElementById("txt_password").value;
 		var repassword = document.getElementById("txt_repassword").value;
 		if (password != repassword) {
+			document.getElementById("hint_repassword").style.color = "red";
 			document.getElementById("hint_repassword").innerHTML = "输入不一致！";
+			repasswordState = false;
 		} else {
-			document.getElementById("hint_repassword").innerHTML = "";
+			document.getElementById("hint_repassword").style.color = "green";
+			document.getElementById("hint_repassword").innerHTML = "✔";
+			repasswordState = true;
 		}
-		if (repassword == '')
+		if (repassword == '') {
 			document.getElementById("hint_repassword").innerHTML = "";
+			repasswordState = false;
+		}
+	}
+
+	function isPasswordEmpty(password) {
+		if (password == '')
+			passwordState = false;
+		else {
+			document.getElementById("hint_password").style.color = "green";
+			document.getElementById("hint_password").innerHTML = "✔";
+			passwordState = true;
+		}
+	}
+
+	function isNameEmpty(name) {
+		if (name == '')
+			nameState = false;
+		else {
+			document.getElementById("hint_name").style.color = "green";
+			document.getElementById("hint_name").innerHTML = "✔";
+			nameState = true;
+		}
+	}
+
+	function isPhoneNumEmpty(phoneNum) {
+		if (phoneNum == '')
+			phoneNumState = false;
+		else {
+			document.getElementById("hint_phoneNum").style.color = "green";
+			document.getElementById("hint_phoneNum").innerHTML = "✔";
+			phoneNumState = true;
+		}
+	}
+
+	function isAddressEmpty(address) {
+		if (address == '')
+			addressState = false;
+		else {
+			document.getElementById("hint_address").style.color = "green";
+			document.getElementById("hint_address").innerHTML = "✔";
+			addressState = true;
+		}
 	}
 </script>
 
@@ -124,14 +204,16 @@ body {
 		<tr>
 			<td width=100px>用 户 名</td>
 			<td><input name="txt_userName" id="txt_userName" MaxLength="40"
-				value="" type="text" style="width: 200px;" onblur="showHint()" /><span
-				id="hint_userName" style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px;"
+				onblur="showHint(this.value)" /><span id="hint_userName"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>密 码</td>
 			<td><input name="txt_password" id="txt_password" MaxLength="20"
-				value="" type="password" style="width: 200px; " /><span
-				id="hint_password" style="color:red;font-size:15px"></span></td>
+				value="" type="password" style="width: 200px; "
+				onblur="isPasswordEmpty(this.value)" /><span id="hint_password"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>确 认 密 码</td>
@@ -143,8 +225,8 @@ body {
 		<tr>
 			<td width=100px>真 实 姓 名</td>
 			<td><input name="txt_name" id="txt_name" MaxLength="20" value=""
-				type="text" style="width: 200px; " /><span id="hint_name"
-				style="color:red;font-size:15px"></span></td>
+				type="text" style="width: 200px; " onblur="isNameEmpty(this.value)" /><span
+				id="hint_name" style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>身 份 证 号</td>
@@ -170,18 +252,21 @@ body {
 		<tr>
 			<td width=100px>手 机 号 码</td>
 			<td><input name="txt_phoneNum" id="txt_phoneNum" MaxLength="20"
-				value="" type="text" style="width: 200px; " /><span
-				id="hint_phoneNum" style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px; "
+				onblur="isPhoneNumEmpty(this.value)" /><span id="hint_phoneNum"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>家 庭 地 址</td>
 			<td><input name="txt_address" id="txt_address" MaxLength="20"
-				value="" type="text" style="width: 200px; " /><span
-				id="hint_address" style="color:red;font-size:15px"></span></td>
+				value="" type="text" style="width: 200px; "
+				onblur="isAddressEmpty(this.value)" /><span id="hint_address"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td colspan="2" align=center><input name="btn_register"
-				id="btn_register" type="button" value="立即注册" style="width: 150px; " /></td>
+				id="btn_register" type="button" value="立即注册" style="width: 150px; "
+				onclick="register()" /></td>
 		</tr>
 	</table>
 	<p align=center style="color:red;font-size:25px"></p>
