@@ -25,7 +25,7 @@ td {
 
 body {
 	margin: 0;
-	background: url(images/bg.jpg) no-repeat;
+	background: url(images/bg_register.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 </style>
@@ -199,50 +199,54 @@ body {
 </head>
 
 <body>
-	<p align=right>
-		已有帐号？请<a href="ToLoginAction">登录</a>
-	</p>
-	<h1 align=center
-		style="font-family:微软雅黑;margin-top:150px;font-size:40px">用户注册</h1>
+	<div style="background-color:#fcfcfc;">
+		<br><h1 align=center
+			style="font-family:微软雅黑;font-size:40px;color:#5b5b5b;">用户注册</h1>
+		<p align=right>
+			已有帐号？请<a href="ToLoginAction">登录</a>
+		</p>
+	</div>
 	<table cellpadding="0" cellspacing="0" border="0" align=center
 		width=400px style="border-collapse:separate; border-spacing:0px 20px;">
 		<tr>
 			<td width=100px>用 户 名</td>
 			<td><input name="txt_userName" id="txt_userName" MaxLength="40"
-				value="" type="text" style="width: 200px;"
+				value="" type="text" style="width: 200px;border-radius:2px"
 				onblur="showHint(this.value)" /><span id="hint_userName"
 				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>密 码</td>
 			<td><input name="txt_password" id="txt_password" MaxLength="20"
-				value="" type="password" style="width: 200px; "
+				value="" type="password" style="width: 200px;border-radius:2px "
 				onblur="isPasswordEmpty(this.value)" /><span id="hint_password"
 				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>确 认 密 码</td>
 			<td><input name="txt_repassword" id="txt_repassword"
-				MaxLength="20" value="" type="password" style="width: 200px;"
-				onblur="isEqual()" /><span id="hint_repassword"
-				style="color:red;font-size:10px"></span></td>
+				MaxLength="20" value="" type="password"
+				style="width: 200px;border-radius:2px" onblur="isEqual()" /><span
+				id="hint_repassword" style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>真 实 姓 名</td>
 			<td><input name="txt_name" id="txt_name" MaxLength="20" value=""
-				type="text" style="width: 200px; " onblur="isNameEmpty(this.value)" /><span
-				id="hint_name" style="color:red;font-size:10px"></span></td>
+				type="text" style="width: 200px;border-radius:2px "
+				onblur="isNameEmpty(this.value)" /><span id="hint_name"
+				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>身 份 证 号</td>
 			<td><input name="txt_IDNum" id="txt_IDNum" MaxLength="20"
-				tabindex="5" value="" type="text" style="width: 200px;"
-				onblur="isIDNum(this.value)" /><span id="hint_IDNum"
-				style="color:red;font-size:10px"></span></td>
+				tabindex="5" value="" type="text"
+				style="width: 200px;border-radius:2px" onblur="isIDNum(this.value)" /><span
+				id="hint_IDNum" style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>性 别</td>
-			<td><select name="sel_sex" id="sel_sex" style="width: 200px; ">
+			<td><select name="sel_sex" id="sel_sex"
+				style="width: 200px; border-radius:2px">
 					<option selected="selected" value="1">男</option>
 					<option value="2">女</option>
 			</select></td>
@@ -250,27 +254,29 @@ body {
 		<tr>
 			<td width=100px>邮 箱</td>
 			<td><input name="txt_email" id="txt_email" MaxLength="40"
-				value="" type="text" style="width: 200px; "
+				value="" type="text" style="width: 200px; border-radius:2px"
 				onblur="isEmail(this.value)" /><span id="hint_email"
 				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>手 机 号 码</td>
 			<td><input name="txt_phoneNum" id="txt_phoneNum" MaxLength="20"
-				value="" type="text" style="width: 200px; "
+				value="" type="text" style="width: 200px;border-radius:2px "
 				onblur="isPhoneNumEmpty(this.value)" /><span id="hint_phoneNum"
 				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
 			<td width=100px>家 庭 地 址</td>
 			<td><input name="txt_address" id="txt_address" MaxLength="20"
-				value="" type="text" style="width: 200px; "
+				value="" type="text" style="width: 200px;border-radius:2px "
 				onblur="isAddressEmpty(this.value)" /><span id="hint_address"
 				style="color:red;font-size:10px"></span></td>
 		</tr>
 		<tr>
-			<td colspan="2" align=center><input name="btn_register"
-				id="btn_register" type="button" value="立即注册" style="width: 150px; "
+			<td></td>
+			<td><input name="btn_register" id="btn_register" type="button"
+				value="确认提交"
+				style="width: 200px;height:40px;border-radius:5px;cursor:hand;background-color:#f0f0f0;font-size:15px;font-family:微软雅黑"
 				onclick="register()" /></td>
 		</tr>
 	</table>
