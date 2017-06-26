@@ -78,14 +78,14 @@ body {
 				type : "post",
 				url : "UserRegisterAction",
 				data : {
-					userName : $("input[name=txt_userName]").val(),
-					password : $("input[name=txt_password]").val(),
-					name : $("input[name=txt_name]").val(),
-					IDNum : $("input[name=txt_IDNum]").val(),
-					sex : $("input[name=txt_sex]").val(),
-					email : $("input[name=txt_email]").val(),
-					phoneNum : $("input[name=txt_phoneNum]").val(),
-					address : $("input[name=txt_address]").val(),
+					userName : $("#txt_userName").val(),
+					password : $("#password").val(),
+					name : $("#txt_name").val(),
+					IDNum : $("#txt_IDNum").val(),
+					sex : $("#sel_sex").val(),
+					email : $("#txt_email").val(),
+					phoneNum : $("#txt_phoneNum").val(),
+					address : $("#txt_address").val(),
 				},
 				dataType : "json",
 				success : function(data) {
@@ -151,9 +151,10 @@ body {
 	}
 
 	function isPasswordEmpty(password) {
-		if (password == '')
+		if (password == '') {
+			document.getElementById("hint_password").innerHTML = "";
 			passwordState = false;
-		else {
+		} else {
 			document.getElementById("hint_password").style.color = "green";
 			document.getElementById("hint_password").innerHTML = "✔";
 			passwordState = true;
@@ -161,9 +162,10 @@ body {
 	}
 
 	function isNameEmpty(name) {
-		if (name == '')
+		if (name == '') {
+			document.getElementById("hint_name").innerHTML = "";
 			nameState = false;
-		else {
+		} else {
 			document.getElementById("hint_name").style.color = "green";
 			document.getElementById("hint_name").innerHTML = "✔";
 			nameState = true;
@@ -171,9 +173,10 @@ body {
 	}
 
 	function isPhoneNumEmpty(phoneNum) {
-		if (phoneNum == '')
+		if (phoneNum == '') {
+			document.getElementById("hint_phoneNum").innerHTML = "";
 			phoneNumState = false;
-		else {
+		} else {
 			document.getElementById("hint_phoneNum").style.color = "green";
 			document.getElementById("hint_phoneNum").innerHTML = "✔";
 			phoneNumState = true;
@@ -181,9 +184,10 @@ body {
 	}
 
 	function isAddressEmpty(address) {
-		if (address == '')
+		if (address == '') {
+			document.getElementById("hint_address").innerHTML = "";
 			addressState = false;
-		else {
+		} else {
 			document.getElementById("hint_address").style.color = "green";
 			document.getElementById("hint_address").innerHTML = "✔";
 			addressState = true;
@@ -195,7 +199,11 @@ body {
 </head>
 
 <body>
-	<h2 align=center style="font-family:微软雅黑;margin-top:150px">用户注册</h2>
+	<p align=right>
+		已有帐号？请<a href="ToLoginAction">登录</a>
+	</p>
+	<h1 align=center
+		style="font-family:微软雅黑;margin-top:150px;font-size:40px">用户注册</h1>
 	<table cellpadding="0" cellspacing="0" border="0" align=center
 		width=400px style="border-collapse:separate; border-spacing:0px 20px;">
 		<tr>
@@ -234,9 +242,9 @@ body {
 		</tr>
 		<tr>
 			<td width=100px>性 别</td>
-			<td><select name="txt_sex" id="txt_sex" style="width: 200px; ">
-					<option selected="selected">男</option>
-					<option>女</option>
+			<td><select name="sel_sex" id="sel_sex" style="width: 200px; ">
+					<option selected="selected" value="1">男</option>
+					<option value="2">女</option>
 			</select></td>
 		</tr>
 		<tr>
