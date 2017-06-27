@@ -18,9 +18,6 @@
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
-		<property name="dialect">
-			org.hibernate.dialect.MySQLDialect
-		</property>
 		<property name="c3p0.min_size">2</property>
 		<property name="c3p0.max_size">10</property>
 		<property name="dialect">

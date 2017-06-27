@@ -9,7 +9,12 @@ import com.crazybooks.dao.HibernateSessionFactory;
 public class CategoryOneImpl extends BaseHibernateDao implements CategoryOneDao {
 	public List findAllCname() {
 		// TODO Auto-generated method stub
-		return HibernateSessionFactory.getSession().createQuery("from Categoryone").list();
+		List list=HibernateSessionFactory.getSession().createQuery("from Categoryone").list();
+		if(list.size()<1)
+		{
+			return null;
+		}
+		return list;
 	}
 
 }

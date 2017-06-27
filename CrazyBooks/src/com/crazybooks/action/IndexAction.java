@@ -13,8 +13,8 @@ public class IndexAction extends ActionSupport{
 	}
 	public String mainPage()
 	{
-//		List cList=categoryOneService.findAllCname();
-//		ServletActionContext.getRequest().getSession().setAttribute("cList", cList);
+		List cList=categoryOneService.findAllCname();
+		ServletActionContext.getRequest().getSession().setAttribute("cList", cList);
 		return "mainPage";
 	}
 }
