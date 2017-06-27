@@ -78,13 +78,12 @@ body {
 	function register() {
 		if (userNameState && passwordState && repasswordState && nameState
 				&& emailState && phoneNumState && addressState) {
-			alert("正确！");
 			$.ajax({
 				type : "post",
 				url : "UserRegisterAction",
 				data : {
 					userName : $("#txt_userName").val(),
-					password : $("#password").val(),
+					password : $("#txt_password").val(),
 					name : $("#txt_name").val(),
 					IDNum : $("#txt_IDNum").val(),
 					sex : $("#sel_sex").val(),
