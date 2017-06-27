@@ -85,7 +85,7 @@ body {
 					userName : $("#txt_userName").val(),
 					password : $("#txt_password").val(),
 					name : $("#txt_name").val(),
-					IDNum : $("#txt_IDNum").val(),
+					idnum : $("#txt_IDNum").val(),
 					sex : $("#sel_sex").val(),
 					email : $("#txt_email").val(),
 					phoneNum : $("#txt_phoneNum").val(),
@@ -93,6 +93,11 @@ body {
 				},
 				dataType : "json",
 				success : function(data) {
+					var d = eval("(" + data + ")");
+					if(d.type=="success"){
+						alert("插入成功!");
+						window.location.href="ToLoginAction";
+					}
 				},
 				error : function() {
 				}

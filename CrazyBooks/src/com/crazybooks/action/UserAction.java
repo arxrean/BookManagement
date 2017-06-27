@@ -82,8 +82,13 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	}
 	
 	//娉ㄥ唽鐢ㄦ埛
-	public void Register(){
+	public String Register(){
 		UserBizImpl ubi=new UserBizImpl();
+		Map<String, Object> map =new HashMap<String, Object>();
 		ubi.register(users);
+		map.put("type", "success");
+		JSONObject json=JSONObject.fromObject(map);
+		result=json.toString();
+		return "register";
 	}
 }

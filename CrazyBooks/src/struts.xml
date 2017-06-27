@@ -11,6 +11,9 @@
 			<result name="valiRegi" type="json">
 				<param name="root">result</param>
 			</result>
+			<result name="register" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 		<action name="To*Action">
 			<result name="success">/WEB-INF/jsp/User{1}.jsp</result>
