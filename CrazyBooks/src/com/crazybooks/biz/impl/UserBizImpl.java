@@ -7,10 +7,10 @@ import com.crazybooks.etity.Users;
 public class UserBizImpl implements UserBiz{
 
 	@Override
-	public boolean validateLogin(String userName, String password) {
+	public String validateLogin(String userName, String password) {
 		// TODO Auto-generated method stub
 		UserDaoImpl userDaoImpl = new UserDaoImpl();
-		return false;
+		return userDaoImpl.validateLogin(userName, password);
 	}
 
 	@Override

@@ -47,12 +47,16 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	}
 
 	public String Login(){
+		UserBizImpl ubi=new UserBizImpl();
+		Map<String, Object> map =new HashMap<String, Object>();
+		if(ubi.validateLogin(users.getUserName(),users.getPassword()).equals("success")){
+			
+		}
 		return SUCCESS;
 	}
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
-		System.out.println(users.getUserName());
 		UserBizImpl ubi=new UserBizImpl();
 		if(ubi.validateRegister(users.getUserName())){
 			Map<String, Object> map =new HashMap<String, Object>();
