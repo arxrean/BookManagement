@@ -96,7 +96,7 @@ body {
 					var d = eval("(" + data + ")");
 					if(d.type=="success"){
 						alert("插入成功!");
-						window.location.href="ToLoginAction";
+						window.location.href="ToUserLoginAction";
 					}
 				},
 				error : function() {
@@ -213,7 +213,7 @@ body {
 		<h1 align=center
 			style="font-family:微软雅黑;font-size:40px;color:#5b5b5b;">用户注册</h1>
 		<p align=right>
-			已有帐号？请<a href="ToLoginAction">登录</a>
+			已有帐号？请<a href="ToUserLoginAction">登录</a>
 		</p>
 	</div>
 	<div id="border"

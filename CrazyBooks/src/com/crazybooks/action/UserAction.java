@@ -49,10 +49,20 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	public String Login(){
 		UserBizImpl ubi=new UserBizImpl();
 		Map<String, Object> map =new HashMap<String, Object>();
-		if(ubi.validateLogin(users.getUserName(),users.getPassword()).equals("success")){
-			
+		String loginResult=ubi.login(users);
+		if(loginResult.equals("success")){
+			map.put("type", "success");
 		}
-		return SUCCESS;
+		else if(loginResult.endsWith("freeze")){
+			map.put("type", "freeze");
+		}
+		else {
+			map.put("type", "none");
+		}
+		JSONObject json=JSONObject.fromObject(map);
+		result=json.toString();
+		System.out.println(result);
+		return "login";
 	}
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽

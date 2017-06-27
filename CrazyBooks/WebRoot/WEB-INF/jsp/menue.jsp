@@ -22,8 +22,8 @@
 <div class="divTop">welcome!<s:property value="#session.user.userName"/></div>
 </s:if>
 <s:else>
-<div class="divTop"><a class="a2" href="ToRegisterAction">免费注册</a></div>
-<div class="divTop"><a class="a1" href="ToLoginAction">您好，请登录</a></div>
+<div class="divTop"><a class="a2" href="ToUserRegisterAction">免费注册</a></div>
+<div class="divTop"><a class="a1" href="ToUserLoginAction">您好，请登录</a></div>
 </s:else>
 <div class="divTop"></div>
 </div>
