@@ -29,55 +29,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   }
   </style>
   <script type="text/javascript">
+    var userNameState = false;
+	var passwordState = false;
+	
     function login(){
-        var $login = $("input.btn_login");
-		$login.bind("click", function() {
+        if (userNameState && passwordState) {
 			$.ajax({
 				type : "post",
 				url : "UserLoginAction", 
 			    data : {
-			         userName : $("input[name=txt_userName]").val(),
-					 password : $("input[name=txt_password]").val(),
+			         userName : $("#txt_userName").val(),
+					 password : $("#txt_password]").val(),
                 },
                 dataType : "json",
 				success : function(data) {
-				    var json=eval("("+data+")");  
-                    if(json.id=='1'){  
-                        alert(json.msg);  
-                        return;  
-                    }
-                    else{  
-                        $("#frm").submit();  
-                    }  
-                },
+					var d = eval("(" + data + ")");
+					if(d.type=="success"){
+						alert("登陆成功！");
+						window.location.href="ToLoginAction";
+					}
+					else{
+					    alert("该用户已被封禁！");
+					}				
+				},
 				error : function() {
-				}
+				}              
 			});
-		});
+		}
+		else {
+			alert("用户名或密码错误！");
+		}
     }
-    function recieve(str) {
-	    $.ajax({
-			type : "post",
-			url : "UserValidateLoginAction",
-			data : {
-				message : str,				
-			},
-			dataType : "json",
-			success : function(data) {
-				var d = eval("(" + data + ")");
-				if (d.type == "error") {
-					alter("用户名或密码错误！");
-				} 
-				else if(d.type == "disable"){
-					alter("该用户被禁用！");
-				}
-				else
-				{
-				
-				}
-			}
-        });
-	}  
+   
     </script>
   </head>
   
@@ -106,7 +89,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                   账号:
 		      </td>
 		      <td width="168">
-		        <input type="text" name="userName" id="userName" value=""/>
+		        <input type="text" name="txt_userName" id="txt_userName" value=""/>
 		      </td>
 	        </tr>
 	        <tr align="center">
@@ -114,13 +97,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		                   密码:
 	 	      </td>
 		      <td>
-		        <input type="password" name="password" id="password" value=""/>
+		        <input type="password" name="txt_password" id="txt_password" value=""/>
 		      </td>
 	        </tr>
 	        <tr align="center">
 		      <td height="75" colspan="2">
-		        <input name="btn_login" id="btn_login" type="button" value="登录">
-		        <input name="btn_reset" id="btn_reset" type="button" value="取消" />  
+		        <input name="btn_login" id="btn_login" type="button" value="登录" onclick="login()">
+		        <input name="btn_undo" id="btn_undo" type="button" value="撤销" onClick="document.execCommand('Undo')" />  
 		      </td>
 	        </tr>	        
 	      </table>
