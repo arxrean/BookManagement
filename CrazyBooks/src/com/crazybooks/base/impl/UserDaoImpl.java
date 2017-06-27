@@ -2,8 +2,12 @@ package com.crazybooks.base.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import com.crazybooks.base.BaseHibernateDao;
 import com.crazybooks.base.UserDao;
+import com.crazybooks.dao.HibernateSessionFactory;
 import com.crazybooks.etity.Freeze;
 import com.crazybooks.etity.Users;
 
@@ -42,7 +46,15 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		condition.setPassword(loginPwd);
 		List list=super.search(Users.class, condition);
 		if(list.size()>0){
-			flag="abc";
+			Freeze conditionFreeze=new Freeze();
+			conditionFreeze.setUid(((Users)list.get(0)).getId());
+			List list2=super.search(Freeze.class, conditionFreeze);
+			if(list2.size()>0){
+				flag="freeze";
+			}
+			else {
+				flag="success";
+			}
 		}
 		return flag;
 	}

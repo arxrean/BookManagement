@@ -47,12 +47,26 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	}
 
 	public String Login(){
-		return SUCCESS;
+		UserBizImpl ubi=new UserBizImpl();
+		Map<String, Object> map =new HashMap<String, Object>();
+		String loginResult=ubi.login(users);
+		if(loginResult.equals("success")){
+			map.put("type", "success");
+		}
+		else if(loginResult.endsWith("freeze")){
+			map.put("type", "freeze");
+		}
+		else {
+			map.put("type", "none");
+		}
+		JSONObject json=JSONObject.fromObject(map);
+		result=json.toString();
+		System.out.println(result);
+		return "login";
 	}
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
-		System.out.println(users.getUserName());
 		UserBizImpl ubi=new UserBizImpl();
 		if(ubi.validateRegister(users.getUserName())){
 			Map<String, Object> map =new HashMap<String, Object>();
@@ -78,8 +92,13 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	}
 	
 	//娉ㄥ唽鐢ㄦ埛
-	public void Register(){
+	public String Register(){
 		UserBizImpl ubi=new UserBizImpl();
+		Map<String, Object> map =new HashMap<String, Object>();
 		ubi.register(users);
+		map.put("type", "success");
+		JSONObject json=JSONObject.fromObject(map);
+		result=json.toString();
+		return "register";
 	}
 }

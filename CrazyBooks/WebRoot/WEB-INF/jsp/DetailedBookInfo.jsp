@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <%@include file="menue.jsp" %>
   <!-- 显示图书的详细信息，图书的评价 -->
     这是图书显示详情页面 <br>
   </body>
