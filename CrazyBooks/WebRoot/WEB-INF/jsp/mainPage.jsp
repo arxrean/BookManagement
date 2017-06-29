@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%@taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css">
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -22,6 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/zy_mainPage.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>
 <script src="js/simpleCart.min.js"> </script>
@@ -95,7 +97,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 			<!---pop-up-box---->
 					  <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
-					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
 					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 					<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
@@ -130,14 +131,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--banner-->
 <div class="banner">
 	<div class="col-sm-3 banner-mat">
-		<img class="img-responsive"	src="images/ba1.jpg" alt="">
-	</div>
+			<div id="id_divcates">
+				<dl>
+					<s:iterator var="c" value="#session.cList">
+						<dt>
+							<big><s:property value="#c.name" /></big>
+						</dt>
+						<s:iterator var="ct" value="#c.Categorytwos">
+							<dd class="dd1">
+								<a href="#" class="a2"><s:property value="#ct.name" /></a>
+							</dd>
+						</s:iterator>
+						<br/>
+						<br/>
+						<br/>
+						<br/>
+					</s:iterator>
+				</dl>
+			</div>
+		</div>
 	<div class="col-sm-6 matter-banner">
 	 	<div class="slider">
 	    	<div class="callbacks_container">
 	      		<ul class="rslides" id="slider">
 	        		<li>
-	          			<img src="images/1.jpg" alt="">
+	          			<img src="images/1.jpg" style="width: 90%;height: 55%;border:1px black solid;">
 	       			 </li>
 			 		 <li>
 	          			<img src="images/2.jpg" alt="">   
@@ -146,11 +164,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	          			<img src="images/1.jpg" alt="">
 	        		</li>	
 	      		</ul>
+	      		<div>
+	      		<ul>
+	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;margin-left:2px;float:left;"> </li>
+	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px red solid;margin-top:2px;float:left;margin-left:2px;"></li>
+	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;float:left;margin-left:2px;"></li>
+	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;float:left;margin-left:2px;"></li>
+	      		</ul>
+	      		</div>
 	 	 	</div>
 		</div>
-	</div>
-	<div class="col-sm-3 banner-mat">
-		<img class="img-responsive" src="images/ba.jpg" alt="">
 	</div>
 	<div class="clearfix"> </div>
 </div>

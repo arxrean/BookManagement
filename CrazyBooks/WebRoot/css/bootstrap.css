@@ -1779,13 +1779,13 @@ pre code {
     width: 75%;
   }
   .col-sm-8 {
-    width: 66.66666667%;
+    width: 70%;
   }
   .col-sm-7 {
     width: 58.33333333%;
   }
   .col-sm-6 {
-    width: 50%;
+    width: 70%;
   }
   .col-sm-5 {
     width: 41.66666667%;
@@ -1794,11 +1794,11 @@ pre code {
     width: 33.33333333%;
   }
   .col-sm-3 {
-    width: 25%;
+    width: 17%;
+    border:1px red solid;
   }
   .col-sm-2 {
-    width: 16.66666667%;
-    float:right;
+    width: 13%;
   }
   .col-sm-1 {
     width: 8.33333333%;
