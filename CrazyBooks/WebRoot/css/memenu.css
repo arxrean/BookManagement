@@ -7,7 +7,7 @@ ul.memenu.skyblue {text-align: center;}
 	position: absolute;
 	display: none;
 	background: #fff;
-	width: 80%;
+	width: 40%;
 	top: 56px;
 	left: 10.7%;
 	z-index: 99;
@@ -87,7 +87,7 @@ ul.memenu.skyblue {text-align: center;}
 		position: static;
 		margin-top: 50px;
 		border: none;
-		width: 100%;
+		width: 50%%;
 		}
 	.me-one ul li {
 		text-align: center !important;

@@ -1,5 +1,8 @@
 package com.crazybooks.etity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Categoryone entity. @author MyEclipse Persistence Tools
  */
@@ -10,20 +13,16 @@ public class Categoryone implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
-
-	// Constructors
-
-	/** default constructor */
+	private Set<Categorytwo> Categorytwos=new HashSet<Categorytwo>();
 	public Categoryone() {
+		// TODO Auto-generated constructor stub
 	}
-
-	/** full constructor */
-	public Categoryone(String name) {
-		this.name = name;
+	public void setCategorytwos(Set<Categorytwo> categorytwos) {
+		Categorytwos = categorytwos;
 	}
-
-	// Property accessors
-
+	public Set<Categorytwo> getCategorytwos() {
+		return Categorytwos;
+	}
 	public Integer getId() {
 		return this.id;
 	}

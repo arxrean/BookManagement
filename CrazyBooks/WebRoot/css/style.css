@@ -61,7 +61,7 @@ h1,h2,h3,h4,h5,h6,label,p{
 }
 .h_nav h4{
 	border-bottom:1px solid rgb(236, 236, 236);
-	font-size: 1.3em;
+	font-size: 1.5em;
 	color:#000;
 	line-height: 1.8em;
 	margin-bottom: 4%;
@@ -1175,7 +1175,7 @@ p.log {
 /*--single--*/
 .grid {
   width: 50%;
-  float: left;
+  border:1px red solid;
 }
 .thumb-image {
   width: 305px;

@@ -1,13 +1,12 @@
 package com.crazybooks.etity;
 
+import java.awt.print.Book;
+
 /**
  * Books entity. @author MyEclipse Persistence Tools
  */
 
 public class Books implements java.io.Serializable {
-
-	// Fields
-
 	private Integer id;
 	private String name;
 	private String picture;
@@ -15,30 +14,16 @@ public class Books implements java.io.Serializable {
 	private String author;
 	private String pubHouse;
 	private Float price;
-	private Integer category;
+	private Categorytwo categorytwo;
 	private Integer state;
-
-	// Constructors
-
-	/** default constructor */
+	public void setCategorytwo(Categorytwo categorytwo) {
+		this.categorytwo = categorytwo;
+	}
+	public Categorytwo getCategorytwo() {
+		return categorytwo;
+	}
 	public Books() {
 	}
-
-	/** full constructor */
-	public Books(String name, String picture, String intro, String author,
-			String pubHouse, Float price, Integer category, Integer state) {
-		this.name = name;
-		this.picture = picture;
-		this.intro = intro;
-		this.author = author;
-		this.pubHouse = pubHouse;
-		this.price = price;
-		this.category = category;
-		this.state = state;
-	}
-
-	// Property accessors
-
 	public Integer getId() {
 		return this.id;
 	}
@@ -94,15 +79,6 @@ public class Books implements java.io.Serializable {
 	public void setPrice(Float price) {
 		this.price = price;
 	}
-
-	public Integer getCategory() {
-		return this.category;
-	}
-
-	public void setCategory(Integer category) {
-		this.category = category;
-	}
-
 	public Integer getState() {
 		return this.state;
 	}
@@ -110,5 +86,18 @@ public class Books implements java.io.Serializable {
 	public void setState(Integer state) {
 		this.state = state;
 	}
-
+	public Books(Integer id, String name, String picture, String intro,
+			String author, String pubHouse, Float price,
+			Categorytwo categorytwo, Integer state) {
+		this.id = id;
+		this.name = name;
+		this.picture = picture;
+		this.intro = intro;
+		this.author = author;
+		this.pubHouse = pubHouse;
+		this.price = price;
+		this.categorytwo = categorytwo;
+		this.state = state;
+	}
+	
 }
