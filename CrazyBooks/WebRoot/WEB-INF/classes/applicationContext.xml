@@ -12,5 +12,7 @@
 		<property name="categoryOneService" ref="categoryOneService"></property>
 		</bean>
 		<bean id="categoryOneService" class="com.crazybooks.biz.impl.CategoryOneService">
+		<property name="categoryOneDao" ref="categoryOneDao"></property>
 		</bean>
+		<bean name="categoryOneDao" class="com.crazybooks.base.impl.CategoryOneImpl"></bean>
 </beans>

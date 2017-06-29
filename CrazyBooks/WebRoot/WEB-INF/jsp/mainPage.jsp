@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -7,6 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
 <html>
+<<<<<<< HEAD
 <head>
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
@@ -472,3 +473,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//footer-->
 </body>
 </html>
+=======
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>CrazyBooks</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link rel="stylesheet" href="css/zy_mainPage.css" type="text/css">
+  </head>
+  
+  <body>
+  <%@include file="menue.jsp" %>
+  <div id="id_divcates">
+  cates
+  </div>
+  </body>
+</html>
+>>>>>>> 9e8bd2678a24e82c2635753f0a83528057256197

@@ -43,10 +43,14 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-web-4.3.7.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang3-3.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ezmorph-1.0.6.jar"/>
+<<<<<<< HEAD
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.struts_2.1">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
+=======
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.30-bin.jar"/>
+>>>>>>> 9e8bd2678a24e82c2635753f0a83528057256197
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
