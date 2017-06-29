@@ -25,6 +25,9 @@
         <property name="pubHouse" type="java.lang.String">
             <column name="pubHouse" />
         </property>
+        <property name="btime" type="java.lang.Integer">
+            <column name="btime" />
+        </property>
         <property name="price" type="java.lang.Float">
             <column name="price" precision="12" scale="0" />
         </property>

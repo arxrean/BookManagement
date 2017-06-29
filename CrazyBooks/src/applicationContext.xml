@@ -10,6 +10,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	    <bean id="indexAction" class="com.crazybooks.action.IndexAction" scope="prototype">
 		<property name="categoryOneService" ref="categoryOneService"></property>
+		<property name="bookBizImpl" ref="bookService"></property>
 		</bean>
 		<bean id="categoryOneService" class="com.crazybooks.biz.impl.CategoryOneService">
 		<property name="categoryOneDao" ref="categoryOneDao"></property>

@@ -19,7 +19,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	Books book=new Books();
 	public String findBooksByCid()
 	{
-		System.out.println("----------------------------------------------------"+book.getId());
+		//System.out.println("----------------------------------------------------"+book.getId());
 		List bList=bookService.findBooksByCid(book.getId());
 		ActionContext.getContext().put("bList", bList);
 		return "bookListPage";

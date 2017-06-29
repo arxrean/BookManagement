@@ -14,8 +14,15 @@ public class Books implements java.io.Serializable {
 	private String author;
 	private String pubHouse;
 	private Float price;
+	private Integer btime;
 	private Categorytwo categorytwo;
 	private Integer state;
+	public void setBtime(Integer btime) {
+		this.btime = btime;
+	}
+	public Integer getBtime() {
+		return btime;
+	}
 	public void setCategorytwo(Categorytwo categorytwo) {
 		this.categorytwo = categorytwo;
 	}

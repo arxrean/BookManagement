@@ -16,5 +16,9 @@ public class BookBizImpl implements BookBiz{
 		// TODO Auto-generated method stub
 		return bookDao.getBooksByCid(id);
 	}
+	public List findNewTopbook() {
+		// TODO Auto-generated method stub
+		return bookDao.getNewTopBook();
+	}
 	
 }

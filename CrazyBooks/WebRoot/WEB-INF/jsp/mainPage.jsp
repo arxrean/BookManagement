@@ -164,12 +164,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	          			<img src="images/1.jpg" alt="">
 	        		</li>	
 	      		</ul>
-	      		<div>
-	      		<ul>
-	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;margin-left:2px;float:left;"> </li>
-	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px red solid;margin-top:2px;float:left;margin-left:2px;"></li>
-	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;float:left;margin-left:2px;"></li>
-	      		<li><img src="images/1.jpg" style="width: 20%;height: 21%;border:1px black solid;margin-top:2px;float:left;margin-left:2px;"></li>
+	      		<div style="border:1px red solid; margin-top: 2px;">
+	      		<ul class="u1">
+	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
+	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
+	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
+	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
+	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
 	      		</ul>
 	      		</div>
 	 	 	</div>
@@ -182,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="content">
 	<div class="container">
 		<div class="content-top">
-			<h1>Recent Products</h1>
+			<h1>HOT BOOKS</h1>
 			<div class="content-top1">
 				<div class="col-md-3 col-md2">
 					<div class="col-md1 simpleCart_shelfItem">
