@@ -2,11 +2,13 @@ package com.crazybooks.action;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 
 import net.sf.json.JSONObject;
 
 import com.crazybooks.biz.impl.UserBizImpl;
 import com.crazybooks.etity.Users;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
@@ -20,6 +22,18 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	private Users users;
 	
 	private String result;
+	
+	private String rand;//验证码
+	
+	
+
+	public String getRand() {
+		return rand;
+	}
+
+	public void setRand(String rand) {
+		this.rand = rand;
+	}
 
 	public Users getUsers() {
 		return users;
@@ -47,18 +61,24 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	}
 
 	public String Login(){
-		UserBizImpl ubi=new UserBizImpl();
 		Map<String, Object> map =new HashMap<String, Object>();
-		String loginResult=ubi.login(users);
-		if(loginResult.equals("success")){
-			map.put("type", "success");
-		}
-		else if(loginResult.endsWith("freeze")){
-			map.put("type", "freeze");
+		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
+		if(random.equals(this.rand)){
+			UserBizImpl ubi=new UserBizImpl();
+			String loginResult=ubi.login(users);
+			if(loginResult.equals("success")){
+				map.put("type", "success");
+			}
+			else if(loginResult.endsWith("freeze")){
+				map.put("type", "freeze");
+			}
+			else {
+				map.put("type", "none");
+			}
 		}
 		else {
-			map.put("type", "none");
-		}
+			map.put("type", "codeError");
+		}	
 		JSONObject json=JSONObject.fromObject(map);
 		result=json.toString();
 		System.out.println(result);

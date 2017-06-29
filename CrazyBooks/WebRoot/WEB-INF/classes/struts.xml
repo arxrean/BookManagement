@@ -18,8 +18,17 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="To*Action">
+		<action name="To*JspAction">
 			<result name="success">/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+		<action name="To*HtmlAction">
+			<result name="success">/WEB-INF/html/{1}.html</result>
+		</action>
+		<action name="validateCode" class="com.crazybooks.action.RandomValidateCodeAction">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">bais</param>
+			</result>
 		</action>
 	</package>
 </struts>    
