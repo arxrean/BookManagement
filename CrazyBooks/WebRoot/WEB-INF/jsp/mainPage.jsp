@@ -50,8 +50,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 		
 			<div class="col-sm-4 header-left">		
-					<p class="log"><a href="account.html"  >登录</a>
-						<span>or</span><a  href="account.html"  >注册</a></p>
+					<p class="log"><a href="ToUserLoginHtmlAction"  >登录</a>
+						<span>or</span><a  href="ToUserRegisterHtmlAction"  >注册</a></p>
 					<div class="cart box_1">
 						<a href="checkout.html">
 						<h3> <div class="total">

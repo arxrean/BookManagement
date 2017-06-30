@@ -18,12 +18,15 @@
 				<param name="root">result</param>
 			</result>
 		</action>
-		<action name="To*Action">
+		<action name="To*JspAction">
 			<result name="success">/WEB-INF/jsp/{1}.jsp</result>
+		</action>
+		<action name="To*HtmlAction">
+			<result name="success">/WEB-INF/html/{1}.html</result>
 		</action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
-		<result name="bookListPage">WEB-INF/jsp/SearchedBooks.jsp</result>
+			<result name="bookListPage">WEB-INF/jsp/SearchedBooks.jsp</result>
 		</action>
 	</package>
 </struts>    
