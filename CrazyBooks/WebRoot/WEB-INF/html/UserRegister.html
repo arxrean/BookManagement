@@ -56,11 +56,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 		if (reg.test(IDNum) === false) {
 			document.getElementById("hint_IDNum").style.color = "red";
-			document.getElementById("hint_IDNum").innerHTML = "非法身份证号";
+			document.getElementById("hint_IDNum").innerHTML = "请输入正确的身份证号";
 			IDNumState = false;
 		} else {
-			document.getElementById("hint_IDNum").style.color = "green";
-			document.getElementById("hint_IDNum").innerHTML = "✔";
+			//document.getElementById("hint_IDNum").style.color = "green";
+			document.getElementById("hint_IDNum").innerHTML = "";
 			IDNumState = true;
 		}
 		if (IDNum == '') {
@@ -72,12 +72,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	function isEmail(strEmail) {
 		if (strEmail
 				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
-			document.getElementById("hint_email").style.color = "green";
-			document.getElementById("hint_email").innerHTML = "✔";
+			//document.getElementById("hint_email").style.color = "green";
+			document.getElementById("hint_email").innerHTML = "";
 			emailState = true;
 		} else {
 			document.getElementById("hint_email").style.color = "red";
-			document.getElementById("hint_email").innerHTML = "非法邮箱地址";
+			document.getElementById("hint_email").innerHTML = "请输入正确的邮箱地址";
 			emailState = false;
 		}
 		if (strEmail == '') {
@@ -91,11 +91,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var repassword = document.getElementById("repassword").value;
 		if (password != repassword) {
 			document.getElementById("hint_repassword").style.color = "red";
-			document.getElementById("hint_repassword").innerHTML = "输入不一致！";
+			document.getElementById("hint_repassword").innerHTML = "请确认两次输入是否一致";
 			repasswordState = false;
 		} else {
-			document.getElementById("hint_repassword").style.color = "green";
-			document.getElementById("hint_repassword").innerHTML = "✔";
+			//document.getElementById("hint_repassword").style.color = "green";
+			document.getElementById("hint_repassword").innerHTML = "";
 			repasswordState = true;
 		}
 		if (repassword == '') {
@@ -109,8 +109,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById("hint_password").innerHTML = "";
 			passwordState = false;
 		} else {
-			document.getElementById("hint_password").style.color = "green";
-			document.getElementById("hint_password").innerHTML = "✔";
+			//document.getElementById("hint_password").style.color = "green";
+			document.getElementById("hint_password").innerHTML = "";
 			passwordState = true;
 		}
 	}
@@ -135,8 +135,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								document.getElementById("hint_userName").innerHTML = "";
 								userNameState = false;
 							} else {
-								document.getElementById("hint_userName").style.color = "green";
-								document.getElementById("hint_userName").innerHTML = "✔";
+								//document.getElementById("hint_userName").style.color = "green";
+								document.getElementById("hint_userName").innerHTML = "";
 								userNameState = true;
 							}
 						}
@@ -144,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 	}
 
-	function register() {
+	function register() {	
 		if (userNameState && passwordState && repasswordState && IDNumState
 				&& emailState) {
 			alert("正确！");
