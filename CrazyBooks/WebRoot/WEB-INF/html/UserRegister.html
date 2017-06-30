@@ -23,7 +23,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
 
 
 
@@ -36,9 +46,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>
-	$(document).ready(function() {
-		$(".memenu").memenu();
-	});
+	$(document).ready(
+			function() {
+				$(".memenu").memenu();
+				$("#img_validate").bind(
+						"click",
+						function() {
+							var timenow = new Date().getTime();
+							$("#img_validate").attr("src",
+									"RandomValidate.action?d=" + timenow);
+						});
+			});
 </script>
 <script src="js/simpleCart.min.js">
 	
@@ -144,10 +162,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				});
 	}
 
-	function register() {	
+	function register() {
 		if (userNameState && passwordState && repasswordState && IDNumState
-				&& emailState) {
-			alert("正确！");
+				&& emailState && $("#verCode").val() != null) {
 			$.ajax({
 				type : "post",
 				url : "UserRegisterAction",
@@ -156,10 +173,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					password : $("#password").val(),
 					idnum : $("#IDNum").val(),
 					email : $("#email").val(),
+					rand : $("#verCode").val(),
 				},
 				dataType : "json",
 				success : function(data) {
+					var d = eval("(" + data + ")");
+					if(d.type=="success"){
 					alert("ok");
+						window.location.href="ToUserLoginHtmlAction.action";
+					}
+					else{
+						$("#validateInfo").text("验证码错误");
+					}
 				},
 				error : function() {
 				}
@@ -398,9 +423,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span id="hint_IDNum" style="color:red;font-size:10px"></span> <span>电子邮件</span>
 						<input type="text" name="email" id="email"
 							onblur="isEmail(this.value)"> <span id="hint_email"
-							style="color:red;font-size:10px"></span> <span>验证码</span> <img
-							src="RandomValidateCodeAction.action" alt="点击更换验证码"><input type="text"
-							name="verCode" id="verCode" style="width:300px;float:right">
+							style="color:red;font-size:10px"></span> <span>验证码</span>
+						<p>
+							<img src="RandomValidate.action" alt="点击更换验证码" id="img_validate"><input
+								type="text" name="verCode" id="verCode">
+						</p>
+						<span id="validateInfo"></span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -420,7 +448,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="register-but">
 				<form>
-					<input type="submit" name="submit" id="submit" value="提交" onclick="register()">
+					<input type="button" name="submit" id="submit" value="提交"
+						onclick="register()">
 					<div class="clearfix"></div>
 				</form>
 			</div>

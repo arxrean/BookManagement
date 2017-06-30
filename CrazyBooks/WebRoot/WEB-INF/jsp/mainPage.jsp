@@ -54,6 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span>or</span><a  href="ToUserRegisterHtmlAction"  >注册</a></p>
 					<p class="log"><a href="ToUserInfoHtmlAction">个人中心</a></p>
 					<p class="log"><a href="ToSingleBookInfoHtmlAction">图书详情（测试）</a></p>
+					<p class="log"><a href="ToAdminHtmlAction">管理员（测试）</a></p>
 					<div class="cart box_1">
 						<a href="checkout.html">
 						<h3> <div class="total">

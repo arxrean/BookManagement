@@ -639,6 +639,9 @@ a.forgot {
 	padding: 0.5em;
 	margin: 0.5em 0;
 }
+.register-top-grid input[type="text"]{
+	
+}
 .checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;
@@ -722,6 +725,22 @@ a.forgot {
 	outline:none;
 }
 .register-but input[type="submit"]:hover {
+	background:#000;
+}
+.register-but form input[type="button"] {
+	background:#52D0C4;
+	color: #FFF;
+	font-size:1em;
+	padding: 0.4em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	border:none;
+	outline:none;
+}
+.register-but input[type="button"]:hover {
 	background:#000;
 }
 .mation{

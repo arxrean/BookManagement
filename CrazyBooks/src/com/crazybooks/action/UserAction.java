@@ -115,8 +115,16 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	public String Register(){
 		UserBizImpl ubi=new UserBizImpl();
 		Map<String, Object> map =new HashMap<String, Object>();
-		ubi.register(users);
-		map.put("type", "success");
+		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
+		if(random.equals(rand)){
+			System.out.println("yes");
+			ubi.register(users);
+			map.put("type", "success");
+		}
+		else {
+			System.out.println("no");
+			map.put("type", "validateError");
+		}
 		JSONObject json=JSONObject.fromObject(map);
 		result=json.toString();
 		return "register";
