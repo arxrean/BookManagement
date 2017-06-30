@@ -341,6 +341,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   background: none;
   border: 1px solid #BDBDBD;
 }
+
 .top-footer1 input[type="submit"] {
   font-size: 0.9em;
   color: #fff;
@@ -636,6 +637,16 @@ a.forgot {
 	padding: 0.5em;
 	margin: 0.5em 0;
 }
+
+.register-top-grid input[type="password"], .register-bottom-grid input[type="password"] {
+	border: 1px solid #EEE;
+	outline-color:#52D0C4;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+}
+
 .checkbox {
 	margin-bottom: 4px;
 	padding-left: 27px;
