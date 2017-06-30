@@ -28,7 +28,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
 
 
 
@@ -46,17 +52,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>
-	$(document).ready(
-			function() {
-				$(".memenu").memenu();
-				$("#img_validate").bind(
-						"click",
-						function() {
-							var timenow = new Date().getTime();
-							$("#img_validate").attr("src",
-									"RandomValidate.action?d=" + timenow);
-						});
-			});
+	$(function() {
+		$("#img_validate").bind(
+				"click",
+				function() {
+					var timenow = new Date().getTime();
+					$("#img_validate").attr("src",
+							"RandomValidate.action?d=" + timenow);
+				});
+	});
 </script>
 <script src="js/simpleCart.min.js">
 	
@@ -178,12 +182,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				dataType : "json",
 				success : function(data) {
 					var d = eval("(" + data + ")");
-					if(d.type=="success"){
-					alert("ok");
-						window.location.href="ToUserLoginHtmlAction.action";
-					}
-					else{
+					if (d.type == "success") {
+						alert("注册成功!");
+						window.location.href = "ToUserLoginHtmlAction.action";
+					} else {
 						$("#validateInfo").text("验证码错误");
+						$("#validateInfo").css("color", "red");
 					}
 				},
 				error : function() {
@@ -220,8 +224,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-4 header-left">
 					<p class="log">
-						<a href="account.html">Login</a> <span>or</span><a
-							href="account.html">Signup</a>
+						<a href="ToUserLoginHtmlAction.action">Login</a> <span>or</span><a
+							href="ToUserRegisterHtmlAction.action">Signup</a>
 					</p>
 					<div class="cart box_1">
 						<a href="checkout.html">
@@ -435,8 +439,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class=" col-md-6 register-bottom-grid">
 
 					<div class="mation">
-						<span>密码</span> <input type="password" name="password" id="password"
-							onblur="isPasswordEmpty(this.value)"> <span
+						<span>密码</span> <input type="password" name="password"
+							id="password" onblur="isPasswordEmpty(this.value)"> <span
 							id="hint_password" style="color:red;font-size:10px"></span> <span>确认密码</span>
 						<input type="password" name="repassword" id="repassword"
 							onblur="isEqual(this.value)"> <span id="hint_repassword"

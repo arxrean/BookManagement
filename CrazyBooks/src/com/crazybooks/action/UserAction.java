@@ -65,11 +65,12 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
 		if(random.equals(this.rand)){
 			UserBizImpl ubi=new UserBizImpl();
+			System.out.println(users.getUserName()+" "+users.getPassword());
 			String loginResult=ubi.login(users);
 			if(loginResult.equals("success")){
 				map.put("type", "success");
 			}
-			else if(loginResult.endsWith("freeze")){
+			else if(loginResult.equals("freeze")){
 				map.put("type", "freeze");
 			}
 			else {
@@ -81,7 +82,6 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		}	
 		JSONObject json=JSONObject.fromObject(map);
 		result=json.toString();
-		System.out.println(result);
 		return "login";
 	}
 	
