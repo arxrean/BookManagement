@@ -27,6 +27,12 @@
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
 			<result name="bookListPage">WEB-INF/jsp/SearchedBooks.jsp</result>
+			<result name="bookInfo" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="comments" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 	</package>
 </struts>    

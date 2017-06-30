@@ -592,6 +592,21 @@ p.footer-class a:hover{
 	border:none;
 	outline:none;
 }
+
+.login-right input[type="button"] {
+	background:#52d0c4;
+	color: #FFF;
+	font-size: 0.9em;
+	padding: 0.4em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	text-transform: uppercase;
+	border:none;
+	outline:none;
+}
 a.forgot {
 	font-size: 0.8125em;
 	  color: #000000;
