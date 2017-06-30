@@ -18,17 +18,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
-	
-	
-	
-	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
-
 
 
 </script>
@@ -44,131 +34,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </script>
 <!-- slide -->
-
-<script type="text/javascript">
-	var userNameState = false;
-	var passwordState = false;
-	var repasswordState = false;
-	var IDNumState = false;
-	var emailState = false;
-
-	function isIDNum(IDNum) {
-		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		if (reg.test(IDNum) === false) {
-			document.getElementById("hint_IDNum").style.color = "red";
-			document.getElementById("hint_IDNum").innerHTML = "请输入正确的身份证号";
-			IDNumState = false;
-		} else {
-			//document.getElementById("hint_IDNum").style.color = "green";
-			document.getElementById("hint_IDNum").innerHTML = "";
-			IDNumState = true;
-		}
-		if (IDNum == '') {
-			document.getElementById("hint_IDNum").innerHTML = "";
-			IDNumState = false;
-		}
-	}
-
-	function isEmail(strEmail) {
-		if (strEmail
-				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
-			//document.getElementById("hint_email").style.color = "green";
-			document.getElementById("hint_email").innerHTML = "";
-			emailState = true;
-		} else {
-			document.getElementById("hint_email").style.color = "red";
-			document.getElementById("hint_email").innerHTML = "请输入正确的邮箱地址";
-			emailState = false;
-		}
-		if (strEmail == '') {
-			document.getElementById("hint_email").innerHTML = "";
-			emailState = false;
-		}
-	}
-
-	function isEqual() {
-		var password = document.getElementById("password").value;
-		var repassword = document.getElementById("repassword").value;
-		if (password != repassword) {
-			document.getElementById("hint_repassword").style.color = "red";
-			document.getElementById("hint_repassword").innerHTML = "请确认两次输入是否一致";
-			repasswordState = false;
-		} else {
-			//document.getElementById("hint_repassword").style.color = "green";
-			document.getElementById("hint_repassword").innerHTML = "";
-			repasswordState = true;
-		}
-		if (repassword == '') {
-			document.getElementById("hint_repassword").innerHTML = "";
-			repasswordState = false;
-		}
-	}
-
-	function isPasswordEmpty(password) {
-		if (password == '') {
-			document.getElementById("hint_password").innerHTML = "";
-			passwordState = false;
-		} else {
-			//document.getElementById("hint_password").style.color = "green";
-			document.getElementById("hint_password").innerHTML = "";
-			passwordState = true;
-		}
-	}
-
-	function isUsernameExist(userName) {
-		$
-				.ajax({
-					type : "post",
-					url : "UserValidateRegisterAction",
-					data : {
-						userName : userName
-					},
-					dataType : "json",
-					success : function(data) {
-						var d = eval("(" + data + ")");
-						if (d.type == "error") {
-							document.getElementById("hint_userName").style.color = "red";
-							document.getElementById("hint_userName").innerHTML = "用户名已存在";
-							userNameState = false;
-						} else {
-							if (userName == '') {
-								document.getElementById("hint_userName").innerHTML = "";
-								userNameState = false;
-							} else {
-								//document.getElementById("hint_userName").style.color = "green";
-								document.getElementById("hint_userName").innerHTML = "";
-								userNameState = true;
-							}
-						}
-					}
-				});
-	}
-
-	function register() {	
-		if (userNameState && passwordState && repasswordState && IDNumState
-				&& emailState) {
-			alert("正确！");
-			$.ajax({
-				type : "post",
-				url : "UserRegisterAction",
-				data : {
-					userName : $("#userName").val(),
-					password : $("#password").val(),
-					idnum : $("#IDNum").val(),
-					email : $("#email").val(),
-				},
-				dataType : "json",
-				success : function(data) {
-					alert("ok");
-				},
-				error : function() {
-				}
-			});
-		} else {
-			alert("请检查信息是否正确！");
-		}
-	}
-</script>
 </head>
 <body>
 	<!--header-->
@@ -385,8 +250,100 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--//header-->
-	<div class="container">
+
+
+
+
+
+
+	<div class="container" style="width:200px;float:left;margin-top:20px">
+		<table>
+			<tr>
+				<th style="width:200px;text-align:center">我为书狂</th>
+			</tr>
+			<tr>
+				<td style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="个人信息"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="我的收藏"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="我的评论"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="我的借阅"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="我的消费记录"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="充值"
+					style="width:200px"></td>
+			</tr>
+			<tr>
+				<td style="width:200px"><input type="button" value="修改密码"
+					style="width:200px"></td>
+			</tr>
+		</table>
 	</div>
+
+	<div class="container" style="width:1200px;height:600px;float:left;margin-left:300px;margin-top:20px">
+		<img style="width:200px;height:200px;float:left"/>
+		<table style="width:550px;float:left;margin-left:20px">
+			<tr>
+				<td style="width:100px;height:40px;">用户名</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">真实姓名</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">性别</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">电子邮箱</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">家庭住址</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">账户余额</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">积分</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">等级</td>
+				<td><input type="text" style="width:400px;height:40px;"/></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="container" style="width:1200px;height:800px;margin-left:500px;">
+	hhhhhhhhhhhhhasdasdasdasdasdasdasdasd
+	</div>
+
+
+
+
+
+
+
+
 
 	<!--footer-->
 	<div class="footer">
