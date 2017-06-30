@@ -559,6 +559,10 @@ p.footer-class a:hover{
 	padding-bottom: 0.4em;
 	display: block;
 }
+
+.word-yan{
+	margin: 0.5em 0 0;
+}
 .word-in{
 	margin: 0.5em 0 0;
 }
@@ -592,7 +596,6 @@ p.footer-class a:hover{
 	border:none;
 	outline:none;
 }
-
 .login-right input[type="button"] {
 	background:#52d0c4;
 	color: #FFF;
