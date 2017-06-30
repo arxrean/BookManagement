@@ -3,8 +3,6 @@
 <head>
 <title>Account</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
@@ -18,6 +16,58 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+    function login(){
+        var $login = $("input.btn_login");
+		$login.bind("click", function() {
+			$.ajax({
+				type : "post",
+				url : "UserLoginAction", 
+			    data : {
+			         userName : $("input[name=txt_userName]").val(),
+					 password : $("input[name=txt_password]").val(),
+                },
+                dataType : "json",
+				success : function(data) {
+				    var json=eval("("+data+")");  
+                    if(json.id=='1'){  
+                        alert(json.msg);  
+                        return;  
+                    }
+                    else{  
+                        $("#frm").submit();  
+                    }  
+                },
+				error : function() {
+				}
+			});
+		});
+    }
+    function recieve(str) {
+	    $.ajax({
+			type : "post",
+			url : "UserValidateLoginAction",
+			data : {
+				message : str,				
+			},
+			dataType : "json",
+			success : function(data) {
+				var d = eval("(" + data + ")");
+				if (d.type == "error") {
+					alter("用户名或密码错误！");
+				} 
+				else if(d.type == "disable"){
+					alter("该用户被禁用！");
+				}
+				else
+				{
+				
+				}
+			}
+        });
+	}  
+    </script>
 <script src="js/simpleCart.min.js"> </script>
 <!-- slide -->
 </head>
@@ -36,8 +86,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</select></li>
 						<li><select class="in-drop1">
 							  <option>Dollar</option>
-							  <option>Euro</option>
 							  <option>Yen</option>
+							  <option>Euro</option>
 							</select>
 						</li>
 					</ul>
@@ -47,8 +97,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 		
 			<div class="col-md-4 header-left">		
-					<p class="log"><a href="account.html"  >Login</a>
-						<span>or</span><a  href="account.html"  >Signup</a></p>
+					<p class="log"><a href="account.html"  >登录</a>
+						<span>or</span><a  href="account.html"  >注册</a></p>
 					<div class="cart box_1">
 						<a href="checkout.html">
 						<h3> <div class="total">
@@ -232,26 +282,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//header-->
 <div class="account">
 	<div class="container">
-		<h1>Account</h1>
-		<div class="account_grid">
+		<h1>Login</h1>
+		<div class="login_grid">
 			   <div class="col-md-6 login-right">
 				<form>
 
-					<span>Email Address</span>
-					<input type="text"> 
+					<span>账号</span>
+					<input type="text" name="userName" id="userName" value=""/> 
 				
-					<span>Password</span>
-					<input type="text"> 
+					<span>密码</span>
+					<input type="password" name="password" id="password" value=""/> 
+					<!---加验证控件--->
+					<div>
+					</div>
 					<div class="word-in">
-				  		<a class="forgot" href="#">Forgot Your Password?</a>
-				 		 <input type="submit" value="Login">
+				  		<a class="forgot" href="#">忘记密码?</a>
+				 		 <input name="btn_login" id="btn_login" type="button" value="登录">
 				  	</div>
 			    </form>
 			   </div>	
 			    <div class="col-md-6 login-left">
-			  	 <h4>NEW CUSTOMERS</h4>
-				 <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-				 <a class="acount-btn" href="register.html">Create an Account</a>
+			  	 <h4>新用户</h4>
+				 <p>通过注册一个我们图书馆的账户，您能够更方便的查询图书信息，借阅图书，查看和跟踪您的个人借阅记录。</p>
+				 <a class="acount-btn" href="register.html">用户注册</a>
 			   </div>
 			   <div class="clearfix"> </div>
 			 </div>
@@ -312,7 +365,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-md-3 footer-bottom-cate cate-bottom">
 					<h6>Our Address</h6>
 					<ul>
-						<li>Aliquam metus  dui. </li>
+						<li>Aliquam metus dui.</li>
 						<li>orci, ornareidquet</li>
 						<li> ut,DUI.</li>
 						<li>nisi, dignissim</li>
