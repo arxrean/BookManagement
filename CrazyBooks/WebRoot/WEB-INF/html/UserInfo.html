@@ -19,7 +19,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -28,39 +30,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script>
-	$(document).ready(function() {
+	$(document)
+			.ready(
+					function() {
+						$
+								.ajax({
+									type : "post",
+									url : "SessionQuery",
+									data : {
+										sessionType : "userName",
+									},
+									dataType : "json",
+									success : function(data) {
+										var d = eval("(" + data + ")");
+										if (d.sessionType != "none") {
+											$("#user_login").empty();
+											$("#user_login")
+													.append(
+															"<a href='ToUserInfoHtmlAction'>"
+																	+ d.sessionType
+																	+ "</a>"
+																	+ "<a onclick='deleteUserName()'>[注销]</a>");
+										}
+									},
+									error : function() {
+										alert("Ajax传输错误！");
+									}
+								});
+					});
+
+	function deleteUserName() {
 		$.ajax({
 			type : "post",
 			url : "SessionQuery",
 			data : {
-				sessionType : "userName",
+				sessionType : "deleteUserName",
 			},
 			dataType : "json",
 			success : function(data) {
-				var d=eval("("+data+")");
-				if(d.sessionType != "none"){
-					$("#user_login").empty();
-					$("#user_login").append("<a href='ToUserInfoHtmlAction'>"+d.sessionType+"</a>"+"<a onclick='deleteUserName()'>[注销]</a>");
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	});
-	
-	function deleteUserName(){
-		$.ajax({
-			type:"post",
-			url:"SessionQuery",
-			data:{
-				sessionType:"deleteUserName",
-			},
-			dataType:"json",
-			success:function(data){
-				var d=eval("("+data+")");
-				if(d.sessionType=="deleteUserName"){
-					window.location.href="TomainPageJspAction.action";
+				var d = eval("(" + data + ")");
+				if (d.sessionType == "deleteUserName") {
+					window.location.href = "TomainPageJspAction.action";
 				}
 			},
 			error : function() {
@@ -72,6 +82,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/simpleCart.min.js">
 	
 </script>
+
+<style>
+.left {
+	background: #52D0C4;
+	color: #FFF;
+	font-size: 1em;
+	padding: 0.4em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	border: none;
+	outline: none;
+}
+
+.left:hover {
+	background:#000;
+}
+</style>
 <!-- slide -->
 </head>
 <body>
@@ -296,7 +326,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<div class="container" style="width:200px;float:left;margin-top:20px">
-		<table>
+		<table style="margin-left:100px">
 			<tr>
 				<th style="width:200px;text-align:center">我为书狂</th>
 			</tr>
@@ -304,54 +334,55 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td style="width:200px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="个人信息"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="个人信息" style="width:200px;height:30px;"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="我的收藏"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="我的收藏" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="我的评论"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="我的评论" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="我的借阅"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="我的借阅" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="我的消费记录"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="我的消费记录" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="充值"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="充值" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px"><input type="button" value="修改密码"
-					style="width:200px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input class="left"
+					type="button" value="修改密码" style="width:200px;height:30px"></td>
 			</tr>
 		</table>
 	</div>
 
 	<div class="container"
 		style="width:1200px;height:300px;float:left;margin-left:300px;margin-top:20px">
-		<img name="picture" id="picture" style="width:200px;height:200px;float:left" />
+		<img name="picture" id="picture"
+			style="width:200px;height:200px;float:left" />
 		<table style="width:550px;float:left;margin-left:20px;margin-top:30px">
 			<tr>
 				<td style="width:100px;height:40px;">用户名</td>
-				<td><input type="text" name="txt_userName" id="txt_userName" disabled="disabled"
-					style="width:400px;height:40px;" /></td>
+				<td><input type="text" name="txt_userName" id="txt_userName"
+					disabled="disabled" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">积分</td>
-				<td><input type="text" name="txt_scaore" id="txt_scaore" disabled="disabled"
-					style="width:400px;height:40px;" /></td>
+				<td><input type="text" name="txt_scaore" id="txt_scaore"
+					disabled="disabled" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">等级</td>
-				<td><input type="text" name="txt_rank" id="txt_rank" disabled="disabled"
-					style="width:400px;height:40px;" /></td>
+				<td><input type="text" name="txt_rank" id="txt_rank"
+					disabled="disabled" style="width:400px;height:40px;" /></td>
 			</tr>
 		</table>
 	</div>
