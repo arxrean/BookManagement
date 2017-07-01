@@ -20,7 +20,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -83,6 +109,79 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </script>
 
+
+<script>
+	function myInfo() {
+		document.getElementById("myInfo").style.display = "block";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+
+	function myCollection() {
+		document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "block";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+
+	function myCommentary() {
+	document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "block";
+	}
+
+	function myBorrow() {
+		document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "block";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+
+	function myPurchase() {
+		document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "block";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+
+	function recharge() {
+	document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "block";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+
+	function passwordModify() {
+		document.getElementById("myInfo").style.display = "none";
+		document.getElementById("passwordModify").style.display = "block";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentary").style.display = "none";
+	}
+</script>
+
 <style>
 .left {
 	background: #52D0C4;
@@ -99,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 }
 
 .left:hover {
-	background:#000;
+	background: #000;
 }
 </style>
 <!-- slide -->
@@ -334,32 +433,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td style="width:200px"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="个人信息" style="width:200px;height:30px;"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="个人信息"
+					style="width:200px;height:30px;" onclick="myInfo()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="我的收藏" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="我的收藏"
+					style="width:200px;height:30px" onclick="myCollection()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="我的评论" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="我的评论"
+					style="width:200px;height:30px" onclick="myCommentary()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="我的借阅" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="我的借阅"
+					style="width:200px;height:30px" onclick="myBorrow()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="我的消费记录" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="我的消费记录"
+					style="width:200px;height:30px" onclick="myPurchase()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="充值" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="充值"
+					style="width:200px;height:30px" onclick="recharge()"></td>
 			</tr>
 			<tr>
-				<td style="width:200px;height:30px;padding:0px"><input class="left"
-					type="button" value="修改密码" style="width:200px;height:30px"></td>
+				<td style="width:200px;height:30px;padding:0px"><input
+					class="left" type="button" value="修改密码"
+					style="width:200px;height:30px" onclick="passwordModify()"></td>
 			</tr>
 		</table>
 	</div>
@@ -376,7 +482,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">积分</td>
-				<td><input type="text" name="txt_scaore" id="txt_scaore"
+				<td><input type="text" name="txt_score" id="txt_score"
 					disabled="disabled" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
@@ -387,9 +493,133 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</table>
 	</div>
 
-	<div class="container"
+	<div class="container" id="myDiv"
 		style="width:1200px;height:800px;margin-left:500px;">
-		hhhhhhhhhhhhhasdasdasdasdasdasdasdasd</div>
+		<table id="myInfo"
+			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:block">
+			<tr>
+				<td style="width:100px;height:40px;">用户名</td>
+				<td><input type="text" name="userName" id="userName"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">身份证号</td>
+				<td><input type="text" name="idnum" id="idnum"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">性 别</td>
+				<td><select name="sex" id="sex"
+					style="width:400px;height:40px;">
+						<option selected="selected" value="1">男</option>
+						<option value="2">女</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">地址</td>
+				<td><input type="text" name="address" id="address"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">电话</td>
+				<td><input type="text" name="phoneNum" id="phoneNum"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">电子邮箱</td>
+				<td><input type="text" name="email" id="email"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input name="btn_modify" id="btn_modify" type="button"
+					class="left" value="确认修改"
+					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+			</tr>
+		</table>
+
+		<table id="passwordModify"
+			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+			<tr>
+				<td style="width:100px;height:40px;">原密码</td>
+				<td><input type="text" name="address" id="address"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">新密码</td>
+				<td><input type="text" name="phoneNum" id="phoneNum"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">确认密码</td>
+				<td><input type="text" name="phoneNum" id="phoneNum"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input name="btn_modify" id="btn_modify" type="button"
+					class="left" value="确认修改"
+					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+			</tr>
+		</table>
+
+		<table id="myBorrow"
+			style="width:1200px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+			<tr style="background-color:gray">
+				<th style="width:200px;height:40px;">图书名字</th>
+				<th style="width:200px;height:40px;">作者</th>
+				<th style="width:200px;height:40px;">出版社</th>
+				<th style="width:200px;height:40px;">借阅时间</th>
+				<th style="width:200px;height:40px;">到期时间</th>
+				<th style="width:200px;height:40px;">归还</th>
+			</tr>
+		</table>
+
+		<table id="myPurchase"
+			style="width:600px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+			<tr style="background-color:gray">
+				<th style="width:200px;height:40px;">类型</th>
+				<th style="width:200px;height:40px;">时间</th>
+				<th style="width:200px;height:40px;">金额</th>
+			</tr>
+		</table>
+
+		<table id="recharge"
+			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+			<tr>
+				<td style="width:100px;height:40px;">充值金额</td>
+				<td><input type="text" name="address" id="address"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">密码</td>
+				<td><input type="text" name="phoneNum" id="phoneNum"
+					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input name="btn_modify" id="btn_modify" type="button"
+					class="left" value="确认充值"
+					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+			</tr>
+		</table>
+
+
+		<table id="myCommentary"
+			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+		</table>
+
+
+		<table id="myCollection"
+			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			">
+		</table>
+	</div>
 
 
 
