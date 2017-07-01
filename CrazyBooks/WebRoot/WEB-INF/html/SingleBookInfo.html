@@ -64,8 +64,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-4 header-left">
 					<p class="log">
-						<a href="account.html">Login</a> <span>or</span><a
-							href="account.html">Signup</a>
+						<a href="ToUserLoginHtmlAction.action">登录</a> <span>or</span><a
+							href="ToUserRegisterHtmlAction.action">注册</a>
+
 					</p>
 					<div class="cart box_1">
 						<a href="checkout.html">
@@ -297,8 +298,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<p class="log">
 				<a href="account.html">图书评价</a>
 			</p>
-			<input type="text" name="txt_commentary" id="txt_commentary"
-				disabled="disabled" style="width:770px;height:120px;" />
+			<table id="myComment"
+			style="width:770px;float:left;margin-left:5px;margin-top:30px;">
+			<tr style="background-color:gray">
+				<th style="width:240px;height:40px;">账号</th>
+				<th style="width:240px;height:40px;">时间</th>
+				<th style="width:250px;height:40px;">评论</th>
+			</tr>
+		</table>
 		</div>
 		<div class="container"
 			style="width:1200px;height:150px;float:left;>
