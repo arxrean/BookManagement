@@ -618,6 +618,75 @@ a.forgot {
 .account {
   padding: 4em 0;
 }
+/*--bookcart--*/
+.bookcart h1 {
+	color:#000;
+	font-size:3em;
+	margin:0 0 1em;
+	  font-family: 'OleoScript-Regular';
+	  text-align: center;
+}
+.bookcart-top-grid span, .bookcart-bottom-grid span {
+	color:#b2b2b2;
+	font-size: 0.9em;
+	padding-bottom: 0.2em;
+	display: block;
+}
+.bookcart-top-grid input[type="text"], .bookcart-bottom-grid input[type="text"] {
+	border: 1px solid #EEE;
+	outline-color:#52D0C4;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+}
+.bookcart-top-grid input[type="password"], .bookcart-bottom-grid input[type="password"] {
+	border: 1px solid #EEE;
+	outline-color:#52D0C4;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.5em;
+	margin: 0.5em 0;
+}
+.bookcart-but{
+	margin-top:1em;
+}
+.bookcart-but form input[type="submit"] {
+	background:#52D0C4;
+	color: #FFF;
+	font-size:1em;
+	padding: 0.4em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	border:none;
+	outline:none;
+}
+.bookcart-but input[type="submit"]:hover {
+	background:#000;
+}
+.bookcart-but form input[type="button"] {
+	background:#52D0C4;
+	color: #FFF;
+	font-size:1em;
+	padding: 0.4em 1em;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all;
+	display: inline-block;
+	border:none;
+	outline:none;
+}
+.bookcart-but input[type="button"]:hover {
+	background:#000;
+}
+.bookcart {
+	padding: 4em 0;
+}
+
 /*--register--*/
 .register h1 {
 	color:#000;

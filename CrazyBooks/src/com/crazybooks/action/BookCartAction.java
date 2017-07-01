@@ -29,7 +29,7 @@ public class BookCartAction extends ActionSupport{
 		this.returnDate = returnDate;
 	}
 
-	public String Return(){
+	public String toCart(){
 		return SUCCESS;
 	}
 	

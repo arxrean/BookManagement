@@ -25,7 +25,9 @@
 	content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
@@ -49,38 +51,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			namespace : "callbacks",
 			pager : true,
 		});
+		$
+				.ajax({
+					type : "post",
+					url : "SessionQuery",
+					data : {
+						sessionType : "userName",
+					},
+					dataType : "json",
+					success : function(data) {
+						var d = eval("(" + data + ")");
+						if (d.sessionType != "none") {
+							$("#user_login").empty();
+							$("#user_login")
+									.append(
+											"<a href='ToUserInfoHtmlAction'>"
+													+ d.sessionType
+													+ "</a>"
+													+ "<a onclick='deleteUserName()'>[注销]</a>");
+						}
+					},
+					error : function() {
+						alert("Ajax传输错误！");
+					}
+				});
+	});
+
+	function deleteUserName() {
 		$.ajax({
 			type : "post",
 			url : "SessionQuery",
 			data : {
-				sessionType : "userName",
+				sessionType : "deleteUserName",
 			},
 			dataType : "json",
 			success : function(data) {
-				var d=eval("("+data+")");
-				if(d.sessionType != "none"){
-					$("#user_login").empty();
-					$("#user_login").append("<a href='ToUserInfoHtmlAction'>"+d.sessionType+"</a>"+"<a onclick='deleteUserName()'>[注销]</a>");
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	});
-	
-	function deleteUserName(){
-		$.ajax({
-			type:"post",
-			url:"SessionQuery",
-			data:{
-				sessionType:"deleteUserName",
-			},
-			dataType:"json",
-			success:function(data){
-				var d=eval("("+data+")");
-				if(d.sessionType=="deleteUserName"){
-					window.location.href="TomainPageJspAction.action";
+				var d = eval("(" + data + ")");
+				if (d.sessionType == "deleteUserName") {
+					window.location.href = "TomainPageJspAction.action";
 				}
 			},
 			error : function() {
@@ -114,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a href="ToSuccessHtmlAction">成功页面（测试）</a>
 					</p>
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a href="bookCartAction">
 							<h3>
 								<div class="total">
 									<span class="simpleCart_total"></span>

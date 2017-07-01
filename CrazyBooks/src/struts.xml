@@ -49,5 +49,9 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<action name="bookCartAction" class="com.crazybooks.action.BookCartAction" method="toCart">
+		<result>WEB-INF/jsp/BookCart.jsp</result>
+		</action>
+		
 	</package>
 </struts>    
