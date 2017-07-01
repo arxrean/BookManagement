@@ -69,6 +69,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 			String loginResult=ubi.login(users);
 			if(loginResult.equals("success")){
 				map.put("type", "success");
+				ActionContext.getContext().getSession().put("userName", users.getUserName());
 			}
 			else if(loginResult.equals("freeze")){
 				map.put("type", "freeze");

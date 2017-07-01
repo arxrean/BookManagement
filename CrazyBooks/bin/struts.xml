@@ -33,6 +33,12 @@
 				<param name="inputName">bais</param>
 			</result>
 		</action>
+		<!-- 获取不同的session -->
+		<action name="SessionQuery" class="com.crazybooks.action.SessionQuery">
+			<result name="session" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
 			<result name="bookListPage">WEB-INF/jsp/SearchedBooks.jsp</result>
