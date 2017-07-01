@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	$(".memenu").memenu();
 	validateLogin();
 	getUserInfo();
 });
@@ -61,7 +62,6 @@ function getUserInfo() {
 		dataType : "json",
 		success : function(data2) {
 			var d2 = eval("(" + data2 + ")");
-			alert(d2.idCard);
 			// 设置scores
 			$("#txt_score").attr("readonly", "false");
 			$("#txt_score").val(d2.scores);
@@ -90,6 +90,20 @@ function getUserInfo() {
 			$("#email").attr("readonly", "false");
 			$("#email").val(d2.email);
 			$("#email").attr("readonly", "true");
+		}
+	});
+}
+
+function addCategoryOne(){
+	$.ajax({
+		type : "post",
+		url : "UsergetUserInfoAction",
+		data : {
+			userName : "userName",
+		},
+		dataType : "json",
+		success : function(data) {
+			
 		}
 	});
 }

@@ -9,7 +9,7 @@ $.fn.memenu = function(e) {
 			}
 		} else {
 			u();
-			i()
+			i();
 		}
 	}
 	function i() {
@@ -17,7 +17,7 @@ $.fn.memenu = function(e) {
 			$(this).children(".dropdown, .mepanel").stop().fadeIn(t.interval)
 		}).bind("mouseleave", function() {
 			$(this).children(".dropdown, .mepanel").stop().fadeOut(t.interval)
-		})
+		});
 	}
 	function s() {
 		$(".memenu > li > a")
