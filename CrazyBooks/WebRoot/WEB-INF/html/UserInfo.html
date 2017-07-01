@@ -33,7 +33,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
 
 
 
@@ -132,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function myCommentary() {
-	document.getElementById("myInfo").style.display = "none";
+		document.getElementById("myInfo").style.display = "none";
 		document.getElementById("passwordModify").style.display = "none";
 		document.getElementById("myBorrow").style.display = "none";
 		document.getElementById("myPurchase").style.display = "none";
@@ -162,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function recharge() {
-	document.getElementById("myInfo").style.display = "none";
+		document.getElementById("myInfo").style.display = "none";
 		document.getElementById("passwordModify").style.display = "none";
 		document.getElementById("myBorrow").style.display = "none";
 		document.getElementById("myPurchase").style.display = "none";
@@ -472,8 +478,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="container"
 		style="width:1200px;height:300px;float:left;margin-left:300px;margin-top:20px">
-		<img name="picture" id="picture"
-			style="width:200px;height:200px;float:left" />
+		<img id="show_picture" style="width:200px;height:200px;float:left" />
 		<table style="width:550px;float:left;margin-left:20px;margin-top:30px">
 			<tr>
 				<td style="width:100px;height:40px;">用户名</td>
@@ -494,9 +499,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 	<div class="container" id="myDiv"
-		style="width:1200px;height:800px;margin-left:500px;">
+		style="width:1200px;height:1000px;margin-left:500px;">
 		<table id="myInfo"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:block">
+			<tr>
+				<td style="width:100px;height:40px;">上传头像</td>
+				<td><input type="file" name="picture" id="picture"
+					style="width:400px;height:40px;" /></td>
+			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">用户名</td>
 				<td><input type="text" name="userName" id="userName"
@@ -532,7 +542,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</tr>
 			<tr>
 				<td></td>
-				<td><input name="btn_modify" id="btn_modify" type="button"
+				<td><input name="btn_info" id="btn_info" type="button"
 					class="left" value="确认修改"
 					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
 			</tr>
@@ -558,7 +568,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</tr>
 			<tr>
 				<td></td>
-				<td><input name="btn_modify" id="btn_modify" type="button"
+				<td><input name="btn_password" id="btn_password0" type="button"
 					class="left" value="确认修改"
 					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
 			</tr>
@@ -602,7 +612,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</tr>
 			<tr>
 				<td></td>
-				<td><input name="btn_modify" id="btn_modify" type="button"
+				<td><input name="btn_recharge" id="btn_recharge" type="button"
 					class="left" value="确认充值"
 					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
 			</tr>
@@ -612,12 +622,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<table id="myCommentary"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
+			<tr style="background-color:gray">
+				<th style="width:200px;height:40px;">图书名字</th>
+				<th style="width:200px;height:40px;">评论内容</th>
+				<th style="width:200px;height:40px;">评论时间</th>
+			</tr>
 		</table>
 
 
 		<table id="myCollection"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
+			<tr style="background-color:gray">
+				<th style="width:200px;height:40px;">图书名字</th>
+				<th style="width:200px;height:40px;">作者</th>
+				<th style="width:200px;height:40px;">出版社</th>
+				<th style="width:200px;height:40px;">借阅状态</th>
+			</tr>
 		</table>
 	</div>
 
