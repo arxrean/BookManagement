@@ -45,6 +45,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
 	$(document).ready(function() {
 		$(".memenu").memenu();
+		$("#btn_submit").bind("click",function(){
+			window.location.href="ToSuccessHtmlAction.action";
+		});
 	});
 </script>
 <script src="js/simpleCart.min.js">
@@ -161,7 +164,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					out.println("</td>");
 					
 					out.println("<td style=width: 157px>");
-					out.println("寇子驿");
+					out.println("李华");
 					out.println("</td>");
 					
 					out.println("<td style=width: 157px>");
@@ -182,12 +185,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					%>
 				</table>
 				
-				<span>金额：440元</span>
+				<span>金额：<span id="money">440</span>元</span>
 			</form>
 			
 			<div class="register-but">
 				<form>
-					<input type="submit" value="submit">
+					<input id="btn_submit" type="button" value="提交">
 					<div class="clearfix"></div>
 				</form>
 			</div>

@@ -25,23 +25,21 @@ public class BookDaoImpl extends BaseHibernateDao implements BookDao {
 						"select books from Books books,Categorytwo ct,"
 								+ "Categoryone co where books.categorytwo= ct.id and ct.categoryone=co.id and co.id = ?")
 				.setInteger(0, id).list();
-		System.out
-				.println("------------------------------------------------------>"
-						+ bList.size());
+		System.out.println("blist:"+bList.size());
 		if (bList.size() < 1) {
-			// System.out.print(bList.size());
 			return null;
 		}
-		// System.out.println("ooooooooooooookkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"+bList.size());
 		return bList;
 	}
 
 	public List getNewTopBook() {
 		// TODO Auto-generated method stub
-		DetachedCriteria criteria = DetachedCriteria.forClass(Books.class);
-		criteria.addOrder(Order.desc("btime"));
-		// List list=criteria.createCriteria(1,10);
-		return null;
+		String hql = "from Books order by btime desc";
+		List list = HibernateSessionFactory.getSession().createQuery(hql)
+				.list().subList(0, 8);
+
+		System.out.println(list.size());
+		return list;
 	}
 
 	@Override
@@ -60,6 +58,12 @@ public class BookDaoImpl extends BaseHibernateDao implements BookDao {
 						"select com.commentary,com.commentTime,user.userName from Commentary com,Books book,Users user where com.bid=book.id and com.uid=user.id and book.name=?")
 				.setString(0, book.getName()).list();
 		return commentsList;
+	}
+
+	public List getBooksByCoid(Integer coid) {
+		// TODO Auto-generated method stub
+		List list=HibernateSessionFactory.getSession().createQuery("select books from Books books,Categorytwo ct where books.categorytwo=ct.id and ct.id=?").setInteger(0, coid).list();
+		return list;
 	}
 
 }

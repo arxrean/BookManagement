@@ -39,5 +39,10 @@ public class BookBizImpl implements BookBiz{
 		// TODO Auto-generated method stub
 		return bookDao.getBookComments(book);
 	}
+
+	public List findBooksByCoid(Integer coid) {
+		// TODO Auto-generated method stub
+		return bookDao.getBooksByCoid(coid);
+	}
 	
 }

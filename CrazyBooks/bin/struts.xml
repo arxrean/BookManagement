@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="default" extends="struts-default,json-default">
-		<action name="indexAction-*" class="indexAction" method="{1}">
+		<action name="index-*" class="indexAction" method="{1}">
 			<result name="mainPage">WEB-INF/jsp/mainPage.jsp</result>
 		</action>
 		<!-- 对用户行为的操作，例如登录，注册等 -->
@@ -44,7 +44,7 @@
 		</action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
-			<result name="bookListPage">WEB-INF/jsp/SearchedBooks.jsp</result>
+			<result name="bookListPage">WEB-INF/jsp/bookListPage.jsp</result>
 			<result name="bookInfo" type="json">
 				<param name="root">result</param>
 			</result>

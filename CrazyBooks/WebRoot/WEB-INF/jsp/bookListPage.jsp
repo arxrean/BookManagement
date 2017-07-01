@@ -39,54 +39,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
   </script>
-  <script type="text/javascript">
-  $(function() {
-		$("#slider").responsiveSlides({
-			auto : true,
-			speed : 500,
-			namespace : "callbacks",
-			pager : true,
-		});
-		$.ajax({
-			type : "post",
-			url : "SessionQuery",
-			data : {
-				sessionType : "userName",
-			},
-			dataType : "json",
-			success : function(data) {
-				var d=eval("("+data+")");
-				if(d.sessionType != "none"){
-					$("#user_login").empty();
-					$("#user_login").append("<a href='ToUserInfoHtmlAction'>"+d.sessionType+"</a>"+"<a onclick='deleteUserName()'>[注销]</a>");
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	});
-	
-	function deleteUserName(){
-		$.ajax({
-			type:"post",
-			url:"SessionQuery",
-			data:{
-				sessionType:"deleteUserName",
-			},
-			dataType:"json",
-			success:function(data){
-				var d=eval("("+data+")");
-				if(d.sessionType=="deleteUserName"){
-					window.location.href="TomainPageJspAction.action";
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	}
-  </script>
 </head>
 <body>
 <!--header-->
@@ -94,18 +46,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="header-top">
 		<div class="container">
 				<div class="col-sm-4 logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>	
+					<a href="TomainPageJspAction"><img src="images/logo.png" alt=""></a>	
 				</div>
 		
 			<div class="col-sm-4 header-left">		
-					<p class="log" id="user_login"><a href="ToUserLoginHtmlAction"  >登录</a>
-						<span>or</span><a  href="ToUserRegisterHtmlAction"  >注册</a></p>
-					<p class="log"><a href="ToUserInfoHtmlAction">个人中心</a></p>
-					<p class="log"><a href="ToSingleBookInfoHtmlAction">图书详情（测试）</a></p>
-					<p class="log"><a href="ToAdminHtmlAction">管理员（测试）</a></p>
-					<p class="log"><a href="ToSuccessHtmlAction">成功页面（测试）</a></p>
+					<p class="log"><a href="account.html"  >登录</a>
+						<span>or</span><a  href="account.html"  >注册</a></p>
 					<div class="cart box_1">
-						<a href="bookCartAction">
+						<a href="ToBookCartJspAction.action">
 						<h3> <div class="total">
 							<span class="simpleCart_total"></span></div>
 							<img src="images/cart.png" alt=""/></h3>
@@ -123,26 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-sm-2 number">
 					<span><i class="glyphicon glyphicon-phone"></i>085 596 234</span>
 				</div>
-		 <div class="col-sm-8 h_menu4">
-				<ul class="memenu skyblue">
-				      <s:iterator var="clist" value="#session.cList">
-				      <li class="grid"><a  href="book-findBooksByCid?cid=<s:property value='#clist.id'/>"><s:property value="#clist.name"/></a>
-				      <div class="mepanel">
-						<div class="row">
-							<div class="col1">
-								<div class="h_nav">
-									<ul>
-										<s:iterator var="ct" value="#clist.categorytwos">
-										<li><a href="book-findboosByCoid?coid=<s:property value='#ct.id'/>"><s:property value="#ct.name"/></a></li>
-										</s:iterator>
-									</ul>	
-								</div>							
-							</div>
-						  </div>
-						</div>
-				      </s:iterator>
-			  </ul> 
-			</div>
+				<!-- 砍掉top分类 -->
 				<div class="col-sm-2 search">		
 			<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
 		</div>
@@ -180,102 +109,107 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 </div>
-<!--banner-->
-<div class="banner">
-	<div class="col-sm-3 banner-mat">
-			<div id="id_divcates">
-				<dl>
-					<s:iterator var="c" value="#session.cList">
-						<dt>
-							<big><s:property value="#c.name" /></big>
-						</dt>
-						<s:iterator var="ct" value="#c.Categorytwos">
-							<dd class="dd1">
-								<a href="#" class="a2"><s:property value="#ct.name" /></a>
-							</dd>
-						</s:iterator>
-						<br/>
-						<br/>
-						<br/>
-						<br/>
-					</s:iterator>
-				</dl>
-			</div>
-		</div>
-	<div class="col-sm-6 matter-banner">
-	 	<div class="slider">
-	    	<div class="callbacks_container">
-	      		<ul class="rslides" id="slider">
-	        		<li>
-	          			<img src="images/1.jpg" style="width: 90%;height: 55%;border:1px black solid;">
-	       			 </li>
-			 		 <li>
-	          			<img src="images/2.jpg" alt="">   
-	       			 </li>
-					 <li>
-	          			<img src="images/1.jpg" alt="">
-	        		</li>	
-	      		</ul>
-	      		<div style="border:1px red solid; margin-top: 2px;">
-	      		<ul class="u1">
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		</ul>
-	      		</div>
-	 	 	</div>
-		</div>
-	</div>
-	<div class="clearfix"> </div>
-</div>
-<!--//banner-->
 <!--content-->
-<div class="content">
+<div class="products">
 	<div class="container">
-		<div class="content-top">
-			<h1><font style="font-size: 30px;">HOT BOOKS</font></h1>
-			<div class="content-top1">
-			<s:iterator var="bn" value="#session.bnList">
-				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
-						<a href="single.html">
-							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
+		<h1>Books</h1>
+		<div class="col-md-9">
+			<div class="content-top1" style="border:red solid 1px;">
+			<s:iterator var="books" value="bList">
+				<div class="col-md-4 col-md3" style="border:red solid 1px;">
+					<div class="col-md1 simpleCart_shelfItem">
+						<a href="ToSingleBookInfoHtmlAction">
+							<img class="img-responsive" src="<s:property value='#books.picture'/>" alt="" />
 						</a>
-						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
+						<h3><a href="single.html">Tops</a></h3>
 						<div class="price">
-								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
+								<h5 class="item_price">￥<s:property value='#books.price'/></h5>
 								<a href="#" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
 				</div>	
-				</s:iterator>	
-
+			</s:iterator>
 			<div class="clearfix"> </div>
 			</div>	
-			<h1><font style="font-size: 30px;">NEW BOOKS</font></h1>
-			<div class="content-top1">
-			<s:iterator var="bn" value="#session.bnList">
-				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
-						<a href="single.html">
-							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
-						</a>
-						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
-						<div class="price">
-								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
+		</div>
+		<div class="col-md-3 product-bottom">
+			<!--categories-->
+				<div class=" rsidebar span_1_of_left">
+						<h3 class="cate">Categories</h3>
+							 <ul class="menu-drop">
+							<s:iterator var="c" value="#session.cList">
+							<li class="item1"><big><s:property value="#c.name" /></big>
+								<ul class="cute">
+								<s:iterator var="ct" value="#c.Categorytwos">
+									<li class="subitem1"><a href="single.html"><s:property value="#ct.name" /> </a></li>
+									</s:iterator>
+								</ul>
+								</s:iterator>
+						</ul>
 					</div>
-				</div>	
-				</s:iterator>	
+				<!--initiate accordion-->
+						<script type="text/javascript">
+							$(function() {
+							    var menu_ul = $('.menu-drop > li > ul'),
+							           menu_a  = $('.menu-drop > li > a');
+							    menu_ul.hide();
+							    menu_a.click(function(e) {
+							        e.preventDefault();
+							        if(!$(this).hasClass('active')) {
+							            menu_a.removeClass('active');
+							            menu_ul.filter(':visible').slideUp('normal');
+							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
+							        } else {
+							            $(this).removeClass('active');
+							            $(this).next().stop(true,true).slideUp('normal');
+							        }
+							    });
+							
+							});
+						</script>
+<!--//menu-->
+<!--seller-->
+				<div class="product-bottom">
+						<h3 class="cate">Hot Book</h3>
+						<s:iterator var="bn" value="#session.bnList">
+					<div class="product-go">
+						<div class=" fashion-grid">
+							<a href="single.html"><img class="img-responsive " src="<s:property value="#bn.picture"/>" alt=""></a>	
+						</div>
+						<div class=" fashion-grid1">
+							<h6 class="best2"><a href="single.html" ><s:property value="#bn.name"/></a></h6>
+							<span class=" price-in1">￥<s:property value="#bn.price"/></span>
+						</div>	
+						<div class="clearfix"> </div>
+					</div>
+					</s:iterator>
+				</div>
 
-			<div class="clearfix"> </div>
+<!--//seller-->
+<!--tag-->
+				<div class="tag">	
+						<h3 class="cate">Tags</h3>
+					<div class="tags">
+						<ul>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">dress</a></li>
+							<li><a href="#">design</a></li>
+							<li><a href="#">fashion</a></li>
+							<li><a href="#">lorem</a></li>
+							<li><a href="#">dress</a></li>
+						<div class="clearfix"> </div>
+						</ul>
+				</div>					
 			</div>
 		</div>
+		<div class="clearfix"> </div>
 	</div>
 </div>
 <!--//content-->
@@ -295,7 +229,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div class="footer-bottom">
 		<div class="container">
-				<div class="col-sm-3 footer-bottom-cate">
+				<div class="col-md-3 footer-bottom-cate">
 					<h6>Categories</h6>
 					<ul>
 						<li><a href="#">Curabitur sapien</a></li>
@@ -306,7 +240,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</ul>
 				</div>
-				<div class="col-sm-3 footer-bottom-cate">
+				<div class="col-md-3 footer-bottom-cate">
 					<h6>Feature Projects</h6>
 					<ul>
 						<li><a href="#">Curabitur sapien</a></li>
@@ -317,7 +251,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</ul>
 				</div>
-				<div class="col-sm-3 footer-bottom-cate">
+				<div class="col-md-3 footer-bottom-cate">
 					<h6>Top Brands</h6>
 					<ul>
 						<li><a href="#">Curabitur sapien</a></li>
@@ -330,7 +264,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					</ul>
 				</div>
-				<div class="col-sm-3 footer-bottom-cate cate-bottom">
+				<div class="col-md-3 footer-bottom-cate cate-bottom">
 					<h6>Our Address</h6>
 					<ul>
 						<li>Aliquam metus  dui. </li>

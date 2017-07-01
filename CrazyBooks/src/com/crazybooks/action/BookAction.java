@@ -17,9 +17,21 @@ import com.opensymphony.xwork2.util.ValueStack;
 
 public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	BookBizImpl bookService;
-	
-	private String result; //json 传值的变量
-	
+	Integer coid;
+	public void setCoid(Integer coid) {
+		this.coid = coid;
+	}
+	public Integer getCoid() {
+		return coid;
+	}
+	Integer cid;
+	public Integer getCid() {
+		return cid;
+	}
+	public void setCid(Integer cid) {
+		this.cid = cid;
+	}
+	private String result; //json 娴肩姴锟介惃鍕綁闁诧拷
 	public String getResult() {
 		return result;
 	}
@@ -36,19 +48,25 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	
 	public String findBooksByCid()
 	{
-		//System.out.println("----------------------------------------------------"+book.getId());
-		List bList=bookService.findBooksByCid(book.getId());
-		ActionContext.getContext().put("bList", bList);
+		System.out.println("----------------------------------------------------"+cid);
+		List bList=bookService.findBooksByCid(cid);
+		ActionContext.getContext().getValueStack().set("bList", bList);
 		return "bookListPage";
 	}
-	
+	public String findboosByCoid()
+	{
+		List bList=bookService.findBooksByCoid(coid);
+		ActionContext.getContext().getValueStack().set("bList", bList);
+		return "bookListPage";
+		
+	}
 	@Override
 	public Books getModel() {
 		// TODO Auto-generated method stub
 		return book;
 	}
 	
-	//获取图书的详细信息
+	//閼惧嘲褰囬崶鍙ュ姛閻ㄥ嫯顕涚紒鍡曚繆閹拷
 	public String getBookInfo(){
 		Books bookReal=bookService.searchBook(book);
 		Map<String, Object> map =new HashMap<String, Object>();
@@ -73,7 +91,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 		return "bookInfo";
 	}
 	
-	//获取图书的评价
+	//閼惧嘲褰囬崶鍙ュ姛閻ㄥ嫯鐦庢禒锟�	
 	public String getBookComments(){
 		List comments=bookService.getComments(book);
 		return "comments";
