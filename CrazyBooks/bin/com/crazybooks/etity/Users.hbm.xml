@@ -43,5 +43,8 @@
         <property name="phoneNum" type="java.lang.String">
             <column name="phoneNum" />
         </property>
+        <property name="image" type="java.lang.String">
+            <column name="image" />
+        </property>
     </class>
 </hibernate-mapping>

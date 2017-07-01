@@ -1,6 +1,7 @@
 package com.crazybooks.action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 
@@ -24,6 +25,8 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	private String result;
 	
 	private String rand;//验证码
+	
+	private UserBizImpl ubi;
 	
 	
 
@@ -64,7 +67,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		Map<String, Object> map =new HashMap<String, Object>();
 		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
 		if(random.equals(this.rand)){
-			UserBizImpl ubi=new UserBizImpl();
+			ubi=new UserBizImpl();
 			System.out.println(users.getUserName()+" "+users.getPassword());
 			String loginResult=ubi.login(users);
 			if(loginResult.equals("success")){
@@ -88,7 +91,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	//楠岃瘉鐢ㄦ埛鍚嶆槸鍚﹀凡缁忚娉ㄥ唽
 	public String ValidateRegister(){
-		UserBizImpl ubi=new UserBizImpl();
+		ubi=new UserBizImpl();
 		if(ubi.validateRegister(users.getUserName())){
 			Map<String, Object> map =new HashMap<String, Object>();
 			map.put("type", "error");
@@ -114,7 +117,7 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	//娉ㄥ唽鐢ㄦ埛
 	public String Register(){
-		UserBizImpl ubi=new UserBizImpl();
+		ubi=new UserBizImpl();
 		Map<String, Object> map =new HashMap<String, Object>();
 		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
 		if(random.equals(rand)){
@@ -129,5 +132,29 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		JSONObject json=JSONObject.fromObject(map);
 		result=json.toString();
 		return "register";
+	}
+	
+	public String getUserInfo(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		Users user=new Users();
+		user.setUserName(userName);
+		List list=ubi.getUser(user);
+		Users userTarget=(Users)list.get(0);
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("userName", userTarget.getUserName());
+		map.put("idCard", userTarget.getIdnum());
+		map.put("name", userTarget.getName());
+		map.put("sex", userTarget.getSex());
+		map.put("balance", userTarget.getBalance());
+		map.put("address", userTarget.getAddress());
+		map.put("email", userTarget.getEmail());
+		map.put("scores", userTarget.getScore());
+		map.put("rank", userTarget.getRank());
+		map.put("phone", userTarget.getPhoneNum());
+		map.put("image", userTarget.getImage());
+		JSONObject json=JSONObject.fromObject(map);
+		result=json.toString();
+		return "getUserInfo";
 	}
 }

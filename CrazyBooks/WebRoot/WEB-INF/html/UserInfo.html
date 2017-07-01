@@ -16,6 +16,7 @@
 	content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
+<<<<<<< Updated upstream
 	
 	
 	
@@ -57,65 +58,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+=======
+		
+	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+>>>>>>> Stashed changes
 </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$
-								.ajax({
-									type : "post",
-									url : "SessionQuery",
-									data : {
-										sessionType : "userName",
-									},
-									dataType : "json",
-									success : function(data) {
-										var d = eval("(" + data + ")");
-										if (d.sessionType != "none") {
-											$("#user_login").empty();
-											$("#user_login")
-													.append(
-															"<a href='ToUserInfoHtmlAction'>"
-																	+ d.sessionType
-																	+ "</a>"
-																	+ "<a onclick='deleteUserName()'>[注销]</a>");
-										}
-									},
-									error : function() {
-										alert("Ajax传输错误！");
-									}
-								});
-					});
-
-	function deleteUserName() {
-		$.ajax({
-			type : "post",
-			url : "SessionQuery",
-			data : {
-				sessionType : "deleteUserName",
-			},
-			dataType : "json",
-			success : function(data) {
-				var d = eval("(" + data + ")");
-				if (d.sessionType == "deleteUserName") {
-					window.location.href = "TomainPageJspAction.action";
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	}
-</script>
-<script src="js/simpleCart.min.js">
-	
-</script>
-
-
+<script type="text/javascript" src="js/userInfo.js"></script>
+<script src="js/simpleCart.min.js"></script>
 <script>
 	function myInfo() {
 		document.getElementById("myInfo").style.display = "block";
@@ -483,17 +436,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<tr>
 				<td style="width:100px;height:40px;">用户名</td>
 				<td><input type="text" name="txt_userName" id="txt_userName"
-					disabled="disabled" style="width:400px;height:40px;" /></td>
+					readonly="true" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">积分</td>
 				<td><input type="text" name="txt_score" id="txt_score"
-					disabled="disabled" style="width:400px;height:40px;" /></td>
+					readonly="true" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">等级</td>
 				<td><input type="text" name="txt_rank" id="txt_rank"
-					disabled="disabled" style="width:400px;height:40px;" /></td>
+					readonly="true" style="width:400px;height:40px;" /></td>
 			</tr>
 		</table>
 	</div>
@@ -508,8 +461,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
-				<td style="width:100px;height:40px;">用户名</td>
-				<td><input type="text" name="userName" id="userName"
+				<td style="width:100px;height:40px;">真实姓名</td>
+				<td><input type="text" name="name" id="name"
 					style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>

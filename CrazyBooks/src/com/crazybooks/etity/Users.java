@@ -20,6 +20,7 @@ public class Users implements java.io.Serializable {
 	private Integer score;
 	private Integer rank;
 	private String phoneNum;
+	private String image;
 
 	// Constructors
 
@@ -30,7 +31,7 @@ public class Users implements java.io.Serializable {
 	/** full constructor */
 	public Users(String idnum, String userName, String name, Integer sex,
 			Float balance, String email, String address, String password,
-			Integer score, Integer rank, String phoneNum) {
+			Integer score, Integer rank, String phoneNum, String image) {
 		this.idnum = idnum;
 		this.userName = userName;
 		this.name = name;
@@ -42,6 +43,7 @@ public class Users implements java.io.Serializable {
 		this.score = score;
 		this.rank = rank;
 		this.phoneNum = phoneNum;
+		this.image = image;
 	}
 
 	// Property accessors
@@ -140,6 +142,14 @@ public class Users implements java.io.Serializable {
 
 	public void setPhoneNum(String phoneNum) {
 		this.phoneNum = phoneNum;
+	}
+
+	public String getImage() {
+		return this.image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

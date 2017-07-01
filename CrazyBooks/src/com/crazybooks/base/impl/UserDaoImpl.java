@@ -91,5 +91,12 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		add(users);
 	}
 
+	@Override
+	public List get(Users user) {
+		// TODO Auto-generated method stub
+		List list=super.search(Users.class, user);
+		return list;
+	}
+
 	
 }

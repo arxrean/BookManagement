@@ -17,6 +17,9 @@
 			<result name="login" type="json">
 				<param name="root">result</param>
 			</result>
+			<result name="getUserInfo" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 		<!-- 网站内jsp页面的跳转 -->
 		<action name="To*JspAction">
