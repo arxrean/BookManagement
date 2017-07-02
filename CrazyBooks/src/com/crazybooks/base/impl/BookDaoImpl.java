@@ -18,7 +18,7 @@ public class BookDaoImpl extends BaseHibernateDao implements BookDao {
 	@Override
 	public List getBooksByCid(int id) {
 		// TODO Auto-generated method stub
-
+		System.out.println("id:"+id);
 		List bList = HibernateSessionFactory
 				.getSession()
 				.createQuery(

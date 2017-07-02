@@ -247,7 +247,6 @@ ul.callbacks_tabs.callbacks1_tabs {
 }
 .banner{
 	border-bottom:1px solid #bcbcbc;
-	padding: 1em 0;
 	width:100%;
 }
 .banner-mat{
@@ -293,7 +292,7 @@ ul.callbacks_tabs.callbacks1_tabs {
   text-decoration: none;
 }
 .content-top {
-  padding: 4em 0;
+	width:100%;
 }
 .content-top1 {
   padding: 2em 0;

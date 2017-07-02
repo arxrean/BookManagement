@@ -1570,8 +1570,8 @@ pre code {
   overflow-y: scroll;
 }
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -1785,7 +1785,8 @@ pre code {
     width: 58.33333333%;
   }
   .col-sm-6 {
-    width: 70%;
+    width: 64%;
+    height: 100%;
   }
   .col-sm-5 {
     width: 41.66666667%;

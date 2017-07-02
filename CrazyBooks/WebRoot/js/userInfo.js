@@ -19,7 +19,7 @@ function deleteUserName() {
 			}
 		},
 		error : function() {
-			alert("Ajax传输错误！");
+			alert("Ajax浼犺緭閿欒锛�");
 		}
 	});
 }
@@ -39,15 +39,15 @@ function validateLogin() {
 				$("#user_login").append(
 						"<a href='ToUserInfoHtmlAction'>" + d.sessionType
 								+ "</a>"
-								+ "<a onclick='deleteUserName()'>[注销]</a>");
-				// 设置用户名
+								+ "<a onclick='deleteUserName()'>[娉ㄩ攢]</a>");
+				// 璁剧疆鐢ㄦ埛鍚�
 				$("#txt_userName").attr("readonly", "false");
 				$("#txt_userName").val(d.sessionType);
 				$("#txt_userName").attr("readonly", "true");
 			}
 		},
 		error : function() {
-			alert("Ajax传输错误！");
+			alert("Ajax浼犺緭閿欒锛");
 		}
 	});
 }
@@ -62,31 +62,31 @@ function getUserInfo() {
 		dataType : "json",
 		success : function(data2) {
 			var d2 = eval("(" + data2 + ")");
-			// 设置scores
+			// 璁剧疆scores
 			$("#txt_score").attr("readonly", "false");
 			$("#txt_score").val(d2.scores);
 			$("#txt_score").attr("readonly", "true");
-			//设置rank
+			//璁剧疆rank
 			$("#txt_rank").attr("readonly", "false");
 			$("#txt_rank").val(d2.rank);
 			$("#txt_rank").attr("readonly", "true");
-			//设置真实姓名
+			//璁剧疆鐪熷疄濮撳悕
 			$("#name").attr("readonly", "false");
 			$("#name").val(d2.name);
 			$("#name").attr("readonly", "true");
-			//设置身份证号
+			//璁剧疆韬唤璇佸彿
 			$("#idnum").attr("readonly", "false");
 			$("#idnum").val(d2.idCard);
 			$("#idnum").attr("readonly", "true");
-			//设置地址
+			//璁剧疆鍦板潃
 			$("#address").attr("readonly", "false");
 			$("#address").val(d2.address);
 			$("#address").attr("readonly", "true");
-			//设置电话
+			//璁剧疆鐢佃瘽
 			$("#phoneNum").attr("readonly", "false");
 			$("#phoneNum").val(d2.phone);
 			$("#phoneNum").attr("readonly", "true");
-			//设置电子邮箱
+			//璁剧疆鐢靛瓙閭
 			$("#email").attr("readonly", "false");
 			$("#email").val(d2.email);
 			$("#email").attr("readonly", "true");

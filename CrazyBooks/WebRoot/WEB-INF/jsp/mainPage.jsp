@@ -39,78 +39,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       });
     });
   </script>
-  <script type="text/javascript">
-  $(function() {
-		$("#slider").responsiveSlides({
-			auto : true,
-			speed : 500,
-			namespace : "callbacks",
-			pager : true,
-		});
-		$.ajax({
-			type : "post",
-			url : "SessionQuery",
-			data : {
-				sessionType : "userName",
-			},
-			dataType : "json",
-			success : function(data) {
-				var d=eval("("+data+")");
-				if(d.sessionType != "none"){
-					$("#user_login").empty();
-					$("#user_login").append("<a href='ToUserInfoHtmlAction'>"+d.sessionType+"</a>"+"<a onclick='deleteUserName()'>[注销]</a>");
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	});
-	
-	function deleteUserName(){
-		$.ajax({
-			type:"post",
-			url:"SessionQuery",
-			data:{
-				sessionType:"deleteUserName",
-			},
-			dataType:"json",
-			success:function(data){
-				var d=eval("("+data+")");
-				if(d.sessionType=="deleteUserName"){
-					window.location.href="TomainPageJspAction.action";
-				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
-	}
-  </script>
 </head>
 <body>
 <!--header-->
 <div class="header">
 	<div class="header-top">
 		<div class="container">
+		<div class="col-sm-4 world">
+				</div>
 				<div class="col-sm-4 logo">
 					<a href="index.html"><img src="images/logo.png" alt=""></a>	
 				</div>
 		
-			<div class="col-sm-4 header-left">		
-					<p class="log" id="user_login"><a href="ToUserLoginHtmlAction"  >登录</a>
-						<span>or</span><a  href="ToUserRegisterHtmlAction"  >注册</a></p>
-					<p class="log"><a href="ToUserInfoHtmlAction">个人中心</a></p>
-					<p class="log"><a href="ToSingleBookInfoHtmlAction">图书详情（测试）</a></p>
-					<p class="log"><a href="ToAdminHtmlAction">管理员（测试）</a></p>
-					<p class="log"><a href="ToSuccessHtmlAction">成功页面（测试）</a></p>
+			<div class="col-sm-4 header-left">	
+			<s:if test="#session.username!=null">
+			<p class="log">
+						<span>or</span>欢迎回来！<s:property value="#session.username"/></p>
+			</s:if>	
+			<s:else>
+					<p class="log"><a href="account.html"  >登陆</a>
+						<span>or</span><a  href="account.html"  >注册</a></p>
+						</s:else>
 					<div class="cart box_1">
-						<a href="bookCartAction">
+						<a href="checkout.html">
 						<h3> <div class="total">
 							<span class="simpleCart_total"></span></div>
 							<img src="images/cart.png" alt=""/></h3>
 						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">书架为空</a></p>
+						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 
 					</div>
 					<div class="clearfix"> </div>
@@ -144,21 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </ul> 
 			</div>
 				<div class="col-sm-2 search">		
-			<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a>
 		</div>
-		<div class="clearfix"> </div>
-			<!---pop-up-box---->
-					  <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
-					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-					<!---//pop-up-box---->
-				<div id="small-dialog" class="mfp-hide">
-				<div class="search-top">
-						<div class="login">
-							<input type="submit" value="">
-							<input type="text" value="Type something..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">		
-						</div>
-						<p>	Shopping</p>
-					</div>				
 				</div>
 				 <script>
 						$(document).ready(function() {
@@ -179,9 +121,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---->		
 		</div>
 	</div>
-</div>
 <!--banner-->
-<div class="banner">
+<div class="banner" style="border:5px red solid;">
 	<div class="col-sm-3 banner-mat">
 			<div id="id_divcates">
 				<dl>
@@ -202,12 +143,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</dl>
 			</div>
 		</div>
-	<div class="col-sm-6 matter-banner">
+	<div class="col-sm-6 matter-banner" style="border:2px blue solid;">
 	 	<div class="slider">
 	    	<div class="callbacks_container">
 	      		<ul class="rslides" id="slider">
 	        		<li>
-	          			<img src="images/1.jpg" style="width: 90%;height: 55%;border:1px black solid;">
+	          			<img src="images/1.jpg" style="width: 100%;height: 65%;border:1px black solid;">
 	       			 </li>
 			 		 <li>
 	          			<img src="images/2.jpg" alt="">   
@@ -216,16 +157,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	          			<img src="images/1.jpg" alt="">
 	        		</li>	
 	      		</ul>
-	      		<div style="border:1px red solid; margin-top: 2px;">
+	      		<div style=" margin-top: 2px;">
 	      		<ul class="u1">
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
-	      		<li class="l1"><img src="images/1.jpg" style="width:100%;height: 100%;"/></li>
+	      		<li class="l1"><a href="#" class="a"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
+	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
+	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
+	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
+	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
 	      		</ul>
 	      		</div>
 	 	 	</div>
+		</div>
+	</div>
+	<div class="infoDiv">
+		<div id="divdymi">
+		<h1><font style="font-family: sans-serif;font-size: 30px;">最新动态</font></h1>
+		<hr style="color:black;border-top: 1px black solid;"/>
+		<ul style="list-style: none">
+		<li><a href="#" class="a1">30万图书100减30，文艺分会场</a>
+		
+		<li><a href="#" class="a1">30万图书100减30，经管励志分会场</a>
+	
+		<li><a href="#" class="a1">倾听习总书记讲述“中国故事”</a>
+		</ul>
+		</div>
+		<div class="divNBInfo">
+		<h1><font style="font-family: sans-serif;font-size: 30px;">新书预约</font></h1>
+		<hr style="color:black;border-top: 1px black solid;"/>
+		<div class="bookDiv">
+		<a href="#" class="a3"><img src="bookPic/1.jpg" style="width:100%;height: 60%;border:1px red solid;"/>
+		<big>《哆啦A梦》</big>
+		</a><font style="color:red;font-size:xx-large;">￥22.00</font><font style="font-size:large;color:gray; text-decoration: line-through;">￥52.00</font>
+		<p>-------ljshfkhfoahfosafa</p>
+		</div>
 		</div>
 	</div>
 	<div class="clearfix"> </div>
@@ -233,33 +197,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//banner-->
 <!--content-->
 <div class="content">
-	<div class="container">
-		<div class="content-top">
-			<h1><font style="font-size: 30px;">HOT BOOKS</font></h1>
-			<div class="content-top1">
+<div style="width: 100%;height:100%;border:pink 8px solid;">
+	<div class="divcontainer">
+		<div class="content-top" style="border:black 2px solid;">
+			<font style="font-size: 30px;">HOT BOOKS</font>
+			<hr style="height:5px;border:1px gray solid;background-color: gray;"/>
+			<div class="content-top1" style="border:1px blue solid;">
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
-						<a href="single.html">
-							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
-						</a>
-						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
-						<div class="price">
-								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
-								<a href="#" class="item_add">Add To Cart</a>
-								<div class="clearfix"> </div>
-						</div>
-					</div>
-				</div>	
-				</s:iterator>	
-
-			<div class="clearfix"> </div>
-			</div>	
-			<h1><font style="font-size: 30px;">NEW BOOKS</font></h1>
-			<div class="content-top1">
-			<s:iterator var="bn" value="#session.bnList">
-				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
+					<div class="col-md1 simpleCart_shelfItem">
 						<a href="single.html">
 							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>
@@ -275,11 +221,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="clearfix"> </div>
 			</div>
+			</div>
 		</div>
+		<div class="divHot">
+		<div style="width:100%;height: 8%;">
+		<img src="images/newBookList.JPG" style="width: 90%;height:66;"/>
+		</div>
+		<div class="divList"></div>
+		<div class="divList"></div>
+		<div class="divList"></div>
 	</div>
-</div>
+	</div>
+	</div>
+	<div class="content">
+<div style="width: 100%;height:100%;border:pink 8px solid;">
+	<div class="divcontainer">
+			<img src="images/newBookImg.JPG"/>
+			<div class="content-top1">
+			<s:iterator var="bn" value="#session.bnList">
+				<div class="col-md-3 col-md2">
+					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
+						<a href="single.html">
+							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
+						</a>
+						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
+						<div class="price">
+								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
+								<a href="#" class="item_add">Add To Cart</a>
+								<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>	
+				</s:iterator>	
+			<div class="clearfix"> </div>
+			</div>
+		</div>
+		<div class="divHot">
+		<div style="width:100%;height: 8%;">
+		<img src="images/newBookList.JPG" style="width: 90%;height:66;"/>
+		</div>
+		<div class="divList"></div>
+		<div class="divList"></div>
+		<div class="divList"></div>
+	</div>
+	</div>
+	</div>
 <!--//content-->
 <!--footer-->
+<div class="divButtom">
+<span>
+<span class="span_1"><a href="#" class="a1">热门作者</a></span>
+<span class="span_1"><a href="#" class="a1">名人堂</a></span>
+<span class="span_1"><a href="#" class="a1">新锐作家</a></span>
+</span>
+</div>
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">

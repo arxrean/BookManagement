@@ -31,7 +31,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	public void setCid(Integer cid) {
 		this.cid = cid;
 	}
-	private String result; //json 娴肩姴锟介惃鍕綁闁诧拷
+	private String result; //json 濞磋偐濮撮敓浠嬫儍閸曨偄缍侀梺璇ф嫹
 	public String getResult() {
 		return result;
 	}
@@ -66,7 +66,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 		return book;
 	}
 	
-	//閼惧嘲褰囬崶鍙ュ姛閻ㄥ嫯顕涚紒鍡曚繆閹拷
+	//闁兼儳鍢茶ぐ鍥炊閸欍儱濮涢柣銊ュ椤曟稓绱掗崱鏇氱箚闁诡叏鎷�
 	public String getBookInfo(){
 		Books bookReal=bookService.searchBook(book);
 		Map<String, Object> map =new HashMap<String, Object>();
@@ -91,7 +91,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 		return "bookInfo";
 	}
 	
-	//閼惧嘲褰囬崶鍙ュ姛閻ㄥ嫯鐦庢禒锟�	
+	//闁兼儳鍢茶ぐ鍥炊閸欍儱濮涢柣銊ュ閻﹀孩绂掗敓锟�
 	public String getBookComments(){
 		List comments=bookService.getComments(book);
 		return "comments";
