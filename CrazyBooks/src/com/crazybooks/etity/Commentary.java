@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Commentary entity. @author MyEclipse Persistence Tools
@@ -11,10 +11,10 @@ public class Commentary implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer uid;
-	private Integer bid;
+	private Users users;
+	private Books books;
 	private String commentary;
-	private Timestamp commentTime;
+	private Date commentTime;
 
 	// Constructors
 
@@ -23,10 +23,10 @@ public class Commentary implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Commentary(Integer uid, Integer bid, String commentary,
-			Timestamp commentTime) {
-		this.uid = uid;
-		this.bid = bid;
+	public Commentary(Users users, Books books, String commentary,
+			Date commentTime) {
+		this.users = users;
+		this.books = books;
 		this.commentary = commentary;
 		this.commentTime = commentTime;
 	}
@@ -41,20 +41,20 @@ public class Commentary implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Users getUsers() {
+		return this.users;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
-	public Integer getBid() {
-		return this.bid;
+	public Books getBooks() {
+		return this.books;
 	}
 
-	public void setBid(Integer bid) {
-		this.bid = bid;
+	public void setBooks(Books books) {
+		this.books = books;
 	}
 
 	public String getCommentary() {
@@ -65,11 +65,11 @@ public class Commentary implements java.io.Serializable {
 		this.commentary = commentary;
 	}
 
-	public Timestamp getCommentTime() {
+	public Date getCommentTime() {
 		return this.commentTime;
 	}
 
-	public void setCommentTime(Timestamp commentTime) {
+	public void setCommentTime(Date commentTime) {
 		this.commentTime = commentTime;
 	}
 

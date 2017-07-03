@@ -81,32 +81,7 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 		// TODO Auto-generated method stub
 		return book;
 	}
-	
-	//闁兼儳鍢茶ぐ鍥炊閸欍儱濮涢柣銊ュ椤曟稓绱掗崱鏇氱箚闁诡叏鎷�
-	public String getBookInfo(){
-		Books bookReal=bookService.searchBook(book);
-		Map<String, Object> map =new HashMap<String, Object>();
-		map.put("id", bookReal.getId());
-		map.put("name", bookReal.getName());
-		map.put("picture", bookReal.getPicture());
-		map.put("intro", bookReal.getIntro());
-		map.put("author", bookReal.getAuthor());
-		map.put("pubHouse", bookReal.getPubHouse());
-		map.put("price", bookReal.getPrice());
-		map.put("btime", bookReal.getBtime());
-		map.put("categorytwo", bookReal.getCategorytwo());
-		map.put("state", bookReal.getState());
-		JSONObject json=null;
-		try {
-			json=JSONObject.fromObject(map);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		result=json.toString();
-		return "bookInfo";
-	}
-	
+		
 	//闁兼儳鍢茶ぐ鍥炊閸欍儱濮涢柣銊ュ閻﹀孩绂掗敓锟�
 	public String getBookComments(){
 		List comments=bookService.getComments(book);

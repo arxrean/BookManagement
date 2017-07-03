@@ -20,6 +20,27 @@
 			<result name="getUserInfo" type="json">
 				<param name="root">result</param>
 			</result>
+			<result name="userCollection" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="userComments" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="userBorrow" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="userConsume" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="addMoney" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="alterPass" type="json">
+				<param name="root">result</param>
+			</result>
+			<result name="userAlterInfo" type="json">
+				<param name="root">result</param>
+			</result>
 		</action>
 		<!-- 网站内jsp页面的跳转 -->
 		<action name="To*JspAction">

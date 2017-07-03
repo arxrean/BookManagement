@@ -13,16 +13,22 @@ public class Categoryone implements java.io.Serializable {
 
 	private Integer id;
 	private String name;
-	private Set<Categorytwo> Categorytwos=new HashSet<Categorytwo>();
+	private Set categorytwos = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
 	public Categoryone() {
-		// TODO Auto-generated constructor stub
 	}
-	public void setCategorytwos(Set<Categorytwo> categorytwos) {
-		Categorytwos = categorytwos;
+
+	/** full constructor */
+	public Categoryone(String name, Set categorytwos) {
+		this.name = name;
+		this.categorytwos = categorytwos;
 	}
-	public Set<Categorytwo> getCategorytwos() {
-		return Categorytwos;
-	}
+
+	// Property accessors
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -37,6 +43,14 @@ public class Categoryone implements java.io.Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set getCategorytwos() {
+		return this.categorytwos;
+	}
+
+	public void setCategorytwos(Set categorytwos) {
+		this.categorytwos = categorytwos;
 	}
 
 }

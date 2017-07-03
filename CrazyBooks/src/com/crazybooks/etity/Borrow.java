@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Borrow entity. @author MyEclipse Persistence Tools
@@ -11,11 +11,11 @@ public class Borrow implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer uid;
-	private Integer bid;
-	private Timestamp borrowTime;
-	private Timestamp deadline;
-	private Timestamp returnTime;
+	private Users users;
+	private Books books;
+	private Date borrowTime;
+	private Date deadline;
+	private Date returnTime;
 	private Float consumption;
 
 	// Constructors
@@ -25,10 +25,10 @@ public class Borrow implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Borrow(Integer uid, Integer bid, Timestamp borrowTime,
-			Timestamp deadline, Timestamp returnTime, Float consumption) {
-		this.uid = uid;
-		this.bid = bid;
+	public Borrow(Users users, Books books, Date borrowTime, Date deadline,
+			Date returnTime, Float consumption) {
+		this.users = users;
+		this.books = books;
 		this.borrowTime = borrowTime;
 		this.deadline = deadline;
 		this.returnTime = returnTime;
@@ -45,43 +45,43 @@ public class Borrow implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Users getUsers() {
+		return this.users;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
-	public Integer getBid() {
-		return this.bid;
+	public Books getBooks() {
+		return this.books;
 	}
 
-	public void setBid(Integer bid) {
-		this.bid = bid;
+	public void setBooks(Books books) {
+		this.books = books;
 	}
 
-	public Timestamp getBorrowTime() {
+	public Date getBorrowTime() {
 		return this.borrowTime;
 	}
 
-	public void setBorrowTime(Timestamp borrowTime) {
+	public void setBorrowTime(Date borrowTime) {
 		this.borrowTime = borrowTime;
 	}
 
-	public Timestamp getDeadline() {
+	public Date getDeadline() {
 		return this.deadline;
 	}
 
-	public void setDeadline(Timestamp deadline) {
+	public void setDeadline(Date deadline) {
 		this.deadline = deadline;
 	}
 
-	public Timestamp getReturnTime() {
+	public Date getReturnTime() {
 		return this.returnTime;
 	}
 
-	public void setReturnTime(Timestamp returnTime) {
+	public void setReturnTime(Date returnTime) {
 		this.returnTime = returnTime;
 	}
 

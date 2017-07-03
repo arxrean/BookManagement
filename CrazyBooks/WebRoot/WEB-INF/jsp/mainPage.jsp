@@ -52,13 +52,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<input type="hidden" name="page" value="1"/>
 				<input type="text" name="search" style="border:1px solid #52D0C4;width:200px;height: 40px;border-color: #52D0C4;"/><input type="submit" value="搜索" style="width:70px;height: 40px;background-color: #52D0C4;bor "/></form></div>
 			<div class="col-sm-4 header-left">	
-			<s:if test="#session.username!=null">
+			<s:if test="#session.userName!=null">
 			<p class="log">
-						<span>or</span>欢迎回来！<s:property value="#session.username"/></p>
+						<a href="ToUserInfoHtmlAction.action"><s:property value="#session.userName"/></a></p>
 			</s:if>	
 			<s:else>
-					<p class="log"><a href="account.html"  >登陆</a>
-						<span>or</span><a  href="account.html"  >注册</a></p>
+					<p class="log"><a href="ToUserLoginHtmlAction.action"  >登陆</a>
+						<span>or</span><a  href="ToUserRegisterHtmlAction.action"  >注册</a></p>
 						</s:else>
 					<div class="cart box_1">
 						<a href="checkout.html">

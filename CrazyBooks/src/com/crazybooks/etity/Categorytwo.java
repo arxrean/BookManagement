@@ -8,25 +8,43 @@ import java.util.Set;
  */
 
 public class Categorytwo implements java.io.Serializable {
+
+	// Fields
+
 	private Integer id;
-	private String name;
 	private Categoryone categoryone;
-	private Set<Books> books=new HashSet<Books>();
-	public void setBooks(Set<Books> books) {
-		this.books = books;
-	}
-	public Set<Books> getBooks() {
-		return books;
-	}
+	private String name;
+	private Set bookses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
 	public Categorytwo() {
-		// TODO Auto-generated constructor stub
 	}
+
+	/** full constructor */
+	public Categorytwo(Categoryone categoryone, String name, Set bookses) {
+		this.categoryone = categoryone;
+		this.name = name;
+		this.bookses = bookses;
+	}
+
+	// Property accessors
+
 	public Integer getId() {
 		return this.id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Categoryone getCategoryone() {
+		return this.categoryone;
+	}
+
+	public void setCategoryone(Categoryone categoryone) {
+		this.categoryone = categoryone;
 	}
 
 	public String getName() {
@@ -36,11 +54,13 @@ public class Categorytwo implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setCategoryone(Categoryone categoryone) {
-		this.categoryone = categoryone;
+
+	public Set getBookses() {
+		return this.bookses;
 	}
-	public Categoryone getCategoryone() {
-		return categoryone;
+
+	public void setBookses(Set bookses) {
+		this.bookses = bookses;
 	}
 
 }

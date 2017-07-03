@@ -10,16 +10,17 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
+        <many-to-one name="categoryone" class="com.crazybooks.etity.Categoryone" fetch="select">
+            <column name="preID" />
+        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" />
         </property>
-        <many-to-one name="categoryone" class="com.crazybooks.etity.Categoryone">
-        </many-to-one>
-        <set name="books" table="books" fetch="join" lazy="false" inverse="false">
-        <key>
-        <column name="category"></column>
-        </key>
-        <one-to-many class="com.crazybooks.etity.Books"/>
+        <set name="bookses" inverse="true">
+            <key>
+                <column name="category" not-null="true" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Books" />
         </set>
     </class>
 </hibernate-mapping>

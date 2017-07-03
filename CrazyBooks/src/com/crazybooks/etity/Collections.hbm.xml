@@ -10,14 +10,14 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
-        <property name="uid" type="java.lang.Integer">
+        <many-to-one name="users" class="com.crazybooks.etity.Users" fetch="select">
             <column name="uid" />
-        </property>
-        <property name="bid" type="java.lang.Integer">
+        </many-to-one>
+        <many-to-one name="books" class="com.crazybooks.etity.Books" fetch="select">
             <column name="bid" />
-        </property>
-        <property name="collectTime" type="java.sql.Timestamp">
-            <column name="collectTime" length="19" />
+        </many-to-one>
+        <property name="collectTime" type="java.util.Date">
+            <column name="collectTime" length="10" />
         </property>
     </class>
 </hibernate-mapping>

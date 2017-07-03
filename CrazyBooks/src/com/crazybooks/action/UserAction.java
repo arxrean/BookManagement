@@ -28,7 +28,17 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 	
 	private UserBizImpl ubi;
 	
+	private String newPassword;//新密码
 	
+	
+
+	public String getNewPassword() {
+		return newPassword;
+	}
+
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
 
 	public String getRand() {
 		return rand;
@@ -156,5 +166,84 @@ public class UserAction extends ActionSupport implements ModelDriven<Users>{
 		JSONObject json=JSONObject.fromObject(map);
 		result=json.toString();
 		return "getUserInfo";
+	}
+	
+	public String getUserCollection(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		Users user=new Users();
+		user.setUserName(userName);
+		JSONObject json=ubi.getUserCollection(user);
+		result=json.toString();
+		return "userCollection";
+	}
+	
+	public String getUserComments(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		Users user=new Users();
+		user.setUserName(userName);
+		JSONObject json=ubi.getUserComments(user);
+		result=json.toString();
+		return "userComments";
+	}
+	
+	public String getUserBorrow(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		Users user=new Users();
+		user.setUserName(userName);
+		JSONObject json=ubi.getUserBorrow(user);
+		result=json.toString();
+		return "userBorrow";
+	}
+	
+	//obtain consume records
+	public String getUserConsume(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		Users user=new Users();
+		user.setUserName(userName);
+		JSONObject json=ubi.getUserConsume(user);
+		result=json.toString();
+		return "userConsume";
+	}
+	
+	public String addMoney(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		String random=(String)(ActionContext.getContext().getSession().get("validateCode"));
+		JSONObject json=new JSONObject();
+		if(random.equals(rand)){
+			Users user=new Users();
+			user.setUserName(userName);
+			user.setBalance(users.getBalance());
+			json=ubi.addMoney(user);
+		}
+		else {
+			System.out.println("no");
+			json.put("type", "validateError");
+		}
+		result=json.toString();
+		return "addMoney";
+	}
+	
+	public String alterPassword(){
+		ubi=new UserBizImpl();
+		String userName=(String)(ActionContext.getContext().getSession().get("userName"));
+		JSONObject json=new JSONObject();
+		Users user=new Users();
+		user.setUserName(userName);
+		user.setPassword(users.getPassword());
+		json=ubi.alterPassword(user, newPassword);
+		result=json.toString();
+		return "alterPass";
+	}
+	
+	public String alterUserInfo(){
+		ubi=new UserBizImpl();
+		JSONObject json=ubi.alterUserInfo(users);
+		result=json.toString();
+		return "userAlterInfo";
 	}
 }

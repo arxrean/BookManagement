@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Freeze entity. @author MyEclipse Persistence Tools
@@ -11,9 +11,9 @@ public class Freeze implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer uid;
-	private Integer manipulator;
-	private Timestamp manipulateTime;
+	private Managers managers;
+	private Users users;
+	private Date manipulateTime;
 	private Integer freezeTime;
 	private String reason;
 
@@ -24,10 +24,10 @@ public class Freeze implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Freeze(Integer uid, Integer manipulator, Timestamp manipulateTime,
+	public Freeze(Managers managers, Users users, Date manipulateTime,
 			Integer freezeTime, String reason) {
-		this.uid = uid;
-		this.manipulator = manipulator;
+		this.managers = managers;
+		this.users = users;
 		this.manipulateTime = manipulateTime;
 		this.freezeTime = freezeTime;
 		this.reason = reason;
@@ -43,27 +43,27 @@ public class Freeze implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Managers getManagers() {
+		return this.managers;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setManagers(Managers managers) {
+		this.managers = managers;
 	}
 
-	public Integer getManipulator() {
-		return this.manipulator;
+	public Users getUsers() {
+		return this.users;
 	}
 
-	public void setManipulator(Integer manipulator) {
-		this.manipulator = manipulator;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
-	public Timestamp getManipulateTime() {
+	public Date getManipulateTime() {
 		return this.manipulateTime;
 	}
 
-	public void setManipulateTime(Timestamp manipulateTime) {
+	public void setManipulateTime(Date manipulateTime) {
 		this.manipulateTime = manipulateTime;
 	}
 

@@ -14,7 +14,7 @@
 			jdbc:mysql://localhost:3306/crazybooksdb
 		</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">ZYcg9924</property>
+		<property name="connection.password">123123</property>
 		<property name="connection.driver_class">
 			com.mysql.jdbc.Driver
 		</property>
@@ -38,6 +38,7 @@
 		<mapping resource="com/crazybooks/etity/Destroybooks.hbm.xml" />
 		<mapping resource="com/crazybooks/etity/Managers.hbm.xml" />
 		<mapping resource="com/crazybooks/etity/Recharge.hbm.xml" />
+		<mapping resource="com/crazybooks/etity/Addusers.hbm.xml" />
 
 	</session-factory>
 

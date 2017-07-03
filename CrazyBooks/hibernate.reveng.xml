@@ -57,7 +57,12 @@
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-<table name="recharge" catalog="crazybooksdb">
+	<table name="recharge" catalog="crazybooksdb">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="addusers" catalog="crazybooksdb">
 	<primary-key>
 		<generator class="native"></generator>
 	</primary-key>

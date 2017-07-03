@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Addbooks entity. @author MyEclipse Persistence Tools
@@ -11,9 +11,9 @@ public class Addbooks implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
+	private Managers managers;
 	private Integer bid;
-	private Integer manipulator;
-	private Timestamp manipulateTime;
+	private Date manipulateTime;
 
 	// Constructors
 
@@ -22,9 +22,9 @@ public class Addbooks implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Addbooks(Integer bid, Integer manipulator, Timestamp manipulateTime) {
+	public Addbooks(Managers managers, Integer bid, Date manipulateTime) {
+		this.managers = managers;
 		this.bid = bid;
-		this.manipulator = manipulator;
 		this.manipulateTime = manipulateTime;
 	}
 
@@ -38,6 +38,14 @@ public class Addbooks implements java.io.Serializable {
 		this.id = id;
 	}
 
+	public Managers getManagers() {
+		return this.managers;
+	}
+
+	public void setManagers(Managers managers) {
+		this.managers = managers;
+	}
+
 	public Integer getBid() {
 		return this.bid;
 	}
@@ -46,19 +54,11 @@ public class Addbooks implements java.io.Serializable {
 		this.bid = bid;
 	}
 
-	public Integer getManipulator() {
-		return this.manipulator;
-	}
-
-	public void setManipulator(Integer manipulator) {
-		this.manipulator = manipulator;
-	}
-
-	public Timestamp getManipulateTime() {
+	public Date getManipulateTime() {
 		return this.manipulateTime;
 	}
 
-	public void setManipulateTime(Timestamp manipulateTime) {
+	public void setManipulateTime(Date manipulateTime) {
 		this.manipulateTime = manipulateTime;
 	}
 

@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Collections entity. @author MyEclipse Persistence Tools
@@ -11,9 +11,9 @@ public class Collections implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer uid;
-	private Integer bid;
-	private Timestamp collectTime;
+	private Users users;
+	private Books books;
+	private Date collectTime;
 
 	// Constructors
 
@@ -22,9 +22,9 @@ public class Collections implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Collections(Integer uid, Integer bid, Timestamp collectTime) {
-		this.uid = uid;
-		this.bid = bid;
+	public Collections(Users users, Books books, Date collectTime) {
+		this.users = users;
+		this.books = books;
 		this.collectTime = collectTime;
 	}
 
@@ -38,27 +38,27 @@ public class Collections implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Users getUsers() {
+		return this.users;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
-	public Integer getBid() {
-		return this.bid;
+	public Books getBooks() {
+		return this.books;
 	}
 
-	public void setBid(Integer bid) {
-		this.bid = bid;
+	public void setBooks(Books books) {
+		this.books = books;
 	}
 
-	public Timestamp getCollectTime() {
+	public Date getCollectTime() {
 		return this.collectTime;
 	}
 
-	public void setCollectTime(Timestamp collectTime) {
+	public void setCollectTime(Date collectTime) {
 		this.collectTime = collectTime;
 	}
 

@@ -19,7 +19,7 @@ function deleteUserName() {
 			}
 		},
 		error : function() {
-			alert("Ajax浼犺緭閿欒锛�");
+			alert("Ajax error");
 		}
 	});
 }
@@ -39,7 +39,7 @@ function validateLogin() {
 				$("#user_login").append(
 						"<a href='ToUserInfoHtmlAction'>" + d.sessionType
 								+ "</a>"
-								+ "<a onclick='deleteUserName()'>[娉ㄩ攢]</a>");
+								+ "<a onclick='deleteUserName()'>[注销]</a>");
 				// 璁剧疆鐢ㄦ埛鍚�
 				$("#txt_userName").attr("readonly", "false");
 				$("#txt_userName").val(d.sessionType);
@@ -47,7 +47,7 @@ function validateLogin() {
 			}
 		},
 		error : function() {
-			alert("Ajax浼犺緭閿欒锛");
+			alert("Ajax error");
 		}
 	});
 }
@@ -66,10 +66,16 @@ function getUserInfo() {
 			$("#txt_score").attr("readonly", "false");
 			$("#txt_score").val(d2.scores);
 			$("#txt_score").attr("readonly", "true");
+			//sex
+			$("#sex").val(d2.sex);
 			//璁剧疆rank
 			$("#txt_rank").attr("readonly", "false");
 			$("#txt_rank").val(d2.rank);
 			$("#txt_rank").attr("readonly", "true");
+			//set user balance
+			$("#txt_balance").attr("readonly", "false");
+			$("#txt_balance").val(d2.balance);
+			$("#txt_balance").attr("readonly", "true");
 			//璁剧疆鐪熷疄濮撳悕
 			$("#name").attr("readonly", "false");
 			$("#name").val(d2.name);
@@ -106,4 +112,8 @@ function addCategoryOne(){
 			
 		}
 	});
+}
+
+function modifyUserInfo(){
+	$("#name").attr("readonly", "false");
 }

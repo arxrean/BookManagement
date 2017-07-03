@@ -16,5 +16,23 @@
         <property name="password" type="java.lang.String">
             <column name="password" />
         </property>
+        <set name="freezes" inverse="true">
+            <key>
+                <column name="manipulator" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Freeze" />
+        </set>
+        <set name="destroybookses" inverse="true">
+            <key>
+                <column name="manipulator" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Destroybooks" />
+        </set>
+        <set name="addbookses" inverse="true">
+            <key>
+                <column name="manipulator" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Addbooks" />
+        </set>
     </class>
 </hibernate-mapping>

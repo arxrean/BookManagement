@@ -7,20 +7,20 @@
 <hibernate-mapping>
     <class name="com.crazybooks.etity.Commentary" table="commentary" catalog="crazybooksdb">
         <id name="id" type="java.lang.Integer">
-            <column name="id" />
+            <column name="ID" />
             <generator class="native"></generator>
         </id>
-        <property name="uid" type="java.lang.Integer">
+        <many-to-one name="users" class="com.crazybooks.etity.Users" fetch="select">
             <column name="uid" />
-        </property>
-        <property name="bid" type="java.lang.Integer">
+        </many-to-one>
+        <many-to-one name="books" class="com.crazybooks.etity.Books" fetch="select">
             <column name="bid" />
-        </property>
+        </many-to-one>
         <property name="commentary" type="java.lang.String">
             <column name="commentary" />
         </property>
-        <property name="commentTime" type="java.sql.Timestamp">
-            <column name="commentTime" length="19" />
+        <property name="commentTime" type="java.util.Date">
+            <column name="commentTime" length="10" />
         </property>
     </class>
 </hibernate-mapping>

@@ -15,33 +15,66 @@
 <meta name="keywords"
 	content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript">	
+<script type="application/x-javascript">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
 <script type="text/javascript" src="js/userInfo.js"></script>
-<script src="js/simpleCart.min.js"></script>
 <script>
-	function myInfo() {
-		document.getElementById("myInfo").style.display = "block";
-		document.getElementById("passwordModify").style.display = "none";
-		document.getElementById("myBorrow").style.display = "none";
-		document.getElementById("myPurchase").style.display = "none";
-		document.getElementById("myCollection").style.display = "none";
-		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "none";
-	}
-
-	function myCollection() {
+	//获得用户收藏
+	function getMyCollection() {
 		document.getElementById("myInfo").style.display = "none";
 		document.getElementById("passwordModify").style.display = "none";
 		document.getElementById("myBorrow").style.display = "none";
 		document.getElementById("myPurchase").style.display = "none";
 		document.getElementById("myCollection").style.display = "block";
 		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
+		$.ajax({
+			type : "post",
+			url : "UsergetUserCollectionAction",
+			data : {
+				userName : "userName",
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#myCollection tbody").empty();
+				var d = eval("(" + data + ")");
+				$.each(d, function(index, content) {
+					var collection = "<tr><td><a href='#'>" + content.bookName
+							+ "</a></td><td>" + content.bookAuthor
+							+ "</td><td>" + content.bookPublisher
+							+ "</td><td><a href='#'>删除</a></td></tr>";
+					$("#myCollection tbody").append(collection);
+				});
+			}
+		});
 	}
 
 	function myCommentary() {
@@ -51,7 +84,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		document.getElementById("myPurchase").style.display = "none";
 		document.getElementById("myCollection").style.display = "none";
 		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "block";
+		document.getElementById("myCommentaryTable").style.display = "block";
+
+		//获取用户评论
+		$.ajax({
+			type : "post",
+			url : "UsergetUserCommentsAction",
+			data : {
+				userName : "userName"
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#myCommentaryTable tbody").empty();
+				var d = eval("(" + data + ")");
+				$.each(d, function(index, content) {
+					var comment = "<tr><td><a>" + content.bookName
+							+ "</a></td><td>" + content.comment + "</td><td>"
+							+ content.commentTime
+							+ "</td><td><a href='#'>删除</a></td></tr>";
+					$("#myCommentaryTable tbody").append(comment);
+				});
+			}
+		});
 	}
 
 	function myBorrow() {
@@ -61,7 +115,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		document.getElementById("myPurchase").style.display = "none";
 		document.getElementById("myCollection").style.display = "none";
 		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
+
+		//获取用户借阅信息
+		$.ajax({
+			type : "post",
+			url : "UsergetUserBorrowAction",
+			data : {
+				userName : "userName"
+			},
+			dataType : "json",
+			success : function(data) {
+				var d = eval("(" + data + ")");
+				$("#myBorrow tbody").empty();
+				$.each(d, function(index, content) {
+					var comment = "<tr><td><a>" + content.bookName
+							+ "</a></td><td>" + content.bookAuthor
+							+ "</td><td>" + content.bookPublisher + "</td><td>"
+							+ content.borrowTime + "</td><td>"
+							+ content.deadline + "</td><td>"
+							+ content.returnTime + "</td><td>"
+							+ content.borrowConsume + "</td></tr>";
+					if (content.returnTime == undefined) {
+						comment = "<tr><td><a>" + content.bookName
+								+ "</a></td><td>" + content.bookAuthor
+								+ "</td><td>" + content.bookPublisher
+								+ "</td><td>" + content.borrowTime
+								+ "</td><td>" + content.deadline
+								+ "</td><td><a href='#'>" + "我要还书"
+								+ "</a></td><td>" + "" + "</td></tr>";
+					}
+					$("#myBorrow tbody").append(comment);
+				});
+			}
+		});
 	}
 
 	function myPurchase() {
@@ -71,7 +158,147 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		document.getElementById("myPurchase").style.display = "block";
 		document.getElementById("myCollection").style.display = "none";
 		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
+
+		//获取用户消费记录
+		$.ajax({
+			type : "post",
+			url : "UsergetUserConsumeAction",
+			data : {
+				userName : "userName"
+			},
+			dataType : "json",
+			success : function(data) {
+				$("#myPurchase tbody").empty();
+				var d = eval("(" + data + ")");
+				$.each(d, function(index, content) {
+					var consume = "";
+					if (content.type == "借阅") {
+						consume = "<tr bgcolor='#FF6347'><td>" + content.type
+								+ "</td><td>" + content.time + "</td><td>"
+								+ content.money + "</td></tr>";
+					} else if (content.type == "充值") {
+						consume = "<tr bgcolor='#98FB98'><td>" + content.type
+								+ "</td><td>" + content.time + "</td><td>"
+								+ content.money + "</td></tr>";
+					}
+					$("#myPurchase tbody").append(consume);
+				});
+			}
+		});
+	}
+
+	function submit_recharge() {
+		//充值
+		$.ajax({
+			type : "post",
+			url : "UseraddMoneyAction",
+			data : {
+				balance : $("#recharge_amount").val(),
+				rand : $("#recharge_validate").val(),
+			},
+			dataType : "json",
+			success : function(data) {
+				var d = eval("(" + data + ")");
+				if (d.type == "success") {
+					alert("充值成功!");
+					getUserInfo();
+					$("#recharge_amount").val("");
+					$("#recharge_validate").val("");
+				} else if (d.type == "validateError") {
+					$("#validate_info").text("验证码错误!");
+					$("#validate_info").css("color", "red");
+				}
+			}
+		});
+	}
+
+	function modifyPassword() {
+		if ($("#alterPass_New").val() != $("#alterPass_NewAgain").val()) {
+			alert("ok");
+			$("#pass_info").text("两次输入的密码不一致!");
+			$("#pass_info").css("color", "red");
+		} else {
+			//修改密码
+			$.ajax({
+				type : "post",
+				url : "UseralterPasswordAction",
+				data : {
+					password : $("#alterPass_origin").val(),
+					newPassword : $("#alterPass_New").val(),
+				},
+				dataType : "json",
+				success : function(data) {
+					var d = eval("(" + data + ")");
+					if (d.type == "success") {
+						alert("修改密码成功!");
+						$("#alterPass_New").val("");
+						$("#alterPass_origin").val("");
+						$("#alterPass_NewAgain").val("");
+					} else if (d.type == "originError") {
+						$("#pass_info").text("原密码输入不正确!");
+						$("#pass_info").css("color", "red");
+					}
+				}
+			});
+		}
+	}
+
+	function modifyUserInfo() {
+		$("#name").removeAttr("readonly");
+		$("#sex").removeAttr("disabled");
+		$("#address").removeAttr("readonly");
+		$("#phoneNum").removeAttr("readonly");
+		$("#email").removeAttr("readonly");
+
+		$("#name").css("background-color", "#B4EEB4");
+		$("#sex").css("background-color", "#B4EEB4");
+		$("#address").css("background-color", "#B4EEB4");
+		$("#phoneNum").css("background-color", "#B4EEB4");
+		$("#email").css("background-color", "#B4EEB4");
+	}
+
+	function submitUserInfo() {
+		//确认信息修改
+		$.ajax({
+			type : "post",
+			url : "UseralterUserInfoAction",
+			data : {
+				userName : $("#txt_userName").val(),
+				name : $("#name").val(),
+				address : $("#address").val(),
+				phoneNum : $("#phoneNum").val(),
+				email : $("#email").val(),
+				sex : $("#sex").val(),
+			},
+			dataType : "json",
+			success : function(data) {
+				var d = eval("(" + data + ")");
+				if (d.type == "success") {
+					alert("修改成功!");
+					$("#name").css("background-color", "white");
+					$("#sex").css("background-color", "white");
+					$("#address").css("background-color", "white");
+					$("#phoneNum").css("background-color", "white");
+					$("#email").css("background-color", "white");
+					$("#name").attr("readonly", "readonly");
+					$("#sex").attr("disabled", "disabled");
+					$("#address").attr("readonly", "readonly");
+					$("#phoneNum").attr("readonly", "readonly");
+					$("#email").attr("readonly", "readonly");
+				}
+			}
+		});
+	}
+
+	function myInfo() {
+		document.getElementById("myInfo").style.display = "block";
+		document.getElementById("passwordModify").style.display = "none";
+		document.getElementById("myBorrow").style.display = "none";
+		document.getElementById("myPurchase").style.display = "none";
+		document.getElementById("myCollection").style.display = "none";
+		document.getElementById("recharge").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
 	}
 
 	function recharge() {
@@ -81,7 +308,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		document.getElementById("myPurchase").style.display = "none";
 		document.getElementById("myCollection").style.display = "none";
 		document.getElementById("recharge").style.display = "block";
-		document.getElementById("myCommentary").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
 	}
 
 	function passwordModify() {
@@ -91,7 +318,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		document.getElementById("myPurchase").style.display = "none";
 		document.getElementById("myCollection").style.display = "none";
 		document.getElementById("recharge").style.display = "none";
-		document.getElementById("myCommentary").style.display = "none";
+		document.getElementById("myCommentaryTable").style.display = "none";
 	}
 </script>
 
@@ -136,7 +363,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</ul>
 				</div>
 				<div class="col-md-4 logo">
-					<a href="TomainPageJspAction.action"><img src="images/logo.png" alt=""></a>
+					<a href="TomainPageJspAction.action"><img src="images/logo.png"
+						alt=""></a>
 				</div>
 
 				<div class="col-md-4 header-left">
@@ -184,7 +412,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">戏剧</a></li>
 											</ul>
 										</div>
-									</div>														
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#"> 社会科学</a>
@@ -201,7 +429,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">教育学</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 						<li><a href="typo.html">宗教哲学</a></li>
@@ -256,7 +484,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<th style="width:200px;text-align:center">我为书狂</th>
 			</tr>
 			<tr>
-				<td style="width:200px;padding:0px"><img id="show_picture" src="images/head.jpg" style="width:200px;height:200px;float:left;margin-left:0px" /></td>
+				<td style="width:200px;padding:0px"><img id="show_picture"
+					src="images/head.jpg"
+					style="width:200px;height:200px;float:left;margin-left:0px" /></td>
 			</tr>
 			<tr>
 				<td style="width:200px;height:30px;padding:0px"><input
@@ -265,8 +495,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</tr>
 			<tr>
 				<td style="width:200px;height:30px;padding:0px"><input
-					class="left" type="button" value="我的收藏"
-					style="width:200px;height:30px" onclick="myCollection()"></td>
+					class="left" type="button" value="我的收藏" id="btn_MyCollection"
+					onclick="getMyCollection()" style="width:200px;height:30px"></td>
 			</tr>
 			<tr>
 				<td style="width:200px;height:30px;padding:0px"><input
@@ -314,18 +544,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<td><input type="text" name="txt_rank" id="txt_rank"
 					readonly="true" style="width:400px;height:40px;" /></td>
 			</tr>
+			<tr>
+				<td style="width:100px;height:40px;">余额</td>
+				<td><input type="text" name="txt_balance" id="txt_balance"
+					readonly="true" style="width:400px;height:40px;" /></td>
+			</tr>
 		</table>
 	</div>
 
 	<div class="container" id="myDiv"
-		style="width:1200px;height:1000px;margin-left:500px;">
+		style="width:1200px;height:1000px;margin-left:500px; margin-top:300px">
 		<table id="myInfo"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:block">
-			<tr>
-				<td style="width:100px;height:40px;">上传头像</td>
-				<td><input type="file" name="picture" id="picture"
-					style="width:400px;height:40px;" /></td>
-			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">真实姓名</td>
 				<td><input type="text" name="name" id="name"
@@ -339,7 +569,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<tr>
 				<td style="width:100px;height:40px;">性 别</td>
 				<td><select name="sex" id="sex"
-					style="width:400px;height:40px;">
+					style="width:400px;height:40px;" disabled="disabled">
 						<option selected="selected" value="1">男</option>
 						<option value="2">女</option>
 				</select></td>
@@ -360,10 +590,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
-				<td></td>
-				<td><input name="btn_info" id="btn_info" type="button"
-					class="left" value="确认修改"
-					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+				<td><input name="btn_info" id="btn_infoAlter" type="button"
+					class="left" value="修改信息"
+					style="width: 200px;height:40px;cursor:hand;"
+					onclick="modifyUserInfo()" /></td>
+				<td><input name="btn_info" id="btn_infoOK" type="button"
+					class="left" value="保存修改"
+					style="width: 200px;height:40px;cursor:hand;"
+					onclick="submitUserInfo()" /></td>
 			</tr>
 		</table>
 
@@ -372,102 +606,117 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			">
 			<tr>
 				<td style="width:100px;height:40px;">原密码</td>
-				<td><input type="text" name="address" id="address"
+				<td><input type="text" name="address" id="alterPass_origin"
 					style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">新密码</td>
-				<td><input type="text" name="phoneNum" id="phoneNum"
+				<td><input type="text" name="phoneNum" id="alterPass_New"
 					style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
 				<td style="width:100px;height:40px;">确认密码</td>
-				<td><input type="text" name="phoneNum" id="phoneNum"
+				<td><input type="text" name="phoneNum" id="alterPass_NewAgain"
 					style="width:400px;height:40px;" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span id="pass_info"></span></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><input name="btn_password" id="btn_password0" type="button"
 					class="left" value="确认修改"
-					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+					style="width: 200px;height:40px;cursor:hand;"
+					onclick="modifyPassword() " /></td>
 			</tr>
 		</table>
 
 		<table id="myBorrow"
 			style="width:1200px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
-			<tr style="background-color:gray">
-				<th style="width:200px;height:40px;">图书名字</th>
-				<th style="width:200px;height:40px;">作者</th>
-				<th style="width:200px;height:40px;">出版社</th>
-				<th style="width:200px;height:40px;">借阅时间</th>
-				<th style="width:200px;height:40px;">到期时间</th>
-				<th style="width:200px;height:40px;">归还</th>
-			</tr>
+			<thead>
+				<tr style="background-color:gray">
+					<th style="width:200px;height:40px;">图书名字</th>
+					<th style="width:200px;height:40px;">作者</th>
+					<th style="width:200px;height:40px;">出版社</th>
+					<th style="width:200px;height:40px;">借阅时间</th>
+					<th style="width:200px;height:40px;">到期时间</th>
+					<th style="width:200px;height:40px;">归还</th>
+					<th style="width:200px;height:40px;">消费金额</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
 
 		<table id="myPurchase"
 			style="width:600px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
-			<tr style="background-color:gray">
-				<th style="width:200px;height:40px;">类型</th>
-				<th style="width:200px;height:40px;">时间</th>
-				<th style="width:200px;height:40px;">金额</th>
-			</tr>
+			<thead>
+				<tr style="background-color:gray">
+					<th style="width:200px;height:40px;">类型</th>
+					<th style="width:200px;height:40px;">时间</th>
+					<th style="width:200px;height:40px;">金额</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
 
 		<table id="recharge"
-			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			style="width:850px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
 			<tr>
 				<td style="width:100px;height:40px;">充值金额</td>
-				<td><input type="text" name="address" id="address"
-					style="width:400px;height:40px;" /></td>
+				<td><input type="text" name="recharge_amount"
+					id="recharge_amount" style="width:400px;height:40px;" /></td>
 			</tr>
 			<tr>
-				<td style="width:100px;height:40px;">密码</td>
-				<td><input type="text" name="phoneNum" id="phoneNum"
-					style="width:400px;height:40px;" /></td>
+				<td style="width:100px;height:40px;">验证码</td>
+				<td><input type="text" name="recharge_validate"
+					id="recharge_validate" style="width:400px;height:40px;" /></td>
+				<td><img id="img_validate_recharge" src="RandomValidate.action"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span id="validate_info"></span></td>
 			</tr>
 			<tr>
 				<td></td>
 				<td><input name="btn_recharge" id="btn_recharge" type="button"
 					class="left" value="确认充值"
-					style="width: 200px;height:40px;cursor:hand;" onclick="modify()" /></td>
+					style="width: 200px;height:40px;cursor:hand;"
+					onclick="submit_recharge()" /></td>
 			</tr>
 		</table>
 
 
-		<table id="myCommentary"
+		<table id="myCommentaryTable"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
-			<tr style="background-color:gray">
-				<th style="width:200px;height:40px;">图书名字</th>
-				<th style="width:200px;height:40px;">评论内容</th>
-				<th style="width:200px;height:40px;">评论时间</th>
-			</tr>
+			<thead>
+				<tr style="background-color:gray">
+					<th style="width:200px;height:40px;">图书名字</th>
+					<th style="width:200px;height:40px;">评论内容</th>
+					<th style="width:200px;height:40px;">评论时间</th>
+					<th style="width:200px;height:40px;">操作</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
 
 
 		<table id="myCollection"
 			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
-			<tr style="background-color:gray">
-				<th style="width:200px;height:40px;">图书名字</th>
-				<th style="width:200px;height:40px;">作者</th>
-				<th style="width:200px;height:40px;">出版社</th>
-				<th style="width:200px;height:40px;">借阅状态</th>
-			</tr>
+			<thead>
+				<tr style="background-color:gray">
+					<th style="width:200px;height:40px;">图书名字</th>
+					<th style="width:200px;height:40px;">作者</th>
+					<th style="width:200px;height:40px;">出版社</th>
+					<th style="width:200px;height:40px;">操作</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
 	</div>
-
-
-
-
-
-
-
-
 
 	<!--footer-->
 	<div class="footer">

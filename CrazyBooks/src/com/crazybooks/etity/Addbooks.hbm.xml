@@ -10,14 +10,14 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
+        <many-to-one name="managers" class="com.crazybooks.etity.Managers" fetch="select">
+            <column name="manipulator" />
+        </many-to-one>
         <property name="bid" type="java.lang.Integer">
             <column name="bid" />
         </property>
-        <property name="manipulator" type="java.lang.Integer">
-            <column name="manipulator" />
-        </property>
-        <property name="manipulateTime" type="java.sql.Timestamp">
-            <column name="manipulateTime" length="19" />
+        <property name="manipulateTime" type="java.util.Date">
+            <column name="manipulateTime" length="10" />
         </property>
     </class>
 </hibernate-mapping>

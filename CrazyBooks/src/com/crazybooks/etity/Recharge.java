@@ -1,6 +1,6 @@
 package com.crazybooks.etity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Recharge entity. @author MyEclipse Persistence Tools
@@ -11,9 +11,9 @@ public class Recharge implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer uid;
+	private Users users;
 	private Float amount;
-	private Timestamp rechargeTime;
+	private Date rechargeTime;
 
 	// Constructors
 
@@ -22,8 +22,8 @@ public class Recharge implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Recharge(Integer uid, Float amount, Timestamp rechargeTime) {
-		this.uid = uid;
+	public Recharge(Users users, Float amount, Date rechargeTime) {
+		this.users = users;
 		this.amount = amount;
 		this.rechargeTime = rechargeTime;
 	}
@@ -38,12 +38,12 @@ public class Recharge implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUid() {
-		return this.uid;
+	public Users getUsers() {
+		return this.users;
 	}
 
-	public void setUid(Integer uid) {
-		this.uid = uid;
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 	public Float getAmount() {
@@ -54,11 +54,11 @@ public class Recharge implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public Timestamp getRechargeTime() {
+	public Date getRechargeTime() {
 		return this.rechargeTime;
 	}
 
-	public void setRechargeTime(Timestamp rechargeTime) {
+	public void setRechargeTime(Date rechargeTime) {
 		this.rechargeTime = rechargeTime;
 	}
 

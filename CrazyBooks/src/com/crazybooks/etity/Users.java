@@ -1,5 +1,8 @@
 package com.crazybooks.etity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Users entity. @author MyEclipse Persistence Tools
  */
@@ -21,6 +24,12 @@ public class Users implements java.io.Serializable {
 	private Integer rank;
 	private String phoneNum;
 	private String image;
+	private Set freezes = new HashSet(0);
+	private Set recharges = new HashSet(0);
+	private Set adduserses = new HashSet(0);
+	private Set collectionses = new HashSet(0);
+	private Set borrows = new HashSet(0);
+	private Set commentaries = new HashSet(0);
 
 	// Constructors
 
@@ -31,7 +40,9 @@ public class Users implements java.io.Serializable {
 	/** full constructor */
 	public Users(String idnum, String userName, String name, Integer sex,
 			Float balance, String email, String address, String password,
-			Integer score, Integer rank, String phoneNum, String image) {
+			Integer score, Integer rank, String phoneNum, String image,
+			Set freezes, Set recharges, Set adduserses, Set collectionses,
+			Set borrows, Set commentaries) {
 		this.idnum = idnum;
 		this.userName = userName;
 		this.name = name;
@@ -44,6 +55,12 @@ public class Users implements java.io.Serializable {
 		this.rank = rank;
 		this.phoneNum = phoneNum;
 		this.image = image;
+		this.freezes = freezes;
+		this.recharges = recharges;
+		this.adduserses = adduserses;
+		this.collectionses = collectionses;
+		this.borrows = borrows;
+		this.commentaries = commentaries;
 	}
 
 	// Property accessors
@@ -150,6 +167,54 @@ public class Users implements java.io.Serializable {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public Set getFreezes() {
+		return this.freezes;
+	}
+
+	public void setFreezes(Set freezes) {
+		this.freezes = freezes;
+	}
+
+	public Set getRecharges() {
+		return this.recharges;
+	}
+
+	public void setRecharges(Set recharges) {
+		this.recharges = recharges;
+	}
+
+	public Set getAdduserses() {
+		return this.adduserses;
+	}
+
+	public void setAdduserses(Set adduserses) {
+		this.adduserses = adduserses;
+	}
+
+	public Set getCollectionses() {
+		return this.collectionses;
+	}
+
+	public void setCollectionses(Set collectionses) {
+		this.collectionses = collectionses;
+	}
+
+	public Set getBorrows() {
+		return this.borrows;
+	}
+
+	public void setBorrows(Set borrows) {
+		this.borrows = borrows;
+	}
+
+	public Set getCommentaries() {
+		return this.commentaries;
+	}
+
+	public void setCommentaries(Set commentaries) {
+		this.commentaries = commentaries;
 	}
 
 }

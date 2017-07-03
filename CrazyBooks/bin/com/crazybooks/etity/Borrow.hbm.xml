@@ -10,20 +10,20 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
-        <property name="uid" type="java.lang.Integer">
+        <many-to-one name="users" class="com.crazybooks.etity.Users" fetch="select">
             <column name="uid" />
-        </property>
-        <property name="bid" type="java.lang.Integer">
+        </many-to-one>
+        <many-to-one name="books" class="com.crazybooks.etity.Books" fetch="select">
             <column name="bid" />
+        </many-to-one>
+        <property name="borrowTime" type="java.util.Date">
+            <column name="borrowTime" length="10" />
         </property>
-        <property name="borrowTime" type="java.sql.Timestamp">
-            <column name="borrowTime" length="19" />
+        <property name="deadline" type="java.util.Date">
+            <column name="deadline" length="10" />
         </property>
-        <property name="deadline" type="java.sql.Timestamp">
-            <column name="deadline" length="19" />
-        </property>
-        <property name="returnTime" type="java.sql.Timestamp">
-            <column name="returnTime" length="19" />
+        <property name="returnTime" type="java.util.Date">
+            <column name="returnTime" length="10" />
         </property>
         <property name="consumption" type="java.lang.Float">
             <column name="consumption" precision="12" scale="0" />

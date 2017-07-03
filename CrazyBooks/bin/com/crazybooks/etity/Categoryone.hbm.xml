@@ -13,9 +13,11 @@
         <property name="name" type="java.lang.String">
             <column name="name" />
         </property>
-        <set name="Categorytwos" table="categorytwo" lazy="false" fetch="join" inverse="false">
-        <key><column name="preID"></column></key>
-        <one-to-many class="com.crazybooks.etity.Categorytwo"/>
+        <set name="categorytwos" inverse="true">
+            <key>
+                <column name="preID" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Categorytwo" />
         </set>
     </class>
 </hibernate-mapping>

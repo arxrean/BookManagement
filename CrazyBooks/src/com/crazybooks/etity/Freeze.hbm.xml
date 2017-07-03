@@ -10,14 +10,14 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
-        <property name="uid" type="java.lang.Integer">
-            <column name="uid" />
-        </property>
-        <property name="manipulator" type="java.lang.Integer">
+        <many-to-one name="managers" class="com.crazybooks.etity.Managers" fetch="select">
             <column name="manipulator" />
-        </property>
-        <property name="manipulateTime" type="java.sql.Timestamp">
-            <column name="manipulateTime" length="19" />
+        </many-to-one>
+        <many-to-one name="users" class="com.crazybooks.etity.Users" fetch="select">
+            <column name="uid" />
+        </many-to-one>
+        <property name="manipulateTime" type="java.util.Date">
+            <column name="manipulateTime" length="10" />
         </property>
         <property name="freezeTime" type="java.lang.Integer">
             <column name="freezeTime" />

@@ -10,6 +10,9 @@
             <column name="id" />
             <generator class="native"></generator>
         </id>
+        <many-to-one name="categorytwo" class="com.crazybooks.etity.Categorytwo" fetch="select">
+            <column name="category" not-null="true" />
+        </many-to-one>
         <property name="name" type="java.lang.String">
             <column name="name" />
         </property>
@@ -17,7 +20,7 @@
             <column name="picture" />
         </property>
         <property name="intro" type="java.lang.String">
-            <column name="intro" />
+            <column name="intro" length="1000" />
         </property>
         <property name="author" type="java.lang.String">
             <column name="author" />
@@ -25,15 +28,35 @@
         <property name="pubHouse" type="java.lang.String">
             <column name="pubHouse" />
         </property>
-        <property name="btime" type="java.lang.Integer">
-            <column name="btime" />
-        </property>
         <property name="price" type="java.lang.Float">
             <column name="price" precision="12" scale="0" />
         </property>
         <property name="state" type="java.lang.Integer">
             <column name="state" />
         </property>
-         <many-to-one name="categorytwo" class="com.crazybooks.etity.Categorytwo"></many-to-one>
+        <property name="pubDate" type="java.util.Date">
+            <column name="pubDate" length="10" />
+        </property>
+        <property name="btime" type="java.lang.Integer">
+            <column name="bTime" />
+        </property>
+        <set name="collectionses" inverse="true">
+            <key>
+                <column name="bid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Collections" />
+        </set>
+        <set name="borrows" inverse="true">
+            <key>
+                <column name="bid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Borrow" />
+        </set>
+        <set name="commentaries" inverse="true">
+            <key>
+                <column name="bid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Commentary" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -46,5 +46,41 @@
         <property name="image" type="java.lang.String">
             <column name="image" />
         </property>
+        <set name="freezes" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Freeze" />
+        </set>
+        <set name="recharges" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Recharge" />
+        </set>
+        <set name="adduserses" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Addusers" />
+        </set>
+        <set name="collectionses" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Collections" />
+        </set>
+        <set name="borrows" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Borrow" />
+        </set>
+        <set name="commentaries" inverse="true">
+            <key>
+                <column name="uid" />
+            </key>
+            <one-to-many class="com.crazybooks.etity.Commentary" />
+        </set>
     </class>
 </hibernate-mapping>
