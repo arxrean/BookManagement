@@ -63,6 +63,8 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<!-- 获取单个书籍信息 -->
+		<action name="ToSingleBook"></action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
 			<result name="bookListPage">WEB-INF/jsp/bookListPage.jsp</result>
