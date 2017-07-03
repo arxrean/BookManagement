@@ -45,12 +45,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
 	<div class="header-top">
 		<div class="container">
-		<div class="col-sm-4 world">
-				</div>
 				<div class="col-sm-4 logo">
 					<a href="index.html"><img src="images/logo.png" alt=""></a>	
 				</div>
-		
+				<div style="float:right;margin-right: 70px;margin-top: 20px;"><form method="get" action="book-findBooksBySomething.action">
+				<input type="hidden" name="page" value="1"/>
+				<input type="text" name="search" style="border:1px solid #52D0C4;width:200px;height: 40px;border-color: #52D0C4;"/><input type="submit" value="搜索" style="width:70px;height: 40px;background-color: #52D0C4;bor "/></form></div>
 			<div class="col-sm-4 header-left">	
 			<s:if test="#session.username!=null">
 			<p class="log">
@@ -89,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="h_nav">
 									<ul>
 										<s:iterator var="ct" value="#clist.categorytwos">
-										<li><a href="book-findboosByCoid?coid=<s:property value='#ct.id'/>"><s:property value="#ct.name"/></a></li>
+										<li><a href="book-findboosByCoid?coid=<s:property value='#ct.id'/>&&page=1"><s:property value="#ct.name"/></a></li>
 										</s:iterator>
 									</ul>	
 								</div>							
@@ -122,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 <!--banner-->
-<div class="banner" style="border:5px red solid;">
+<div class="banner" >
 	<div class="col-sm-3 banner-mat">
 			<div id="id_divcates">
 				<dl>
@@ -132,7 +132,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</dt>
 						<s:iterator var="ct" value="#c.Categorytwos">
 							<dd class="dd1">
-								<a href="#" class="a2"><s:property value="#ct.name" /></a>
+								<a href="book-findboosByCoid?coid=<s:property value='#ct.id'/>&&page=1" class="a2"><s:property value="#ct.name" /></a>
 							</dd>
 						</s:iterator>
 						<br/>
@@ -143,12 +143,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</dl>
 			</div>
 		</div>
-	<div class="col-sm-6 matter-banner" style="border:2px blue solid;">
+	<div class="col-sm-6 matter-banner">
 	 	<div class="slider">
 	    	<div class="callbacks_container">
 	      		<ul class="rslides" id="slider">
 	        		<li>
-	          			<img src="images/1.jpg" style="width: 100%;height: 65%;border:1px black solid;">
+	          			<img src="images/1.jpg" style="width: 100%;height: 65%;">
 	       			 </li>
 			 		 <li>
 	          			<img src="images/2.jpg" alt="">   
@@ -172,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="infoDiv">
 		<div id="divdymi">
 		<h1><font style="font-family: sans-serif;font-size: 30px;">最新动态</font></h1>
-		<hr style="color:black;border-top: 1px black solid;"/>
+		<hr style="color:black;border-top: 1px gray solid;"/>
 		<ul style="list-style: none">
 		<li><a href="#" class="a1">30万图书100减30，文艺分会场</a>
 		
@@ -185,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h1><font style="font-family: sans-serif;font-size: 30px;">新书预约</font></h1>
 		<hr style="color:black;border-top: 1px black solid;"/>
 		<div class="bookDiv">
-		<a href="#" class="a3"><img src="bookPic/1.jpg" style="width:100%;height: 60%;border:1px red solid;"/>
+		<a href="#" class="a3"><img src="bookPic/1.jpg" style="width:100%;height: 60%;"/>
 		<big>《哆啦A梦》</big>
 		</a><font style="color:red;font-size:xx-large;">￥22.00</font><font style="font-size:large;color:gray; text-decoration: line-through;">￥52.00</font>
 		<p>-------ljshfkhfoahfosafa</p>
@@ -196,13 +196,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--//banner-->
 <!--content-->
-<div class="content" style="border:green 8px solid;">
-<div style="width: 100%;height:100%;border:pink 8px solid;">
+<div class="content" >
+<div style="width: 100%;height:100%;">
 	<div class="divcontainer">
-		<div class="content-top" style="border:black 2px solid;">
+		<div class="content-top" >
 			<font style="font-size: 30px;">HOT BOOKS</font>
 			<hr style="height:5px;border:1px gray solid;background-color: gray;"/>
-			<div class="content-top1" style="border:1px blue solid;">
+			<div class="content-top1" >
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
 					<div class="col-md1 simpleCart_shelfItem">
@@ -234,13 +234,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	<div class="content">
-<div style="width: 100%;height:100%;border:pink 8px solid;">
+<div style="width: 100%;height:100%;">
 	<div class="divcontainer">
 			<img src="images/newBookImg.JPG"/>
 			<div class="content-top1">
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem" style="border:2px solid red;">
+					<div class="col-md1 simpleCart_shelfItem" >
 						<a href="single.html">
 							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>

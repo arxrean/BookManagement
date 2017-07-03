@@ -20,6 +20,10 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	BookBizImpl bookService;
 	Integer coid;
 	int page;
+	String search;
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public void setPage(int page) {
 		this.page = page;
 	}
@@ -60,10 +64,17 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	}
 	public String findboosByCoid()
 	{
-		List bList=bookService.findBooksByCoid(coid);
-		ActionContext.getContext().getValueStack().set("bList", bList);
+		System.out.print("page is======"+page);
+		PageBean<Books> pageBean=bookService.findBooksByCoid(page,coid);
+		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "bookListPage";
 		
+	}
+	public String findBooksBySomething()
+	{
+		PageBean<Books> pageBean=bookService.findBooksBySomthing(page,search);
+		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
+		return "bookListPage";
 	}
 	@Override
 	public Books getModel() {

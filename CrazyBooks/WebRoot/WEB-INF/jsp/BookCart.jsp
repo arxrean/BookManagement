@@ -128,7 +128,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="bookcart">
 			<h1>我的借阅车</h1>
 			<hr>
-			<form id="cartTable" action=" " method="post">
 				<table style="width: 1099px; ">
 					<tr>
 						<th style="width: 157px">图书编号</th>
@@ -139,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<th style="width: 157px">归还日期</th>
 						<th style="width: 157px">小计</th>
 						<th style="width: 157px"></th>
-					</tr>  
+					</tr> 
 					<s:iterator var="cartItem" value="#session.bookCart.cartItems">
 					<tr>
 					<td><s:property value="#cartItem.book.id"/></td>
@@ -147,23 +146,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<td><s:property value="#cartItem.book.author"/></td>
 					<td><s:property value="#cartItem.book.pubHouse"/></td>
 					<td><font style="color:red;">￥<s:property value="#cartItem.book.price"/></font></td>
-					<td><input type="date" name="<s:property value="#cartItem.date"/>" value="<s:property value="#cartItem.date"/>" onmouseout="flush()"/></td>
+					<td><input type="date" name="time" id="<s:property value='#cartItem.calendar'/>" onblur="setTime(this,<s:property value='#cartItem.book.id'/>)"/></td>
+					<td><span id="<s:property value="#cartItem.book.id"/>">￥<s:property value="#cartItem.subTotal"/></span></td>
 					</tr>
 					</s:iterator>
 				</table>
 				<span>金额：<span id="money">440</span>元</span>
-			</form>
 			<script type="text/javascript">
+				function getXmlHttpObject() {
+					var xmlHttpRequest;
+					if (window.ActiveXObject) {
+						xmlHttpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+					} else {
+						xmlHttpRequest = new XMLHttpRequest();
+					}
+					return xmlHttpRequest;
+				}
+				var myxmlHttpRequest="";
+				var spanid;
+				function setTime(obj,sid)
+				{
+				myxmlHttpRequest=getXmlHttpObject();
+				var id=obj.id;
+				var url="bookCart-setTime.action?calendar="+$(id).value+"&&bid="+sid+"&&currentTime="+new Date();
+				myxmlHttpRequest.open("get",url,true);
+				spanid=sid;
+				myxmlHttpRequest.onreadystatechange=getPrice;
+				myxmlHttpRequest.send(null);
+				}
+				function getPrice() {
+				if(myxmlHttpRequest.readState==4)
+						$(spanid).innerHTML="";
+						$(spanid).innerHTML=myxmlHttpRequest.responseText;
+				}
+				function getValue(id) {
+					return document.getElementById(id).value;
+				}
 				function $(id)
 				{
-				return doucument.getElemetById(id);
+				return document.getElementById(id);
 				}
-				function flush()
-				{
-				$("cartTable").submit();
-				}
-				
-				</script>
+			</script>
 			<div class="register-but">
 				<form>
 					<input id="btn_submit" type="button" value="提交">
@@ -172,7 +195,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-
 	<!--footer-->
 	<div class="footer">
 		<div class="container">

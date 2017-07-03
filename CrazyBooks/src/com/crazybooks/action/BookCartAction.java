@@ -1,6 +1,8 @@
 package com.crazybooks.action;
 
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -30,19 +32,32 @@ public class BookCartAction extends ActionSupport{
 	public void setBid(int bid) {
 		this.bid = bid;
 	}
-	public String addToCart()
+	public String addToCart() throws ParseException
 	{
 		BookCartItem bookCartItem=new BookCartItem();
 		//bookCartItem.setCalendar(calendar);
-		System.out.println("--------------------------------->"+calendar);
+		//System.out.println("--------------------------------->"+calendar);
 		Books book=bookService.findBookByBid(bid);
 		bookCartItem.setBook(book);
 		bookCartItem.setNum(1);
-		bookCartItem.setDate(new Date().toString());
+		bookCartItem.setCalendar(new Date().toLocaleString());
 		BookCart bookCart=getBookCart();
 		bookCart.addToCart(bookCartItem);
 		System.out.println(bookCartItem.getSubTotal());
 		return "bookCart";
+	}
+	public String setTime() throws IOException, ParseException
+	{
+		BookCart bookCart=getBookCart();
+		System.out.println("11"+bookCart);
+		System.out.println("bid"+bid);
+		BookCartItem bookCartItem=bookCart.getCartMap().get(bid);
+		System.out.println("22"+bookCartItem);
+		bookCartItem.setCalendar(calendar);
+		HttpServletResponse response=ServletActionContext.getResponse();
+		response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().println("<font style='color:red'>гд"+(int)(bookCartItem.getSubTotal())+"</font>");
+		return NONE;
 	}
 	BookCart getBookCart()
 	{

@@ -74,15 +74,63 @@ public class BookDaoImpl extends BaseHibernateDao implements BookDao {
 				.setString(0, book.getName()).list();
 		return commentsList;
 	}
-
-	public List getBooksByCoid(Integer coid) {
-		// TODO Auto-generated method stub
-		List list=HibernateSessionFactory.getSession().createQuery("select books from Books books,Categorytwo ct where books.categorytwo=ct.id and ct.id=?").setInteger(0, coid).list();
-		return list;
-	}
 	public Books getBookByBid(int bid) {
 		// TODO Auto-generated method stub
 		return (Books) HibernateSessionFactory.getSession().get(Books.class, bid);
+	}
+	public int getTotalBooksNumByCoid(Integer coid) {
+		// TODO Auto-generated method stub
+		@SuppressWarnings("unchecked")
+		List<Long> list = HibernateSessionFactory
+				.getSession()
+				.createQuery(
+						"select count(*) from Books books,Categorytwo ct where books.categorytwo = ct.id and ct.id =?")
+				.setInteger(0, coid).list();
+		if(list.size()<1)
+		{
+		return 0;
+		}
+		int res=list.get(0).intValue();
+		return res;
+	}
+	public List getBooksByCoid(Integer coid, int begin, int limit) {
+		List bList = HibernateSessionFactory
+				.getSession()
+				.createQuery(
+						"select books from Books books,Categorytwo ct"
+								+ " where books.categorytwo= ct.id and ct.id = ?")
+				.setInteger(0, coid).setMaxResults(limit).setFirstResult(begin).list();
+		System.out.println("-------------------blist:"+bList.size());
+		if (bList.size() < 1) {
+			return null;
+		}
+		return bList;
+	}
+	public int getBooksBySomthing(String search) {
+		// TODO Auto-generated method stub
+		String hql="select count(*) from Books where name like:name";
+		@SuppressWarnings("unchecked")
+		List<Long> list = HibernateSessionFactory
+		.getSession()
+		.createQuery(hql).setString("name", "%"+search+"%").list();
+		if(list.size()<1)
+		{
+		return 0;
+		}
+		int res=list.get(0).intValue();
+		return res;
+	}
+	public List getBooksBySomthing(String search, int begin, int limit) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		String hql="from Books where name like:name";
+		List bList = HibernateSessionFactory
+				.getSession()
+				.createQuery(hql).setString("name", "%"+search+"%").setMaxResults(limit).setFirstResult(begin).list();
+		if (bList.size() < 1) {
+			return null;
+		}
+		return bList;
 	}
 
 }
