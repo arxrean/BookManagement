@@ -9,19 +9,37 @@ body{
 	height:100%;
 	background: #52D0C4;
 }
+.divSug{
+	width:100%;
+	height: 650px;
+	border:black 2px solid;
+}
 .span_1{
 	width:10%;
-	height: 10%;
 	font-size:25px;
 	font-weight:bold;
 	color: black;
-	float: left;
 	margin-left: 10px;
+}
+.div_2{
+	width:24%;
+	height:60%;
+	border: red 2px solid;
+	float:left;
+}
+.div_3{
+	width:75%;
+	height:60%;
+	border: red 2px solid;
+}
+.div_4{
+	height: 35%;
+	background-color:gray;
+	border:1px red solid;
 }
 .divButtom{
 	width:100%;
-	border:red 3px solid;
-	height:200px;
+	border:solid 3px #F1F1F1;
 }
 .divcontainer
 {
@@ -99,7 +117,6 @@ a.a2:VISITED{
 }
 a.a1:LINK {
 	color:black;
-	border:1px gray solid;
 }
 a.a1:HOVER {
 	color:orange;

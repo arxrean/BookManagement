@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.crazybooks.biz.impl.BookBizImpl;
 import com.crazybooks.etity.Books;
+import com.crazybooks.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -18,6 +19,10 @@ import com.opensymphony.xwork2.util.ValueStack;
 public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	BookBizImpl bookService;
 	Integer coid;
+	int page;
+	public void setPage(int page) {
+		this.page = page;
+	}
 	public void setCoid(Integer coid) {
 		this.coid = coid;
 	}
@@ -48,9 +53,9 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 	
 	public String findBooksByCid()
 	{
-		System.out.println("----------------------------------------------------"+cid);
-		List bList=bookService.findBooksByCid(cid);
-		ActionContext.getContext().getValueStack().set("bList", bList);
+		System.out.println("----------------------------------------------------page:"+page);
+		PageBean<Books> pageBean=bookService.findBooksByCid(page,cid);
+		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "bookListPage";
 	}
 	public String findboosByCoid()

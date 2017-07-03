@@ -5,16 +5,9 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%
-List booksIdList = new ArrayList();
-booksIdList.add(1);
-booksIdList.add(2);
-booksIdList.add(3);
-booksIdList.add(4);
-booksIdList.add(5);
-session.setAttribute("booksInCart", booksIdList);
- %>
-
+<!--List booksIdList = new ArrayList();booksIdList.add(1);booksIdList.add(2);booksIdList.add(3);booksIdList.add(4);booksIdList.add(5);session.setAttribute("booksInCart", booksIdList);
+-->
+<%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -135,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="bookcart">
 			<h1>我的借阅车</h1>
 			<hr>
-			<form>
+			<form id="cartTable" action=" " method="post">
 				<table style="width: 1099px; ">
 					<tr>
 						<th style="width: 157px">图书编号</th>
@@ -144,50 +137,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<th style="width: 157px">出版社</th>
 						<th style="width: 157px">价格</th>
 						<th style="width: 157px">归还日期</th>
+						<th style="width: 157px">小计</th>
 						<th style="width: 157px"></th>
+					</tr>  
+					<s:iterator var="cartItem" value="#session.bookCart.cartItems">
+					<tr>
+					<td><s:property value="#cartItem.book.id"/></td>
+					<td><s:property value="#cartItem.book.name"/></td>
+					<td><s:property value="#cartItem.book.author"/></td>
+					<td><s:property value="#cartItem.book.pubHouse"/></td>
+					<td><font style="color:red;">￥<s:property value="#cartItem.book.price"/></font></td>
+					<td><input type="date" name="<s:property value="#cartItem.date"/>" value="<s:property value="#cartItem.date"/>" onmouseout="flush()"/></td>
 					</tr>
-					<%
-					List booksId = new ArrayList();
-					booksId = (List)session.getAttribute("booksInCart");
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date today = new Date();
-					Date tomorrow = new Date(today.getTime() + (long)1 * 24 * 60 * 60 * 1000);
-					for(int i=0;i<booksId.size();i++){
-					out.println("<tr>");
-					
-					out.println("<td style=width: 157px>");
-					out.println(booksId.get(i));
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println("烫烫烫烫烫");
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println("李华");
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println("重庆大学出版社");
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println(88);
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println("<input id="+i+" name=returnDate[i] type=date value="+sdf.format(tomorrow)+" min="+sdf.format(tomorrow)+">");
-					out.println("</td>");
-					
-					out.println("<td style=width: 157px>");
-					out.println("<input id=i name=check[i] type=checkbox>");
-					}
-					%>
+					</s:iterator>
 				</table>
-				
 				<span>金额：<span id="money">440</span>元</span>
 			</form>
-			
+			<script type="text/javascript">
+				function $(id)
+				{
+				return doucument.getElemetById(id);
+				}
+				function flush()
+				{
+				$("cartTable").submit();
+				}
+				
+				</script>
 			<div class="register-but">
 				<form>
 					<input id="btn_submit" type="button" value="提交">

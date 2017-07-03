@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css">
+<link href="css/bookListPage.css" rel="stylesheet" type="text/css">
 <title>Home</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -115,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<h1>Books</h1>
 		<div class="col-md-9">
 			<div class="content-top1" style="border:red solid 1px;">
-			<s:iterator var="books" value="bList">
+			<s:iterator var="books" value="pageBean.list">
 				<div class="col-md-4 col-md3" style="border:red solid 1px;">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="ToSingleBookInfoHtmlAction">
@@ -131,7 +132,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>	
 			</s:iterator>
 			<div class="clearfix"> </div>
-			</div>	
+			</div>
+			<div class="divPage">
+			<s:if test="pageBean.page<pageBean.pageSize">
+			<span class="spanPage"><a href="book-findBooksByCid?page=<s:property value='pageBean.page+1'/>&&cid=<s:property value='cid'/>" class="a1"><font style="font-size:20px;">下一页</font></a>
+			</span>
+			</s:if>
+			<s:if test="pageBean.page>1">
+			<span class="spanPage"><a href="book-findBooksByCid?page=<s:property value='pageBean.page-1'/>&&cid=<s:property value='cid'/>" class="a1">上一页</a>
+			</span>
+			</s:if>
+			<span class="spanPage">第<s:property value="pageBean.page"/>/<s:property value="pageBean.pageSize"/></span></div>	
 		</div>
 		<div class="col-md-3 product-bottom">
 			<!--categories-->

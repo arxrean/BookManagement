@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//WebRoot/js/userInfo.js=UTF-8
 encoding//src/com/crazybooks/action/BookAction.java=UTF-8
 encoding//src/com/crazybooks/action/UserAction.java=UTF-8
+encoding//src/com/crazybooks/base/BookDao.java=UTF-8
+encoding//src/com/crazybooks/biz/BookBiz.java=UTF-8

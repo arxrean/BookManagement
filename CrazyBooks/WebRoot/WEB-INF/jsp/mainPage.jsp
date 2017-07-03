@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="col-sm-8 h_menu4">
 				<ul class="memenu skyblue">
 				      <s:iterator var="clist" value="#session.cList">
-				      <li class="grid"><a  href="book-findBooksByCid?cid=<s:property value='#clist.id'/>"><s:property value="#clist.name"/></a>
+				      <li class="grid"><a  href="book-findBooksByCid?page=1&&cid=<s:property value='#clist.id'/>"><s:property value="#clist.name"/></a>
 				      <div class="mepanel">
 						<div class="row">
 							<div class="col1">
@@ -196,7 +196,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--//banner-->
 <!--content-->
-<div class="content">
+<div class="content" style="border:green 8px solid;">
 <div style="width: 100%;height:100%;border:pink 8px solid;">
 	<div class="divcontainer">
 		<div class="content-top" style="border:black 2px solid;">
@@ -212,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
 						<div class="price">
 								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<a href="bookCart-addToCart.action?bid=<s:property value='#bn.id'/>" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
@@ -269,11 +269,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//content-->
 <!--footer-->
 <div class="divButtom">
+<div>
 <span>
-<span class="span_1"><a href="#" class="a1">热门作者</a></span>
-<span class="span_1"><a href="#" class="a1">名人堂</a></span>
-<span class="span_1"><a href="#" class="a1">新锐作家</a></span>
+<span class="span_1"><a href="#" class="a1">好评最多</a></span>
+<span class="span_1"><a href="#" class="a1">最受关注</a></span>
+<span class="span_1"><a href="#" class="a1">人气收藏</a></span>
 </span>
+</div>
+<div class="divSug">
+<div class="div_2"><a href="#"><img src="bookPic/1.jpg" style="width:100%;height: 100%;"/>
+</a>
+</div>
+<div class="div_3">
+<table style="display: block;">
+<tr><td>哆啦A梦</td></tr>
+<tr><td>￥22.00</td></tr>
+<tr><td>作者</td></tr>
+<tr><td>introduce</td></tr>
+</table>
+</div>
+<div style="div_4">12345</div>
+</div>
 </div>
 <div class="footer">
 	<div class="container">

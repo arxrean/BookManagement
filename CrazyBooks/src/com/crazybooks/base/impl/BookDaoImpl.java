@@ -10,22 +10,37 @@ import org.hibernate.metamodel.source.annotations.HibernateDotNames;
 import com.crazybooks.base.BaseHibernateDao;
 import com.crazybooks.base.BookDao;
 import com.crazybooks.dao.HibernateSessionFactory;
+import com.crazybooks.etity.BookCartItem;
 import com.crazybooks.etity.Books;
 import com.crazybooks.etity.Users;
 
 public class BookDaoImpl extends BaseHibernateDao implements BookDao {
-
+	public int getTotalBooksNumByCid(int id)
+	{
+		@SuppressWarnings("unchecked")
+		List<Long> list = HibernateSessionFactory
+				.getSession()
+				.createQuery(
+						"select count(*) from Books books,Categorytwo ct,"
+								+ "Categoryone co where books.categorytwo= ct.id and ct.categoryone=co.id and co.id = ?")
+				.setInteger(0, id).list();
+		if(list.size()<1)
+		{
+		return 0;
+		}
+		int res=list.get(0).intValue();
+		return res;
+	}
 	@Override
-	public List getBooksByCid(int id) {
+	public List getBooksByCid(int id, int begin, int limit) {
 		// TODO Auto-generated method stub
-		System.out.println("id:"+id);
 		List bList = HibernateSessionFactory
 				.getSession()
 				.createQuery(
 						"select books from Books books,Categorytwo ct,"
 								+ "Categoryone co where books.categorytwo= ct.id and ct.categoryone=co.id and co.id = ?")
-				.setInteger(0, id).list();
-		System.out.println("blist:"+bList.size());
+				.setInteger(0, id).setMaxResults(limit).setFirstResult(begin).list();
+		System.out.println("-------------------blist:"+bList.size());
 		if (bList.size() < 1) {
 			return null;
 		}
@@ -64,6 +79,10 @@ public class BookDaoImpl extends BaseHibernateDao implements BookDao {
 		// TODO Auto-generated method stub
 		List list=HibernateSessionFactory.getSession().createQuery("select books from Books books,Categorytwo ct where books.categorytwo=ct.id and ct.id=?").setInteger(0, coid).list();
 		return list;
+	}
+	public Books getBookByBid(int bid) {
+		// TODO Auto-generated method stub
+		return (Books) HibernateSessionFactory.getSession().get(Books.class, bid);
 	}
 
 }

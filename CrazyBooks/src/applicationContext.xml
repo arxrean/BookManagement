@@ -21,4 +21,7 @@
 		<property name="bookDao" ref="bookDao"></property>
 		</bean>
 		<bean id="bookDao" class="com.crazybooks.base.impl.BookDaoImpl"></bean>
+		<bean id="bookCartAction" class="com.crazybooks.action.BookCartAction" scope="prototype">
+		<property name="bookService" ref="bookService"></property>
+		</bean>
 </beans>
