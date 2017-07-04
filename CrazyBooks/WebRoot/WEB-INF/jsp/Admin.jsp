@@ -81,7 +81,7 @@ s
 					</ul>
 				</div>
 				<div class="col-md-4 logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>
+					<a href="TomainPageJspAction"><img src="images/logo.png" alt=""></a>
 				</div>
 
 				<div class="col-md-4 header-left">
@@ -214,7 +214,18 @@ s
 		<table>
 			<s:if test="#request.name==users">
 				<thead>
-					
+					<tr>
+						<th>用户名</th>
+						<th>身份证号</th>
+						<th>真实姓名</th>
+						<th>性别</th>
+						<th>余额</th>
+						<th>电子邮箱</th>
+						<th>地址</th>
+						<th>积分</th>
+						<th>等级</th>
+						<th>电话号码</th>
+					</tr>
 				</thead>
 			</s:if>
 		</table>
