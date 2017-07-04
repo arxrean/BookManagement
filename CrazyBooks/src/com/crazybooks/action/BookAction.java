@@ -1,14 +1,19 @@
 package com.crazybooks.action;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.crazybooks.biz.impl.BookBizImpl;
+import com.crazybooks.etity.BookCart;
 import com.crazybooks.etity.Books;
 import com.crazybooks.utils.PageBean;
 import com.opensymphony.xwork2.ActionContext;
@@ -62,16 +67,25 @@ public class BookAction extends ActionSupport implements ModelDriven<Books>{
 		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "bookListPage";
 	}
+	public String findBookDetail()
+	{
+		//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!"+book.getId());
+		Books bookDetail=bookService.findBookByPid(book.getId());
+		ActionContext.getContext().getValueStack().set("bookDetail", bookDetail);
+		return "SingleBookInfo";
+	}
 	public String findboosByCoid()
 	{
-		System.out.print("page is======"+page);
 		PageBean<Books> pageBean=bookService.findBooksByCoid(page,coid);
 		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "bookListPage";
 		
 	}
-	public String findBooksBySomething()
+	public String findBooksBySomething() throws UnsupportedEncodingException
 	{
+		HttpServletRequest request=ServletActionContext.getRequest();
+		request.setCharacterEncoding("utf-8");
+		System.out.print("search-------------------------------"+search);
 		PageBean<Books> pageBean=bookService.findBooksBySomthing(page,search);
 		ActionContext.getContext().getValueStack().set("pageBean", pageBean);
 		return "bookListPage";

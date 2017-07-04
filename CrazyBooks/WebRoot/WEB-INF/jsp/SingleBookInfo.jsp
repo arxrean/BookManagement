@@ -121,136 +121,84 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---->		
 		</div>
 	</div>
-<!--content-->
-<div class="products">
-	<div class="container">
-		<h1>Books</h1>
-		<div class="col-md-9">
-			<div class="content-top1">
-			<s:iterator var="books" value="pageBean.list">
-				<div class="col-md-4 col-md3">
+	<!--//header-->
+	<!--图书信息-->
+	<div class="container"
+		style="width:1200px;height:300px;margin-top:20px;">
+		<div style="border: #EBEBEB solid 2px;height: 100%;">
+		<img name="picture" id="picture"
+			style="width:250px;height:100%;float:left;border:1px #EBEBEB solid;" src="<s:property value="bookDetail.picture"/>" />
+		<table style="display: block;">
+			<tr>
+				<td style="font-size: x-large;width=:100%;height: 50px;">图书名称:</td>
+				<td style="font-size: lager; width=:100%;height: 50px;">《<s:property value="bookDetail.name"/>》</td>
+			</tr>
+			<tr>
+				<td style="font-size: x-large;width=:100%;height: 50px%;">图书编号:</td>
+				<td style="font-size: lager;width=:100%;height: 50px;"><s:property value="bookDetail.id"/></td>
+			</tr>
+			<tr><td style="font-size: x-large;width=:100%;height: 50px%;">原出版社</td>
+			<td style="font-size: lager;width=:100%;height: 50px;">:<s:property value="bookDetail.pubHouse"/></td></tr>
+			<tr><td style="font-size: x-large;width=:100%;height: 50px%;">作者</td>
+			<td style="font-size: lager;width=:100%;height: 50px;">:<s:property value="bookDetail.author"/></td></tr>
+			<tr>
+				<td><a href="bookCart-addToCart.action?bid=<s:property value='bookDetail.id'/>">加入借阅车</a></td>
+			</tr>
+		</table>
+	</div>
+	</div>
+	<div class="container" style="width:1200px;margin-top:30px;">
+		<div class="container"
+			style="width:1200px;float:left;">
+				<div><a><font style="font-size: xx-large;color: #52D0C4;">详细信息</font></a></div>
+			<div style="width:85%;"><s:property value="bookDetail.intro"/></div>
+		</div>
+		<div class="container"
+			style="width:1200px;">
+			
+				<a><font style="font-size: xx-large;color: #52D0C4;">图书评价</font></a>
+			
+			<table id="myComment"
+			style="width:770px;margin-left:5px;margin-top:30px;">
+			<tr style="border:1px">
+				<s:iterator var="com" value="bookDetail.commentaries">
+				<tr><td><font style="font-size: xx-large; color:black;"><s:property value="#com.users.userName"/></font>&nbsp&nbsp&nbsp&nbsp<s:property value="#com.commentTime"/></td><td></td></tr>
+				<tr><td><font style="font-size: large; color:black;">&nbsp&nbsp&nbsp<s:property value="#com.commentary"/></font></td><td></td><td></tr>
+				</s:iterator>
+			</tr>
+		</table>
+		<div class="divcontainer">
+		<div class="content-top" > 
+			<font style="font-size: 30px;">HOT BOOKS</font>
+			<hr style="height:5px;border:1px gray solid;background-color: gray;"/>
+			<div class="content-top1" >
+			<s:iterator var="bn" value="#session.bnList">
+				<div class="col-md-3 col-md2">
 					<div class="col-md1 simpleCart_shelfItem">
-						<a href="book-findBookDetail.action?id=<s:property value='#books.id'/>">
-							<img class="img-responsive" src="<s:property value='#books.picture'/>" alt="" />
+						<a href="book-findBookDetail.action?id=<s:property value='#bn.id'/>">
+							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>
-						<h3><a><s:property value='#books.name'/></a></h3>
+						<h3><a href="book-findBookDetail.action?id=<s:property value='#bn.id'/>"><s:property value='#bn.name'/></a></h3>
 						<div class="price">
-								<h5 class="item_price">￥<s:property value='#books.price'/></h5>
-								<a href="bookCart-addToCart.action?bid=<s:property value='#books.id'/>" class="item_add">Add To Cart</a>
+								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
+								<a href="bookCart-addToCart.action?bid=<s:property value='#bn.id'/>" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
 				</div>	
-			</s:iterator>
+				</s:iterator>	
+
 			<div class="clearfix"> </div>
 			</div>
-			<div class="divPage">
-			<s:if test="pageBean.page<pageBean.pageSize">
-			<span class="spanPage"><a href="book-findBooksByCid?page=<s:property value='pageBean.page+1'/>&&cid=<s:property value='cid'/>" class="a1"><font style="font-size:20px;">下一页</font></a>
-			</span>
-			</s:if>
-			<s:if test="pageBean.page>1">
-			<span class="spanPage"><a href="book-findBooksByCid?page=<s:property value='pageBean.page-1'/>&&cid=<s:property value='cid'/>" class="a1"><font style="font-size:20px;">上一页</font></a>
-			</span>
-			</s:if>
-			<span class="spanPage"><font style="font-size:20px;">第<s:property value="pageBean.page"/>/<s:property value="pageBean.pageSize"/></font></span></div>	
-		</div>
-		<div class="col-md-3 product-bottom">
-			<!--categories-->
-				<div class=" rsidebar span_1_of_left">
-						<h3 class="cate">Categories</h3>
-							 <ul class="menu-drop">
-							<s:iterator var="c" value="#session.cList">
-							<li class="item1"><big><s:property value="#c.name" /></big>
-								<ul class="cute">
-								<s:iterator var="ct" value="#c.Categorytwos">
-									<li class="subitem1"><a href="book-findboosByCoid?coid=<s:property value='#ct.id'/>&&page=1"><s:property value="#ct.name" /> </a></li>
-									</s:iterator>
-								</ul>
-								</s:iterator>
-						</ul>
-					</div>
-				<!--initiate accordion-->
-						<script type="text/javascript">
-							$(function() {
-							    var menu_ul = $('.menu-drop > li > ul'),
-							           menu_a  = $('.menu-drop > li > a');
-							    menu_ul.hide();
-							    menu_a.click(function(e) {
-							        e.preventDefault();
-							        if(!$(this).hasClass('active')) {
-							            menu_a.removeClass('active');
-							            menu_ul.filter(':visible').slideUp('normal');
-							            $(this).addClass('active').next().stop(true,true).slideDown('normal');
-							        } else {
-							            $(this).removeClass('active');
-							            $(this).next().stop(true,true).slideUp('normal');
-							        }
-							    });
-							
-							});
-						</script>
-<!--//menu-->
-<!--seller-->
-				<div class="product-bottom">
-						<h3 class="cate">Hot Book</h3>
-						<s:iterator var="bn" value="#session.bnList">
-					<div class="product-go">
-						<div class=" fashion-grid">
-							<a href="book-findBookDetail.action?id=<s:property value='#bn.id'/>"><img class="img-responsive " src="<s:property value="#bn.picture"/>" alt=""></a>	
-						</div>
-						<div class=" fashion-grid1">
-							<h6 class="best2"><a href="single.html" ><s:property value="#bn.name"/></a></h6>
-							<span class=" price-in1">￥<s:property value="#bn.price"/></span>
-						</div>	
-						<div class="clearfix"> </div>
-					</div>
-					</s:iterator>
-				</div>
-
-<!--//seller-->
-<!--tag-->
-				<div class="tag">	
-						<h3 class="cate">Tags</h3>
-					<div class="tags">
-						<ul>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">dress</a></li>
-							<li><a href="#">design</a></li>
-							<li><a href="#">fashion</a></li>
-							<li><a href="#">lorem</a></li>
-							<li><a href="#">dress</a></li>
-						<div class="clearfix"> </div>
-						</ul>
-				</div>					
 			</div>
 		</div>
-		<div class="clearfix"> </div>
+		</div>
 	</div>
-</div>
-<!--//content-->
-<!--footer-->
-<div class="footer">
-	<div class="container">
-		<div class="footer-top">
-			<div class="col-md-4 top-footer1">
-				<h2>Newsletter</h2>
-					<form>
-						<input type="text" value="" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='';}">
-						<input type="submit" value="SUBSCRIBE">
-					</form>
-			</div>
-			<div class="clearfix"> </div>	
-		</div>	
-	</div>
-	<div class="footer-bottom">
-		<div class="container">
+	
+	<!--footer-->
+	<div class="footer">
+		<div class="footer-bottom">
+			<div class="container">
 				<div class="col-md-3 footer-bottom-cate">
 					<h6>Categories</h6>
 					<ul>
@@ -259,7 +207,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#">Tempus pretium</a></li>
 						<li><a href="#">Dignissim neque</a></li>
 						<li><a href="#">Ornared id aliquet</a></li>
-						
+
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate">
@@ -270,7 +218,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#">Tempus pretium</a></li>
 						<li><a href="#">Dignissim neque</a></li>
 						<li><a href="#">Ornared id aliquet</a></li>
-						
+
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate">
@@ -283,26 +231,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><a href="#">Ornared id aliquet</a></li>
 						<li><a href="#">Ultrices id du</a></li>
 						<li><a href="#">Commodo sit</a></li>
-						
+
 					</ul>
 				</div>
 				<div class="col-md-3 footer-bottom-cate cate-bottom">
 					<h6>Our Address</h6>
 					<ul>
-						<li>Aliquam metus  dui. </li>
+						<li>Aliquam metus dui.</li>
 						<li>orci, ornareidquet</li>
-						<li> ut,DUI.</li>
+						<li>ut,DUI.</li>
 						<li>nisi, dignissim</li>
 						<li>gravida at.</li>
 						<li class="phone">PH : 6985792466</li>
 					</ul>
 				</div>
-				<div class="clearfix"> </div>
-				<p class="footer-class">Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+				<div class="clearfix"></div>
+				<p class="footer-class">
+					Copyright &copy; 2015.Company name All rights reserved.<a
+						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+				</p>
 			</div>
+		</div>
 	</div>
-</div>
 
-<!--//footer-->
+	<!--//footer-->
 </body>
 </html>
+
+
+
+

@@ -5,6 +5,7 @@ import java.util.List;
 import net.sf.json.JSONObject;
 
 import com.crazybooks.etity.Users;
+import com.crazybooks.utils.PageBean;
 
 public interface UserBiz {
 	public boolean validateRegister(String registerName); //验证注册
@@ -18,4 +19,5 @@ public interface UserBiz {
 	public JSONObject addMoney(Users user);
 	public JSONObject alterPassword(Users user,String newPass);
 	public JSONObject alterUserInfo(Users user);
+	public PageBean<Users> getAllUsers(int page);
 }

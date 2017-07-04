@@ -34,7 +34,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
+
+
+
+
 
 
 
@@ -59,7 +75,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- slide -->
 <link href="css/popuo-box.css" rel="stylesheet" type="text/css"
 	media="all" />
-s
 </head>
 <body>
 	<!--header-->
@@ -81,7 +96,7 @@ s
 					</ul>
 				</div>
 				<div class="col-md-4 logo">
-					<a href="TomainPageJspAction"><img src="images/logo.png" alt=""></a>
+					<a><img src="images/logo.png" alt=""></a>
 				</div>
 
 				<div class="col-md-4 header-left">
@@ -127,7 +142,7 @@ s
 									<div class="col1">
 										<div class="h_nav">
 											<ul>
-												<li><a href="AdminViewUsersAction.action">查看用户</a></li>
+												<li><a href="AdminViewUsersAction?page=1">查看用户</a></li>
 												<li><a href="products.html">封禁用户</a></li>
 											</ul>
 										</div>
@@ -159,12 +174,6 @@ s
 							</div></li>
 						<li><a class="color6" href="contact.html">帮助</a></li>
 					</ul>
-				</div>
-
-
-				<div class="col-md-2 search">
-					<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
-						class="glyphicon glyphicon-search"> </i> </a>
 				</div>
 
 				<div class="clearfix"></div>
@@ -211,6 +220,27 @@ s
 
 
 	<div class="container" style="height:800px">
+		<s:if test="#request.users!=null">
+			<form action="AdminSearchUsersAction" method="post">
+				<span><input type="hidden" value="1" name="page"></span> <span><input
+					type="text" name="searchContent" id="txt_search"></span> <span>
+					<select name="searchType">
+						<option value="userName">用户名</option>
+						<option value="sex">性别</option>
+						<option value="balance">余额</option>
+						<option value="idnum">身份证号</option>
+						<option value="name">真实姓名</option>
+						<option value="email">邮箱</option>
+						<option value="address">地址</option>
+						<option value="rank">等级</option>
+						<option value="score">积分</option>
+						<option value="phoneNum">手机号</option>
+				</select>
+				</span> <input type="submit" value="搜索"><input type="button" value="重置"
+					onclick="javascript:window.location.href='AdminViewUsersAction?page=1';">
+
+			</form>
+		</s:if>
 		<table>
 			<s:if test="#request.users!=null">
 				<thead>
@@ -225,10 +255,47 @@ s
 						<th>积分</th>
 						<th>等级</th>
 						<th>电话号码</th>
+						<th>操作</th>
 					</tr>
 				</thead>
+				<tbody>
+					<s:iterator value="#request.users.list" var="user">
+						<tr id="<s:property value="#user.userName"/>">
+							<td><s:property value="#user.userName" /></td>
+							<td><s:property value="#user.idnum" /></td>
+							<td><s:property value="#user.name" /></td>
+							<td><s:property value="#user.sex" /></td>
+							<td><s:property value="#user.balance" /></td>
+							<td><s:property value="#user.email" /></td>
+							<td><s:property value="#user.address" /></td>
+							<td><s:property value="#user.score" /></td>
+							<td><s:property value="#user.rank" /></td>
+							<td><s:property value="#user.phoneNum" /></td>
+							<td><a href="#">封禁</a></td>
+						</tr>
+					</s:iterator>
+				</tbody>
 			</s:if>
 		</table>
+		<s:if test="#request.users!=null">
+		当前是第<s:property value="#request.users.page" />页
+		<s:if test="#request.users.page==1">
+				<a onclick="javascript:alert('已经是第一页!')" style="cursor:hand">上一页</a>
+			</s:if>
+			<s:else>
+				<a
+					href="AdminViewUsersAction?page='<s:property value="#request.users.page-1"/>'"
+					style="cursor:hand">上一页</a>
+			</s:else>
+			<s:if test="#request.users.page==#request.users.pageSize">
+				<a onclick="javascript:alert('已经是最后一页!')" style="cursor:hand">下一页</a>
+			</s:if>
+			<s:else>
+				<a
+					href="AdminViewUsersAction?page='<s:property value="#request.users.page+1"/>'"
+					style="cursor:hand">下一页</a>
+			</s:else>
+		</s:if>
 	</div>
 
 
@@ -240,56 +307,11 @@ s
 	<div class="footer">
 		<div class="footer-bottom">
 			<div class="container">
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Categories</h6>
-					<ul>
-						<li><a href="#">Curabitur sapien</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>
-						<li><a href="#">Dignissim neque</a></li>
-						<li><a href="#">Ornared id aliquet</a></li>
-
-					</ul>
-				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Feature Projects</h6>
-					<ul>
-						<li><a href="#">Curabitur sapien</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>
-						<li><a href="#">Dignissim neque</a></li>
-						<li><a href="#">Ornared id aliquet</a></li>
-
-					</ul>
-				</div>
-				<div class="col-md-3 footer-bottom-cate">
-					<h6>Top Brands</h6>
-					<ul>
-						<li><a href="#">Curabitur sapien</a></li>
-						<li><a href="#">Dignissim purus</a></li>
-						<li><a href="#">Tempus pretium</a></li>
-						<li><a href="#">Dignissim neque</a></li>
-						<li><a href="#">Ornared id aliquet</a></li>
-						<li><a href="#">Ultrices id du</a></li>
-						<li><a href="#">Commodo sit</a></li>
-
-					</ul>
-				</div>
-				<div class="col-md-3 footer-bottom-cate cate-bottom">
-					<h6>Our Address</h6>
-					<ul>
-						<li>Aliquam metus dui.</li>
-						<li>orci, ornareidquet</li>
-						<li>ut,DUI.</li>
-						<li>nisi, dignissim</li>
-						<li>gravida at.</li>
-						<li class="phone">PH : 6985792466</li>
-					</ul>
-				</div>
+				
 				<div class="clearfix"></div>
 				<p class="footer-class">
 					Copyright &copy; 2015.Company name All rights reserved.<a
-						target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+						target="_blank" href="http://sc.chinaz.com/moban/">crazybooks</a>
 				</p>
 			</div>
 		</div>

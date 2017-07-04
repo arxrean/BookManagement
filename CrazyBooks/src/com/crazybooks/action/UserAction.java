@@ -1,13 +1,19 @@
 package com.crazybooks.action;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 
 import net.sf.json.JSONObject;
 
+import com.crazybooks.base.impl.UserDaoImpl;
 import com.crazybooks.biz.impl.UserBizImpl;
+import com.crazybooks.etity.BookCart;
+import com.crazybooks.etity.BookCartItem;
+import com.crazybooks.etity.Books;
 import com.crazybooks.etity.Users;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -249,5 +255,25 @@ public class UserAction extends ActionSupport implements ModelDriven<Users> {
 		JSONObject json = ubi.alterUserInfo(users);
 		result = json.toString();
 		return "userAlterInfo";
+	}
+	
+	public String insertIntoBorrow(){
+		System.out.println("进入action");
+		UserDaoImpl userDaoImpl=new UserDaoImpl();
+		BookCart bookCart = (BookCart) (ActionContext.getContext().getSession()
+				.get("bookCart"));
+		String userName = (String) (ActionContext.getContext().getSession()
+				.get("userName"));
+		Users targetUser=new Users();
+		targetUser.setUserName(userName);
+		Collection cartItems=bookCart.getCartItems();
+		Iterator it=cartItems.iterator();
+		while(it.hasNext()){
+			BookCartItem bookCartItem=(BookCartItem)it.next();
+			Books book=bookCartItem.getBook();
+			System.out.println(book.getId());
+			userDaoImpl.insertIntoCollection(targetUser, book);
+		}
+		return "insertSuccess";
 	}
 }

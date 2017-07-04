@@ -24,4 +24,6 @@ public interface UserDao {
 	public JSONObject addMoney(Users user);
 	public JSONObject alterPass(Users user,String newPass);
 	public JSONObject alterUserInfo(Users user);
+	public List<Users> getAllUsers();//获得所有用户
+	public List<Users> getUsersWithCondition(Users user);//获得特定条件的用户
 }

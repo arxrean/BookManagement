@@ -1,9 +1,6 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
@@ -17,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
 <!--//theme-style-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="keywords" content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -50,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div style="float:right;margin-right: 70px;margin-top: 20px;"><form method="get" action="book-findBooksBySomething.action">
 				<input type="hidden" name="page" value="1"/>
-				<input type="text" name="search" style="border:1px solid #52D0C4;width:200px;height: 40px;border-color: #52D0C4;"/><input type="submit" value="搜索" style="width:70px;height: 40px;background-color: #52D0C4;bor "/></form></div>
+				<input type="text" name="search" id="search" style="border:1px solid #52D0C4;width:200px;height: 40px;border-color: #52D0C4;"/><input type="submit" value="搜索" style="width:70px;height: 40px;background-color: #52D0C4;bor "/></form></div>
 			<div class="col-sm-4 header-left">	
 			<s:if test="#session.userName!=null">
 			<p class="log">
@@ -148,27 +145,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	    	<div class="callbacks_container">
 	      		<ul class="rslides" id="slider">
 	        		<li>
-	          			<img src="images/1.jpg" style="width: 100%;height: 65%;">
-	       			 </li>
-			 		 <li>
-	          			<img src="images/2.jpg" alt="">   
-	       			 </li>
-					 <li>
-	          			<img src="images/1.jpg" alt="">
-	        		</li>	
+	          			<a href="book-findBooksBySomething.action?search=A" id="herfa"><img src="images/1.jpg" id="img" style="width: 100%;height: 65%;"></a>
+	       			 </li>	
 	      		</ul>
-	      		<div style=" margin-top: 2px;">
+	      		<div style="margin-top: 20px;">
+	      		<!--<marquee direction="left" width="100%;" behavior="scroll" loop="-1">-->
 	      		<ul class="u1">
-	      		<li class="l1"><a href="#" class="a"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
-	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
-	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
-	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
-	      		<li class="l1"><a href="#"><img src="images/1.jpg" style="width:100%;height: 100%;"/></a></li>
+	      		<li class="l1"><a href="book-findBookDetail.action?id=5" class="a"><img src="images/cover/5.png" style="width:100%;height: 100%;border:1px solid #EBEBEB;"/></a></li>
+	      		<li class="l1"><a href="book-findBookDetail.action?id=1"><img src="images/cover/1.png" style="width:100%;height: 100%;border:1px solid #EBEBEB;"/></a></li>
+	      		<li class="l1"><a href="book-findBookDetail.action?id=2"><img src="images/cover/2.png" style="width:100%;height: 100%;border:1px solid #EBEBEB;"/></a></li>
+	      		<li class="l1"><a href="book-findBookDetail.action?id=3"><img src="images/cover/3.png" style="width:100%;height: 100%;border:1px solid #EBEBEB;"/></a></li>
+	      		
 	      		</ul>
+	      		
 	      		</div>
 	 	 	</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function $(id)
+	{
+	return document.getElementById(id);
+	}
+	var i=1;
+	function changePic()
+	{
+	$("img").src="images/"+i+".jpg";
+	if(i==1)
+	{
+		$("herfa").href="book-findBooksBySomething.action?search=诗";
+	
+	}else if(i==2)
+	{
+		$("herfa").href="book-findBooksBySomething.action?search=诗";
+	
+	}
+	i++;
+	if(i>3)
+	{
+	i=1;
+	}
+	}
+	setInterval("changePic()",3000);
+	</script>
 	<div class="infoDiv">
 		<div id="divdymi">
 		<h1><font style="font-family: sans-serif;font-size: 30px;">最新动态</font></h1>
@@ -196,20 +215,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <!--//banner-->
 <!--content-->
-<div class="content" >
+<div class="content">
 <div style="width: 100%;height:100%;">
 	<div class="divcontainer">
-		<div class="content-top" >
-			<font style="font-size: 30px;">HOT BOOKS</font>
-			<hr style="height:5px;border:1px gray solid;background-color: gray;"/>
-			<div class="content-top1" >
+			&nbsp&nbsp&nbsp&nbsp<font style="font-size: 40px;font-weight: bold;">HOT BOOKS</font>
+			<hr>
+			<div class="content-top1">
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
-					<div class="col-md1 simpleCart_shelfItem">
-						<a href="SingleBook.action?id=<s:property value='#bn.id'/>">
+					<div class="col-md1 simpleCart_shelfItem" >
+						<a href="book-findBookDetail.action?id=<s:property value='#bn.id'/>">
 							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>
-						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
+						<h3><a><s:property value='#bn.name'/></a></h3>
 						<div class="price">
 								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
 								<a href="bookCart-addToCart.action?bid=<s:property value='#bn.id'/>" class="item_add">Add To Cart</a>
@@ -218,9 +236,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>	
 				</s:iterator>	
-
 			<div class="clearfix"> </div>
-			</div>
 			</div>
 		</div>
 		<div class="divHot">
@@ -233,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	</div>
-	<div class="content">
+<div class="content">
 <div style="width: 100%;height:100%;">
 	<div class="divcontainer">
 			<img src="images/newBookImg.JPG"/>
@@ -241,13 +257,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
 					<div class="col-md1 simpleCart_shelfItem" >
-						<a href="single.html">
+						<a href="book-findBookDetail.action?id=<s:property value='#bn.id'/>">
 							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>
-						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
+						<h3><a><s:property value='#bn.name'/></a></h3>
 						<div class="price">
 								<h5 class="item_price">￥<s:property value='#bn.price'/></h5>
-								<a href="#" class="item_add">Add To Cart</a>
+								<a href="bookCart-addToCart.action?bid=<s:property value='#bn.id'/>" class="item_add">Add To Cart</a>
 								<div class="clearfix"> </div>
 						</div>
 					</div>
@@ -266,31 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	</div>
-<!--//content-->
 <!--footer-->
-<div class="divButtom">
-<div>
-<span>
-<span class="span_1"><a href="#" class="a1">好评最多</a></span>
-<span class="span_1"><a href="#" class="a1">最受关注</a></span>
-<span class="span_1"><a href="#" class="a1">人气收藏</a></span>
-</span>
-</div>
-<div class="divSug">
-<div class="div_2"><a href="#"><img src="bookPic/1.jpg" style="width:100%;height: 100%;"/>
-</a>
-</div>
-<div class="div_3">
-<table style="display: block;">
-<tr><td>哆啦A梦</td></tr>
-<tr><td>￥22.00</td></tr>
-<tr><td>作者</td></tr>
-<tr><td>introduce</td></tr>
-</table>
-</div>
-<div style="div_4">12345</div>
-</div>
-</div>
 <div class="footer">
 	<div class="container">
 		<div class="footer-top">

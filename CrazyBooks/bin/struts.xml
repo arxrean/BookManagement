@@ -41,6 +41,7 @@
 			<result name="userAlterInfo" type="json">
 				<param name="root">result</param>
 			</result>
+			<result name="insertSuccess">/WEB-INF/html/Success.html</result>
 		</action>
 		<!-- 对管理员的操作 -->
 		<action name="Admin*Action" class="com.crazybooks.action.AdminAction" method="{1}">
@@ -48,6 +49,7 @@
 				<param name="root">result</param>
 			</result>
 			<result name="ViewUsers">/WEB-INF/jsp/Admin.jsp</result>
+			<result name="ViewUsersCondition">/WEB-INF/jsp/Admin.jsp</result>
 		</action>
 		<!-- 网站内jsp页面的跳转 -->
 		<action name="To*JspAction">
@@ -79,6 +81,7 @@
 		</action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
+		<result name="SingleBookInfo">WEB-INF/jsp/SingleBookInfo.jsp</result>
 			<result name="bookListPage">WEB-INF/jsp/bookListPage.jsp</result>
 			<result name="bookInfo" type="json">
 				<param name="root">result</param>

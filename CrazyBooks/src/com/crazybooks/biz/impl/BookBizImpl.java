@@ -25,7 +25,7 @@ public class BookBizImpl implements BookBiz{
 		PageBean<Books> pageBean=new PageBean<Books>();
 		pageBean.setPage(page);
 		int totalNum=bookDao.getTotalBooksNumByCid(id);
-		int limit=9;
+		int limit=15;
 		int pageSize;
 		if(totalNum%limit==0)
 		{
@@ -58,12 +58,12 @@ public class BookBizImpl implements BookBiz{
 		return bookDao.getBookComments(book);
 	}
 
-	public PageBean<Books> findBooksByCoid(Integer coid,int page) {
+	public PageBean<Books> findBooksByCoid(int page,Integer coid) {
 		// TODO Auto-generated method stub
 		PageBean<Books> pageBean=new PageBean<Books>();
 		pageBean.setPage(page);
 		int totalNum=bookDao.getTotalBooksNumByCoid(coid);
-		int limit=9;
+		int limit=15;
 		int pageSize;
 		if(totalNum%limit==0)
 		{
@@ -89,7 +89,7 @@ public class BookBizImpl implements BookBiz{
 		PageBean<Books> pageBean=new PageBean<Books>();
 		pageBean.setPage(page);
 		int totalNum=bookDao.getBooksBySomthing(search);
-		int limit=9;
+		int limit=15;
 		int pageSize;
 		if(totalNum%limit==0)
 		{
@@ -103,6 +103,11 @@ public class BookBizImpl implements BookBiz{
 		List pList=bookDao.getBooksBySomthing(search,begin,limit);
 		pageBean.setList(pList);
 		return pageBean;
+	}
+
+	public Books findBookByPid(Integer id) {
+		// TODO Auto-generated method stub
+		return bookDao.getBookByBid(id);
 	}
 	
 }

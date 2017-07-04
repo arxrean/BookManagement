@@ -29,6 +29,10 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		// TODO Auto-generated method stub
 		super.add(users);
 	}
+	
+	public void addBorrow(Borrow borrow){
+		super.add(borrow);
+	}
 
 	@Override
 	public void delete(Users users) {
@@ -144,7 +148,6 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 			Query query=session.createQuery("from Users u,Commentary c,Books b where u.id=c.users and c.books=b.id and u.userName=?");
 			query.setString(0, user.getUserName());
 			List<Object[]> list=query.list();
-			System.out.println(list.size());
 			for(Object[] objects: list){
 				JSONObject jsonSingle=new JSONObject();
 				Commentary commentary=(Commentary)objects[1];
@@ -318,5 +321,45 @@ public class UserDaoImpl extends BaseHibernateDao implements UserDao{
 		return json;
 	}
 
+	@Override
+	public List<Users> getAllUsers() {
+		// TODO Auto-generated method stub
+		List<Users> userList=new ArrayList<Users>();
+		Session session=HibernateSessionFactory.getSession();
+		try {
+			Query query=session.createQuery("from Users");
+			userList=query.list();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return userList;
+	}
+
+	@Override
+	public List<Users> getUsersWithCondition(Users user) {
+		// TODO Auto-generated method stub
+		List<Users> list=super.search(Users.class, user);
+		return list;
+	}
+	
+	public String insertIntoCollection(Users user,Books book){
+		try {
+			Users targetUser=(Users)super.search(Users.class, user).get(0);
+			Books targetBook=new Books();
+			targetBook.setId(book.getId());
+			targetBook.setAuthor(book.getAuthor());
+			targetBook.setName(book.getName());
+			targetBook.setPicture(book.getPicture());
+			Borrow borrow=new Borrow();
+			borrow.setUsers(targetUser);
+			borrow.setBooks(targetBook);
+			addBorrow(borrow);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return "success";
+	}
 	
 }

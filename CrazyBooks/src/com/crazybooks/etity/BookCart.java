@@ -34,4 +34,9 @@ public class BookCart {
 		}
 		totalPrice=totalPrice+bookCartItem.getSubTotal();
 	}
+	public void removItem(int bid) throws ParseException {
+		// TODO Auto-generated method stub
+		totalPrice=totalPrice-cartMap.get(bid).getSubTotal();
+	    this.cartMap.remove(bid);
+	}
 }

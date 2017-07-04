@@ -27,8 +27,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
 			
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
 
 
 
@@ -47,6 +55,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/memenu.js"></script>
 <script type="text/javascript" src="js/userInfo.js"></script>
 <script>
+	var emailState = true;
+	function isEmail(strEmail) {
+		if (strEmail
+				.search(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) != -1) {
+			//document.getElementById("hint_email").style.color = "green";
+			document.getElementById("hint_email").innerHTML = "";
+			emailState = true;
+		} else {
+			document.getElementById("hint_email").style.color = "red";
+			document.getElementById("hint_email").innerHTML = "请输入正确的邮箱地址";
+			emailState = false;
+		}
+		if (strEmail == '') {
+			document.getElementById("hint_email").innerHTML = "";
+			emailState = false;
+		}
+	}
+
 	//获得用户收藏
 	function getMyCollection() {
 		document.getElementById("myInfo").style.display = "none";
@@ -173,11 +199,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				var d = eval("(" + data + ")");
 				$.each(d, function(index, content) {
 					var consume = "";
-					if (content.type == "借阅") {
+					if (content.type == "borrow") {
 						consume = "<tr bgcolor='#FF6347'><td>" + content.type
 								+ "</td><td>" + content.time + "</td><td>"
 								+ content.money + "</td></tr>";
-					} else if (content.type == "充值") {
+					} else if (content.type == "recharge") {
 						consume = "<tr bgcolor='#98FB98'><td>" + content.type
 								+ "</td><td>" + content.time + "</td><td>"
 								+ content.money + "</td></tr>";
@@ -245,6 +271,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function modifyUserInfo() {
+		document.getElementById("btn_infoAlter").style.display = "none";
+		document.getElementById("btn_infoOK").style.display = "block";
 		$("#name").removeAttr("readonly");
 		$("#sex").removeAttr("disabled");
 		$("#address").removeAttr("readonly");
@@ -259,36 +287,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	function submitUserInfo() {
-		//确认信息修改
-		$.ajax({
-			type : "post",
-			url : "UseralterUserInfoAction",
-			data : {
-				userName : $("#txt_userName").val(),
-				name : $("#name").val(),
-				address : $("#address").val(),
-				phoneNum : $("#phoneNum").val(),
-				email : $("#email").val(),
-				sex : $("#sex").val(),
-			},
-			dataType : "json",
-			success : function(data) {
-				var d = eval("(" + data + ")");
-				if (d.type == "success") {
-					alert("修改成功!");
-					$("#name").css("background-color", "white");
-					$("#sex").css("background-color", "white");
-					$("#address").css("background-color", "white");
-					$("#phoneNum").css("background-color", "white");
-					$("#email").css("background-color", "white");
-					$("#name").attr("readonly", "readonly");
-					$("#sex").attr("disabled", "disabled");
-					$("#address").attr("readonly", "readonly");
-					$("#phoneNum").attr("readonly", "readonly");
-					$("#email").attr("readonly", "readonly");
-				}
-			}
-		});
+		if (emailState) {
+			//确认信息修改
+			$
+					.ajax({
+						type : "post",
+						url : "UseralterUserInfoAction",
+						data : {
+							userName : $("#txt_userName").val(),
+							name : $("#name").val(),
+							address : $("#address").val(),
+							phoneNum : $("#phoneNum").val(),
+							email : $("#email").val(),
+							sex : $("#sex").val(),
+						},
+						dataType : "json",
+						success : function(data) {
+							var d = eval("(" + data + ")");
+							if (d.type == "success") {
+								alert("修改成功!");
+								document.getElementById("btn_infoAlter").style.display = "block";
+								document.getElementById("btn_infoOK").style.display = "none";
+								$("#name").css("background-color", "white");
+								$("#sex").css("background-color", "white");
+								$("#address").css("background-color", "white");
+								$("#phoneNum").css("background-color", "white");
+								$("#email").css("background-color", "white");
+								$("#name").attr("readonly", "readonly");
+								$("#sex").attr("disabled", "disabled");
+								$("#address").attr("readonly", "readonly");
+								$("#phoneNum").attr("readonly", "readonly");
+								$("#email").attr("readonly", "readonly");
+							}
+						}
+					});
+		} else {
+			alert("请输入正确的信息！")
+		}
 	}
 
 	function myInfo() {
@@ -528,34 +563,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<div class="container"
 		style="width:1200px;height:200px;float:left;margin-left:300px;margin-top:20px">
-		<table style="width:550px;float:left;margin-left:20px;margin-top:30px">
+		<table border=3 bordercolor=#3C3C3C
+			style="width:550px;float:left;margin-left:20px;margin-top:30px">
 			<tr>
-				<td style="width:100px;height:40px;">用户名</td>
+				<td style="width:100px;height:25px;">用户名</td>
 				<td><input type="text" name="txt_userName" id="txt_userName"
-					readonly="true" style="width:400px;height:40px;" /></td>
+					readonly="true" style="border:0;width:400px;height:25px;" /></td>
 			</tr>
 			<tr>
-				<td style="width:100px;height:40px;">积分</td>
+				<td style="width:100px;height:25px;">积分</td>
 				<td><input type="text" name="txt_score" id="txt_score"
-					readonly="true" style="width:400px;height:40px;" /></td>
+					readonly="true" style="border:0;width:400px;height:25px;" /></td>
 			</tr>
 			<tr>
-				<td style="width:100px;height:40px;">等级</td>
+				<td style="width:100px;height:25px;">等级</td>
 				<td><input type="text" name="txt_rank" id="txt_rank"
-					readonly="true" style="width:400px;height:40px;" /></td>
+					readonly="true" style="border:0;width:400px;height:25px;" /></td>
 			</tr>
 			<tr>
-				<td style="width:100px;height:40px;">余额</td>
+				<td style="width:100px;height:25px;">余额</td>
 				<td><input type="text" name="txt_balance" id="txt_balance"
-					readonly="true" style="width:400px;height:40px;" /></td>
+					readonly="true" style="border:0;width:400px;height:25px;" /></td>
 			</tr>
 		</table>
 	</div>
-
 	<div class="container" id="myDiv"
 		style="width:1200px;height:1000px;margin-left:500px; margin-top:300px">
+		<hr style="height:5px;width:1300px;background-color:#3C3C3C">
 		<table id="myInfo"
-			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:block">
+			style="width:700px;float:left;margin-left:20px;margin-top:30px;display:block">
 			<tr>
 				<td style="width:100px;height:40px;">真实姓名</td>
 				<td><input type="text" name="name" id="name"
@@ -587,16 +623,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<tr>
 				<td style="width:100px;height:40px;">电子邮箱</td>
 				<td><input type="text" name="email" id="email"
-					style="width:400px;height:40px;" /></td>
+					style="width:400px;height:40px;" onblur="isEmail(this.value)" /><span
+					id="hint_email" style="color:red;font-size:10px"></span></td>
 			</tr>
 			<tr>
+				<td></td>
 				<td><input name="btn_info" id="btn_infoAlter" type="button"
-					class="left" value="修改信息"
-					style="width: 200px;height:40px;cursor:hand;"
-					onclick="modifyUserInfo()" /></td>
-				<td><input name="btn_info" id="btn_infoOK" type="button"
-					class="left" value="保存修改"
-					style="width: 200px;height:40px;cursor:hand;"
+					class="left" value="编辑信息"
+					style="width: 200px;height:40px;cursor:hand;display:block"
+					onclick="modifyUserInfo()" /><input name="btn_info"
+					id="btn_infoOK" type="button" class="left" value="保存修改"
+					style="width: 200px;height:40px;cursor:hand;display:none"
 					onclick="submitUserInfo()" /></td>
 			</tr>
 		</table>
@@ -649,13 +686,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</table>
 
 		<table id="myPurchase"
-			style="width:600px;float:left;margin-left:20px;margin-top:30px;display:none
+			style="width:1200px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
 			<thead>
 				<tr style="background-color:gray">
-					<th style="width:200px;height:40px;">类型</th>
-					<th style="width:200px;height:40px;">时间</th>
-					<th style="width:200px;height:40px;">金额</th>
+					<th style="width:400px;height:40px;">类型</th>
+					<th style="width:400px;height:40px;">时间</th>
+					<th style="width:400px;height:40px;">金额</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -689,14 +726,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 		<table id="myCommentaryTable"
-			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			style="width:1200px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
 			<thead>
 				<tr style="background-color:gray">
-					<th style="width:200px;height:40px;">图书名字</th>
-					<th style="width:200px;height:40px;">评论内容</th>
-					<th style="width:200px;height:40px;">评论时间</th>
-					<th style="width:200px;height:40px;">操作</th>
+					<th style="width:300px;height:40px;">图书名字</th>
+					<th style="width:300px;height:40px;">评论内容</th>
+					<th style="width:300px;height:40px;">评论时间</th>
+					<th style="width:300px;height:40px;">操作</th>
 				</tr>
 			</thead>
 			<tbody></tbody>
@@ -704,14 +741,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 		<table id="myCollection"
-			style="width:550px;float:left;margin-left:20px;margin-top:30px;display:none
+			style="width:1200px;float:left;margin-left:20px;margin-top:30px;display:none
 			">
 			<thead>
 				<tr style="background-color:gray">
-					<th style="width:200px;height:40px;">图书名字</th>
-					<th style="width:200px;height:40px;">作者</th>
-					<th style="width:200px;height:40px;">出版社</th>
-					<th style="width:200px;height:40px;">操作</th>
+					<th style="width:300px;height:40px;">图书名字</th>
+					<th style="width:300px;height:40px;">作者</th>
+					<th style="width:300px;height:40px;">出版社</th>
+					<th style="width:300px;height:40px;">操作</th>
 				</tr>
 			</thead>
 			<tbody></tbody>

@@ -32,6 +32,12 @@ public class BookCartAction extends ActionSupport{
 	public void setBid(int bid) {
 		this.bid = bid;
 	}
+	public String removeItem() throws ParseException
+	{
+		BookCart bookCart=getBookCart();
+		bookCart.removItem(bid);
+		return "bookCart";
+	}
 	public String addToCart() throws ParseException
 	{
 		BookCartItem bookCartItem=new BookCartItem();
