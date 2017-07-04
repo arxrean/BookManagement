@@ -42,6 +42,12 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<!-- 对管理员的操作 -->
+		<action name="Admin*Action" class="com.crazybooks.action.AdminAction" method="{1}">
+			<result name="AdminLogin" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<!-- 网站内jsp页面的跳转 -->
 		<action name="To*JspAction">
 			<result name="success">/WEB-INF/jsp/{1}.jsp</result>
@@ -64,7 +70,9 @@
 			</result>
 		</action>
 		<!-- 获取单个书籍信息 -->
-		<action name="ToSingleBook"></action>
+		<action name="SingleBook" class="com.crazybooks.action.SingleBookAction">
+			
+		</action>
 		<!-- BookAction -->
 		<action name="book-*" class="bookAction" method="{1}">
 			<result name="bookListPage">WEB-INF/jsp/bookListPage.jsp</result>

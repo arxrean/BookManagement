@@ -115,9 +115,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<h1>Books</h1>
 		<div class="col-md-9">
-			<div class="content-top1" style="border:red solid 1px;">
+			<div class="content-top1">
 			<s:iterator var="books" value="pageBean.list">
-				<div class="col-md-4 col-md3" style="border:red solid 1px;">
+				<div class="col-md-4 col-md3">
 					<div class="col-md1 simpleCart_shelfItem">
 						<a href="ToSingleBookInfoHtmlAction">
 							<img class="img-responsive" src="<s:property value='#books.picture'/>" alt="" />

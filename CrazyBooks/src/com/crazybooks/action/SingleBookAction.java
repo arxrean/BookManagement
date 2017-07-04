@@ -21,5 +21,12 @@ public class SingleBookAction extends ActionSupport implements ModelDriven<Books
 			book=new Books();
 		}
 		return book;
-	}	
+	}
+	
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		
+		return super.execute();
+	}
 }

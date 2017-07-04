@@ -13,8 +13,12 @@
 <meta name="keywords"
 	content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript">	
+<script type="application/x-javascript">
+	
+		
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 </script>
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
@@ -34,44 +38,80 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <script type="text/javascript">
 	function login() {
-		$.ajax({
-			type : "post",
-			url : "UserLoginAction",
-			data : {
-				userName : $("#userName").val(),
-				password : $("#password").val(),
-				rand : $("#txt_validate").val(),
-			},
-			dataType : "json",
-			success : function(data) {
-				var d = eval("(" + data + ")");
-				if (d.type == "freeze") {
-					$("#errorLogin").text("该用户已被封禁!");
-					$("#errorLogin").css("color", "red");
-					var timenow = new Date().getTime();
-					$("#img_validate").attr("src",
-							"RandomValidate.action?d=" + timenow);
-				} else if (d.type == "none") {
-					$("#errorLogin").text("用户名或密码错误!");
-					$("#errorLogin").css("color", "red");
-					var timenow = new Date().getTime();
-					$("#img_validate").attr("src",
-							"RandomValidate.action?d=" + timenow);
-				} else if (d.type == "success") {
-					alert("登录成功");
-					window.location.href = "TomainPageJspAction.action";
-				} else {
-					$("#errorLogin").text("验证码错误!");
-					$("#errorLogin").css("color", "red");
-					var timenow = new Date().getTime();
-					$("#img_validate").attr("src",
-							"RandomValidate.action?d=" + timenow);
+		var userType = $("[name='group1']").filter(":checked").val();
+		if (userType == "user") {
+			$.ajax({
+				type : "post",
+				url : "UserLoginAction",
+				data : {
+					userName : $("#userName").val(),
+					password : $("#password").val(),
+					rand : $("#txt_validate").val(),
+				},
+				dataType : "json",
+				success : function(data) {
+					var d = eval("(" + data + ")");
+					if (d.type == "freeze") {
+						$("#errorLogin").text("该用户已被封禁!");
+						$("#errorLogin").css("color", "red");
+						var timenow = new Date().getTime();
+						$("#img_validate").attr("src",
+								"RandomValidate.action?d=" + timenow);
+					} else if (d.type == "none") {
+						$("#errorLogin").text("用户名或密码错误!");
+						$("#errorLogin").css("color", "red");
+						var timenow = new Date().getTime();
+						$("#img_validate").attr("src",
+								"RandomValidate.action?d=" + timenow);
+					} else if (d.type == "success") {
+						alert("登录成功");
+						window.location.href = "TomainPageJspAction.action";
+					} else {
+						$("#errorLogin").text("验证码错误!");
+						$("#errorLogin").css("color", "red");
+						var timenow = new Date().getTime();
+						$("#img_validate").attr("src",
+								"RandomValidate.action?d=" + timenow);
+					}
+				},
+				error : function() {
+					alert("Ajax传输错误！");
 				}
-			},
-			error : function() {
-				alert("Ajax传输错误！");
-			}
-		});
+			});
+		}
+		else{
+			$.ajax({
+				type:"post",
+				url:"AdminLoginAction",
+				data:{
+					name:$("#userName").val(),
+					password:$("#password").val(),
+					rand:$("#txt_validate").val(),
+				},
+				dataType:"json",
+				success:function(data){
+					var d=eval("("+data+")");
+					if(d.result=="success"){
+						alert("登录成功!");
+						window.location.href="ToAdminJspAction.action";
+					}
+					else if(d.result=="validateError"){
+						$("#errorLogin").text("验证码错误!");
+						$("#errorLogin").css("color", "red");
+						var timenow = new Date().getTime();
+						$("#img_validate").attr("src",
+								"RandomValidate.action?d=" + timenow);
+					}
+					else if(d.result=="error"){
+						$("#errorLogin").text("用户名或密码错误!");
+						$("#errorLogin").css("color", "red");
+						var timenow = new Date().getTime();
+						$("#img_validate").attr("src",
+								"RandomValidate.action?d=" + timenow);
+					}
+				}
+			});
+		}
 	}
 </script>
 <script src="js/simpleCart.min.js">
@@ -100,6 +140,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-4 header-left">
 					<p class="log">
+						
 						<a href="ToUserLoginHtmlAction.action">登录</a> <span>or</span><a
 							href="ToUserRegisterHtmlAction.action">注册</a>
 
@@ -142,7 +183,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">工具书</a></li>
 											</ul>
 										</div>
-									</div>									
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#">小说</a>
@@ -156,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">古典小说</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#">文艺</a>
@@ -171,7 +212,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">摄影</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#">人文社科</a>
@@ -189,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">法律</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#">经管</a>
@@ -203,7 +244,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">经济</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 						<li class="grid"><a href="#">科技</a>
@@ -221,7 +262,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><a href="products.html">工业技术</a></li>
 											</ul>
 										</div>
-									</div>																		
+									</div>
 								</div>
 							</div></li>
 					</ul>
@@ -278,8 +319,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<span>账号</span> <input type="text" name="userName" id="userName"
 							value="" /> <span>密码</span> <input type="password"
 							name="password" id="password" value="" /> <span id="fal"
-							style=display:none></span>
-						<!---加验证控件--->
+							style=display:none></span> <span>类型</span> <input type="radio"
+							id="radio_user" checked="checked" name="group1" value="user" />user
+						<input type="radio" id="radio_admin" name="group1" value="admin" />admin
+						<!---加验证控件-->
 						<span>验证码</span> <img alt="点击更换验证码" src="RandomValidate.action"
 							id="img_validate" /> <input id="txt_validate" type="text">
 						<span id="errorLogin"></span>
@@ -301,7 +344,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<!--footer-->
 	<div class="footer">
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="clearfix"></div>

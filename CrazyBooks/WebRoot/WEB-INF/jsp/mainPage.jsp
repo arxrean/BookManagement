@@ -206,7 +206,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<s:iterator var="bn" value="#session.bnList">
 				<div class="col-md-3 col-md2">
 					<div class="col-md1 simpleCart_shelfItem">
-						<a href="single.html">
+						<a href="SingleBook.action?id=<s:property value='#bn.id'/>">
 							<img class="img-responsive" src="<s:property value='#bn.picture'/>" alt="" />
 						</a>
 						<h3><a href="single.html"><s:property value='#bn.name'/></a></h3>
