@@ -47,6 +47,7 @@
 			<result name="AdminLogin" type="json">
 				<param name="root">result</param>
 			</result>
+			<result name="ViewUsers">/WEB-INF/jsp/Admin.jsp</result>
 		</action>
 		<!-- 网站内jsp页面的跳转 -->
 		<action name="To*JspAction">
@@ -68,6 +69,9 @@
 			<result name="session" type="json">
 				<param name="root">result</param>
 			</result>
+		</action>
+		<action name="admin*" class="com.crazybooks.action.AdminAction" method="{1}">
+			<result name="returnLogin">/WEB-INF/html/UserLogin.html</result>
 		</action>
 		<!-- 获取单个书籍信息 -->
 		<action name="SingleBook" class="com.crazybooks.action.SingleBookAction">

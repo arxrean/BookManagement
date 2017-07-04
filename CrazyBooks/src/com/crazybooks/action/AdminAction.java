@@ -1,11 +1,18 @@
 package com.crazybooks.action;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import net.sf.json.JSONObject;
 
 import com.crazybooks.base.AdminDao;
 import com.crazybooks.biz.AdminBiz;
 import com.crazybooks.biz.impl.AdminBizImpl;
 import com.crazybooks.etity.Managers;
+import com.crazybooks.etity.Users;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -77,4 +84,15 @@ public class AdminAction extends ActionSupport implements ModelDriven<Managers> 
 		return "AdminLogin";
 	}
 
+	public String DeleteSession(){
+		ActionContext.getContext().getSession().remove("adminName");
+		return "returnLogin";
+	}
+	
+	public String ViewUsers(){
+		List<Users> list=ab.getAllUsers();
+		HttpServletRequest request=ServletActionContext.getRequest();
+		request.setAttribute("users", list);
+		return "ViewUsers";
+	}
 }

@@ -1,8 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -28,7 +30,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
+	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
+
+
 
 
 
@@ -47,6 +57,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 </script>
 <!-- slide -->
+<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
+	media="all" />
+s
 </head>
 <body>
 	<!--header-->
@@ -73,9 +86,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-4 header-left">
 					<p class="log">
-						<a href="ToUserLoginHtmlAction.action">登录</a> <span>or</span><a
-							href="ToUserRegisterHtmlAction.action">注册</a>
-
+						<s:if test="#session.adminName!=null">
+							<s:property value="#session.adminName" />
+							<a href="adminDeleteSession.action">[注销]</a>
+						</s:if>
+						<s:else>
+							<a href="ToUserLoginHtmlAction.action">登录</a>
+							<span>or</span>
+							<a href="ToUserRegisterHtmlAction.action">注册</a>
+						</s:else>
 					</p>
 					<div class="cart box_1">
 						<a href="checkout.html">
@@ -108,7 +127,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="col1">
 										<div class="h_nav">
 											<ul>
-												<li><a href="products.html">查看用户</a></li>
+												<li><a href="AdminViewUsersAction">查看用户</a></li>
 												<li><a href="products.html">封禁用户</a></li>
 											</ul>
 										</div>
@@ -137,22 +156,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</ul>
 									</div>
 								</div>
-							</div></li>	
+							</div></li>
 						<li><a class="color6" href="contact.html">帮助</a></li>
 					</ul>
 				</div>
-				
-				
+
+
 				<div class="col-md-2 search">
 					<a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
 						class="glyphicon glyphicon-search"> </i> </a>
 				</div>
-						
+
 				<div class="clearfix"></div>
 				<!---pop-up-box---->
 				<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
-				<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
-					media="all" />
 				<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 				<!---//pop-up-box---->
 				<div id="small-dialog" class="mfp-hide">
@@ -193,7 +210,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-    <div class="container" style="height:800px"></div>	
+	<div class="container" style="height:800px">
+		<table>
+			<s:if test="#request.name==users">
+				<thead>
+					
+				</thead>
+			</s:if>
+		</table>
+	</div>
 
 
 
