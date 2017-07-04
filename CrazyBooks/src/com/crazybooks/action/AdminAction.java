@@ -90,7 +90,9 @@ public class AdminAction extends ActionSupport implements ModelDriven<Managers> 
 	}
 	
 	public String ViewUsers(){
+		ab=new AdminBizImpl();
 		List<Users> list=ab.getAllUsers();
+		System.out.println(list.size());
 		HttpServletRequest request=ServletActionContext.getRequest();
 		request.setAttribute("users", list);
 		return "ViewUsers";

@@ -127,7 +127,9 @@ public class UserAction extends ActionSupport implements ModelDriven<Users> {
 		String random = (String) (ActionContext.getContext().getSession()
 				.get("validateCode"));
 		if (random.equals(rand)) {
-			System.out.println("yes");
+			users.setBalance(0f);
+			users.setScore(0);
+			users.setRank(1);
 			ubi.register(users);
 			map.put("type", "success");
 		} else {

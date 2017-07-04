@@ -127,7 +127,7 @@ s
 									<div class="col1">
 										<div class="h_nav">
 											<ul>
-												<li><a href="AdminViewUsersAction">查看用户</a></li>
+												<li><a href="AdminViewUsersAction.action">查看用户</a></li>
 												<li><a href="products.html">封禁用户</a></li>
 											</ul>
 										</div>
@@ -212,7 +212,7 @@ s
 
 	<div class="container" style="height:800px">
 		<table>
-			<s:if test="#request.name==users">
+			<s:if test="#request.users!=null">
 				<thead>
 					<tr>
 						<th>用户名</th>
