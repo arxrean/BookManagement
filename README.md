@@ -1,2 +1,2 @@
 # BookManagement
-实训管理系统
+This is a java web project for Chongqing University Library, which uses Struts2 and Hibernate for development.
